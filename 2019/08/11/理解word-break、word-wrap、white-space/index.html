@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Css," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;我们在日常的工作中经常会遇到需要对文本显示的格式进行处理，比如控制换行、保留其中的空格和换行等。而与之相关的css属性主要包括了word-break、word-wrap、white-space这三个。下面就简单总结一下这三个属性的一些基本用法：">
+<meta name="keywords" content="Css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解word-break、word-wrap、white-space">
+<meta property="og:url" content="songxuy.github.io/2019/08/11/理解word-break、word-wrap、white-space/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;我们在日常的工作中经常会遇到需要对文本显示的格式进行处理，比如控制换行、保留其中的空格和换行等。而与之相关的css属性主要包括了word-break、word-wrap、white-space这三个。下面就简单总结一下这三个属性的一些基本用法：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word2.png">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word3.png">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word4.png">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word5.png">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word6.png">
+<meta property="og:image" content="/images/word1.png">
+<meta property="og:image" content="/images/word7.png">
+<meta property="og:image" content="/images/word7.png">
+<meta property="og:image" content="/images/word8.png">
+<meta property="og:updated_time" content="2019-08-10T17:39:03.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解word-break、word-wrap、white-space">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;我们在日常的工作中经常会遇到需要对文本显示的格式进行处理，比如控制换行、保留其中的空格和换行等。而与之相关的css属性主要包括了word-break、word-wrap、white-space这三个。下面就简单总结一下这三个属性的一些基本用法：">
+<meta name="twitter:image" content="/images/word1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2019/08/11/理解word-break、word-wrap、white-space/"/>
+
+
+
+
+
+  <title>理解word-break、word-wrap、white-space | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/08/11/理解word-break、word-wrap、white-space/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">理解word-break、word-wrap、white-space</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T01:12:13+08:00">
+                2019-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Css/" itemprop="url" rel="index">
+                    <span itemprop="name">Css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;我们在日常的工作中经常会遇到需要对文本显示的格式进行处理，比如控制换行、保留其中的空格和换行等。而与之相关的css属性主要包括了word-break、word-wrap、white-space这三个。下面就简单总结一下这三个属性的一些基本用法：<br><a id="more"></a></p>
+<h3 id="测试HTMl"><a href="#测试HTMl" class="headerlink" title="测试HTMl"></a>测试HTMl</h3><hr>
+<ul>
+<li>主要是一个定宽的box，里边包含了一些换行,空格,以及一个较长的单词</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span> <span class="attr">style</span>=<span class="string">"border: 1px dashed #000;position: relative;width:130px;display: inline-block;"</span>&gt;</span></span><br><span class="line">test&amp;nbsp;&amp;nbsp;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">ha ha ha I think i'm the king of the responsibilityworld</span><br><span class="line"><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">测试&amp;nbsp;&amp;nbsp;<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">哈 哈 哈 我认为我是这个有责任的世界的王</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>目前的基本样式如下图所示：</p>
+</blockquote>
+<p><img src="/images/word1.png" alt="My Pic"></p>
+<blockquote>
+<p>目前可以看到，换行和单个空格已经生效了，而连续的空格会被缩减成一个，换行符也全都无效。句子超过一行后会自动换行，而长度超过一行的单个单词会超出边界。接下来我们看下， 给它上面三个css属性赋值后会出现什么变化。</p>
+<h3 id="write-space"><a href="#write-space" class="headerlink" title="write-space"></a>write-space</h3></blockquote>
+<hr>
+<blockquote>
+<p>这个属性是用来控制空白字符的显示的，同时还能控制是否自动换行。它有五个值：normal | nowrap | pre | pre-wrap | pre-line。因为默认是normal，所以我们主要研究下其它四种值时的展现情况。</p>
+</blockquote>
+<ul>
+<li>white-space:nowrap<table><tr><td><center><img src="/images/word1.png"></center></td><td><center><img src="/images/word2.png"></center></td></tr></table>
+
+</li>
+</ul>
+<blockquote>
+<p>可以看到这个属性作用就是不换行，除非是<br> 多个空格也同样的会合并为一个</p>
+</blockquote>
+<ul>
+<li>white-space:pre</li>
+</ul>
+<table><tr><td><center><img src="/images/word1.png"></center></td><td><center><img src="/images/word3.png"></center></td></tr></table>
+
+<blockquote>
+<p>可以看到空格和换行符保留下来了，自动换行还是没有了</p>
+</blockquote>
+<ul>
+<li>white-space:pre-wrap<table><tr><td><center><img src="/images/word1.png"></center></td><td><center><img src="/images/word4.png"></center></td></tr></table>
+
+</li>
+</ul>
+<blockquote>
+<p>可以看到其实效果有点像pre + wrap 保留空格和换行符，而且同时自动换行</p>
+</blockquote>
+<ul>
+<li>white-space:pre-line<table><tr><td><center><img src="/images/word1.png"></center></td><td><center><img src="/images/word5.png"></center></td></tr></table>
+
+</li>
+</ul>
+<blockquote>
+<p>空格被合并了，但是换行符可以发挥作用 同时也可以自动换行</p>
+</blockquote>
+<p>根据上面的情况总结为下表</p>
+<table>
+<thead>
+<tr>
+<th>是否发挥作用</th>
+<th>换行符</th>
+<th>空格</th>
+<th>自动换行</th>
+<th><br>, nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>x</td>
+<td>x（合并）</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>x</td>
+<td>x（合并）</td>
+<td>x</td>
+<td>√</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>√</td>
+<td>√</td>
+<td>x</td>
+<td>√</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>√</td>
+<td>x</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody>
+</table>
+<h3 id="word-break"><a href="#word-break" class="headerlink" title="word-break"></a>word-break</h3><hr>
+<blockquote>
+<p>这个属性是控制单词如何被拆分换行的。它有三个值：normal | break-all | keep-all。</p>
+</blockquote>
+<ul>
+<li>word-break:keep-all<table><tr><td><center><img src="/images/word1.png"></center></td><td><center><img src="/images/word6.png"></center></td></tr></table>
+
+</li>
+</ul>
+<blockquote>
+<p>所有“单词”一律不拆分换行，注意，我这里的“单词”包括连续的中文字符（还有日文、韩文等），或者可以理解为只有空格可以触发自动换行</p>
+</blockquote>
+<ul>
+<li><p>word-break:break-all</p>
+<table><tr><td><center><img src="/images/word1.png"></center></td><td><center><img src="/images/word7.png"></center></td></tr></table>
+
+<blockquote>
+<p>所有单词碰到边界一律拆分换行，不管你是一行都显示不下的单词，还是很短的单词，只要碰到边界，都会被强制拆分换行。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="word-wrap（overflow-wrap）"><a href="#word-wrap（overflow-wrap）" class="headerlink" title="word-wrap（overflow-wrap）"></a>word-wrap（overflow-wrap）</h3><hr>
+<blockquote>
+<p>这个属性也是控制单词如何被拆分换行的，实际上是作为word-break的互补，它只有两个值：normal | break-word</p>
+</blockquote>
+<ul>
+<li>word-wrap:break-word<br><table><tr><td><center><img src="/images/word7.png"></center></td><td><center><img src="/images/word8.png"></center></td></tr></table><blockquote>
+<p>只有当一个单词一整行都显示不下时，才会拆分换行该单词。所以我觉得overflow-wrap更好理解好记一些，overflow，只有长到溢出的单词才会被强制拆分换行！</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://juejin.im/post/5b8905456fb9a01a105966b4" target="_blank" rel="noopener">参考链接-掘金</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Css/" rel="tag"># Css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/04/grid布局/" rel="next" title="grid布局">
+                <i class="fa fa-chevron-left"></i> grid布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/18/Css中负值的使用/" rel="prev" title="Css中负值的使用">
+                Css中负值的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试HTMl"><span class="nav-text">测试HTMl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#write-space"><span class="nav-text">write-space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#word-break"><span class="nav-text">word-break</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#word-wrap（overflow-wrap）"><span class="nav-text">word-wrap（overflow-wrap）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

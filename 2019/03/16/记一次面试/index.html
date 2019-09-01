@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近一直忙于校招和毕设，以及复习一些基础的知识点。今天去了一家游戏公司的宣讲会，也做了笔试题，竟然感觉还有点难，考得有些很怪的知识点。下面就分享一下我记忆中的这些题把。">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次面试">
+<meta property="og:url" content="songxuy.github.io/2019/03/16/记一次面试/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近一直忙于校招和毕设，以及复习一些基础的知识点。今天去了一家游戏公司的宣讲会，也做了笔试题，竟然感觉还有点难，考得有些很怪的知识点。下面就分享一下我记忆中的这些题把。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/images/paixu.png">
+<meta property="og:updated_time" content="2019-03-18T01:43:32.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次面试">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近一直忙于校招和毕设，以及复习一些基础的知识点。今天去了一家游戏公司的宣讲会，也做了笔试题，竟然感觉还有点难，考得有些很怪的知识点。下面就分享一下我记忆中的这些题把。">
+<meta name="twitter:image" content="/images/paixu.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2019/03/16/记一次面试/"/>
+
+
+
+
+
+  <title>记一次面试 | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/03/16/记一次面试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记一次面试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-16T23:10:00+08:00">
+                2019-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;最近一直忙于校招和毕设，以及复习一些基础的知识点。今天去了一家游戏公司的宣讲会，也做了笔试题，竟然感觉还有点难，考得有些很怪的知识点。下面就分享一下我记忆中的这些题把。<br><a id="more"></a></p>
+<h2 id="1-选择题"><a href="#1-选择题" class="headerlink" title="1.选择题"></a>1.选择题</h2><p>只有两道选择题，第一道考的是文本区域可监听的事件主要考得就是onbulr、onfocues、onchange。第二道考的是正则的方法和字符串的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正则的创建</span></span><br><span class="line"><span class="keyword">var</span>  reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'abc'</span>,<span class="string">'gi'</span>);</span><br><span class="line"><span class="keyword">var</span>  reg=<span class="regexp">/abc/gi</span>;</span><br><span class="line">reg.test(<span class="string">'boy    and   girl'</span>)<span class="comment">//对传入的字符串正则匹配 匹配就返回true，否则返回false。</span></span><br><span class="line"><span class="comment">//compile方法 该方法的作用是能够对正则表达式进行编译，被编译过的正则在使用的时候效率会更高，适合于对一个正则多次调用的情况下，如果对一个正则只使用一两次，那么该方法没有特别显著的效应。接受的参数也是一个正则。</span></span><br><span class="line"><span class="comment">//exec方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串的正则方法</span></span><br><span class="line"><span class="comment">//search方法 如果找到就返回一个number类型的index值，否则返回-1,它返回的只是第一次匹配的位置 多个匹配也只会返回第一个位置</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/o/g</span>));</span><br><span class="line"><span class="comment">//replace方法 该方法用来将字符串中的某些子串替换为需要的内容，接受两个参数，第一个参数可以为正则或者子字符串，表示匹配需要被替换的内容，第二个参数为被替换的新的子字符串。如果声明为全局匹配则会替换所有结果，否则只替换第一个匹配到的结果。</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">"hello world,hello test"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/hello/g</span>,<span class="string">'hi'</span>));</span><br><span class="line"><span class="comment">//match方法 该方法接受一个正则作为参数，用来匹配一个字符串，它的输出结果在不是全局匹配的情况下和exec方法的结果一致即一个数组并带有额外的属性，如果采用全局匹配，则不返回任何和其被匹配字符串相关的信息，只返回匹配的结果。</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-填空题"><a href="#2-填空题" class="headerlink" title="2.填空题"></a>2.填空题</h2><p>就考了一些字符串方法和比较结果 排序的时间和空间复杂度 还有一些奇怪的题<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">''</span>==<span class="number">0</span>)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log([]==<span class="number">0</span>)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125;==<span class="number">0</span>)<span class="comment">//false</span></span><br><span class="line"><span class="comment">//如果比较的双方是字符串和数字 那就把字符串转成number  布尔值和其他值 把布尔值转换成number 对象会调用valueOf或者toString转换  其他任何值都不和null和undefined相等</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>toString()<span class="comment">//报错 .是一个有效的数字字符</span></span><br><span class="line"><span class="number">3</span> .toString()<span class="comment">//'3'</span></span><br><span class="line"><span class="number">3.</span>.toString()<span class="comment">//'3'</span></span><br><span class="line"><span class="number">3.</span>..toString()<span class="comment">//报错</span></span><br></pre></td></tr></table></figure></p>
+<p>下面是排序的一张图 具体还是要知道对应的是怎么排的<br><img src="/images/paixu.png" alt="My Pic"></p>
+<h2 id="3-简答题"><a href="#3-简答题" class="headerlink" title="3.简答题"></a>3.简答题</h2><h3 id="1-js的实践执行顺序"><a href="#1-js的实践执行顺序" class="headerlink" title="1.js的实践执行顺序"></a>1.js的实践执行顺序</h3><p>先顺序执行代码，遇到宏任务放到宏任务队列中，遇到微任务放到微任务队列中。一轮完成之后检查微任务队列是否为空，不为空就执行微任务，再依次这样，知道执行完。</p>
+<h3 id="2正则匹配（永远的桶）"><a href="#2正则匹配（永远的桶）" class="headerlink" title="2正则匹配（永远的桶）"></a>2正则匹配（永远的桶）</h3><p>因为平时都是网上直接copy，真要自己写一个出来，真的是无从下笔。还是要了解一下基本的用法啊</p>
+<h3 id="3-css渲染开启硬件加速"><a href="#3-css渲染开启硬件加速" class="headerlink" title="3.css渲染开启硬件加速"></a>3.css渲染开启硬件加速</h3><p>硬件加速就是将浏览器的渲染过程交给GPU处理，而不是使用自带的比较慢的渲染器。这样就可以使得animation与transition更加顺畅。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">设置一些css属性就可以开启硬件加速</span><br><span class="line">transform: translate3d(250px,250px,250px)</span><br><span class="line">           rotate3d(250px,250px,250px,-120deg)</span><br><span class="line">            scale3d(0.5, 0.5, 0.5);</span><br><span class="line"> -webkit-transform: translateZ(0);</span><br><span class="line">   -moz-transform: translateZ(0);</span><br><span class="line">   -ms-transform: translateZ(0);</span><br><span class="line">   -o-transform: translateZ(0);</span><br><span class="line">   transform: translateZ(0);</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-css如何隐藏内容（不影响屏幕阅读器阅读呢？）"><a href="#4-css如何隐藏内容（不影响屏幕阅读器阅读呢？）" class="headerlink" title="4.css如何隐藏内容（不影响屏幕阅读器阅读呢？）"></a>4.css如何隐藏内容（不影响屏幕阅读器阅读呢？）</h3><p>刚看到这一题也有点蒙，什么事屏幕阅读器呢？查了一下才知道是为视觉上有障碍的人设计的读取屏幕内容的程序<br>知道之后就容易啦。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.display:none;的缺陷</span><br><span class="line"></span><br><span class="line">搜索引擎可能认为被隐藏的文字属于垃圾信息而被忽略</span><br><span class="line"></span><br><span class="line">屏幕阅读器（是为视觉上有障碍的人设计的读取屏幕内容的程序）会忽略被隐藏的文字，同时不利于搜索引擎。</span><br><span class="line"></span><br><span class="line">2. visibility: hidden ;的缺陷</span><br><span class="line"></span><br><span class="line">这个大家应该比较熟悉就是隐藏的内容会占据他所应该占据物理空间</span><br><span class="line"></span><br><span class="line">3.overflow:hidden;一个比较合理的方法</span><br><span class="line"></span><br><span class="line">4.opacity:0;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-dom-onclick和addEventlistener的区别"><a href="#5-dom-onclick和addEventlistener的区别" class="headerlink" title="5.dom.onclick和addEventlistener的区别"></a>5.dom.onclick和addEventlistener的区别</h3><p>onclick只出现一次，但是addEventListener却可以先后运行不会被覆盖，addEventListener允许给一个事件注册多个监听器。在使用DHTML库或者 Mozilla extensions 这样需要保证能够和其他的库或者差距并存的时候非常有用。addEventListener还可以设置事件在哪个阶段触发（冒泡、捕获）</p>
+<h3 id="6-什么是浏览器缓存（什么是强制缓存和协商缓存）"><a href="#6-什么是浏览器缓存（什么是强制缓存和协商缓存）" class="headerlink" title="6.什么是浏览器缓存（什么是强制缓存和协商缓存）"></a>6.什么是浏览器缓存（什么是强制缓存和协商缓存）</h3><p>浏览器在用户磁盘上对最近请求过的文档进行存储，当访问者再次请求这个页面时，浏览器就可以直接从本地磁盘读取资源并展示，这样就可以加速页面的阅览。<br>缓存的好处：<br>1.缓解服务器压力(不用每次去服务器请求资源)；</p>
+<p>2.提升性能(打开本地资源速度当然比打开请求回来资源的速度要快得多)；</p>
+<p>3.减少带宽消耗(获取数据相当于下载资源的过程，必定会占用一定的网络带宽——就是您家的网速啦~)；</p>
+<p>强缓存：<br>客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，告诉客户端将这个资源保存在本地，并且在未来的某个时点之前如果还需要这个资源，直接从本地获取就行了，不用向服务器请求。这种方式缓存下来的资源称为强缓存。<br>Cache-Control字段 如果没有命中缓存，浏览器直接向服务器发起请求，Cache-Control会在重新获取到服务器返回资源时更新。<br>cache-control的值：<br>public指示响应可被任何缓存区缓存，包括终端用户和CDN等代理服务器。<br>private只允许被终端用户的浏览器端缓存，对于单个用户的整个或部分响应消息，不能被代理服务器将其保存在共享缓存里。服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。<br>no-cache禁止使用强缓存，设置了no-cache之后并不代表浏览器不缓存，而是在缓存前要向服务器确认资源是否被更改。因此有的时候只设置no-cache防止缓存还是不够保险，还可以加上private指令，过期时间max-age=0。<br>no-store禁止使用缓存，每次都要去服务器重新请求，用于防止重要的信息被无意的发布。max-age表示自第一次收到响应后的xxx ms以后可以用缓存。min-fresh表示客户端希望在指定的时间内获取最新的响应。max-stale表明客户端愿意接收一个已经过期的资源。 可选的设置一个时间(单位秒)，表示响应不能超过的过时时间。注意：命中强缓存时，浏览器同样会收到status=200的response，chrome中可通过size区分从服务器返回的资源还是强缓存获得的资源</p>
+<p>协商缓存：<br>客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，将该资源的一些信息也返回给客户端，告诉客户端将这个资源缓存在本地。当客户端下一次需要这个资源时，将请求以及相关信息一并发送给服务器，由服务器来判断客户端缓存的资源是否需要更新：如不需要更新，就直接告诉客户端获取本地缓存资源（304）；如需要更新，则将最新的资源连同相应的信息一并返回给客户端。</p>
+<p>Last-Modified If-Modified-Since ETag  If-None-Match</p>
+<h1 id="4编程题"><a href="#4编程题" class="headerlink" title="4编程题"></a>4编程题</h1><p>最后考得是一道字符串截取题截取指定两个字符之间的子字符串。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/相聚和别离/" rel="next" title="相聚和别离">
+                <i class="fa fa-chevron-left"></i> 相聚和别离
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/28/Node的一些问题/" rel="prev" title="Node的一些问题">
+                Node的一些问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-选择题"><span class="nav-text">1.选择题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-填空题"><span class="nav-text">2.填空题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-简答题"><span class="nav-text">3.简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-js的实践执行顺序"><span class="nav-text">1.js的实践执行顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2正则匹配（永远的桶）"><span class="nav-text">2正则匹配（永远的桶）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-css渲染开启硬件加速"><span class="nav-text">3.css渲染开启硬件加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-css如何隐藏内容（不影响屏幕阅读器阅读呢？）"><span class="nav-text">4.css如何隐藏内容（不影响屏幕阅读器阅读呢？）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-dom-onclick和addEventlistener的区别"><span class="nav-text">5.dom.onclick和addEventlistener的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-什么是浏览器缓存（什么是强制缓存和协商缓存）"><span class="nav-text">6.什么是浏览器缓存（什么是强制缓存和协商缓存）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4编程题"><span class="nav-text">4编程题</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;又双参加了一个视屏面试，总的来说问的问题还会挺全面的但关于Css的知识问的还是比较少。其他的问题来说自己还是有一些知识点掌握的不是很好，有些概念性的东西没去深入了解过。下面就是自己记忆中答得不是很好的一些知识点：">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="又是一次面试">
+<meta property="og:url" content="songxuy.github.io/2019/04/10/又是一次面试/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;又双参加了一个视屏面试，总的来说问的问题还会挺全面的但关于Css的知识问的还是比较少。其他的问题来说自己还是有一些知识点掌握的不是很好，有些概念性的东西没去深入了解过。下面就是自己记忆中答得不是很好的一些知识点：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-14T15:06:26.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="又是一次面试">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;又双参加了一个视屏面试，总的来说问的问题还会挺全面的但关于Css的知识问的还是比较少。其他的问题来说自己还是有一些知识点掌握的不是很好，有些概念性的东西没去深入了解过。下面就是自己记忆中答得不是很好的一些知识点：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2019/04/10/又是一次面试/"/>
+
+
+
+
+
+  <title>又是一次面试 | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/04/10/又是一次面试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">又是一次面试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T11:44:41+08:00">
+                2019-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;又双参加了一个视屏面试，总的来说问的问题还会挺全面的但关于Css的知识问的还是比较少。其他的问题来说自己还是有一些知识点掌握的不是很好，有些概念性的东西没去深入了解过。下面就是自己记忆中答得不是很好的一些知识点：<br><a id="more"></a></p>
+<h2 id="1-express-和-koa中间件的区别"><a href="#1-express-和-koa中间件的区别" class="headerlink" title="1.express 和 koa中间件的区别"></a>1.express 和 koa中间件的区别</h2><p>先简单看一个表格吧</p>
+<p><table> <tr><td>名称</td><td>说明</td><td>对应</td><td>经典</td></tr><tr><td>express</td><td>web框架</td><td>ES5</td><td>回调嵌套</td></tr><tr><td>koa</td><td>web框架</td><td>ES6</td><td>Generator函数+yield语句+Promise</td></tr><tr><td>koa2</td><td>web框架</td><td>ES7</td><td>async/await+Promise</td></tr></table><br>express用Application、Request、Response、Router四个主要模块，模拟了一个完整的web服务器功能，对了，express还在相当长的一段时期中受到了Connect的影响。在使用express的过程中，你会发现express是一个极简的、灵活的 web 应用开发框架，它提供的这一系列强大的特性，可以帮助你快速创建各种 web 和移动设备应用。<br>koa中也包含4个主要模块，Application、Request、Response、Context。此时，router已经被排除在内核之外了。其实，koa只是一个“中间架”，几乎所有的功能都需要由第三方中间件来协同完成。例如koa的router模块，就有20多个，优胜劣汰，自由选择……虽然有不规范之嫌，但是，koa是规范的这就足够了。使用koa，可以最大限度的发挥自己的想象力，利用koa，构建各种个性化的web与移动应用。connect的中间件是线性的，next过后继续寻找下一个中间件，这种模式直觉上也很好理解，中间件就是一系列数组，通过路由匹配来寻找相应路由的处理方法也就是中间件。事实上connect也是这么实现的。app.use 就是往中间件数组中塞入新的中间件。中间件的执行则依靠私有方法 app.handle 进行处理，express也是相同的道理。而koa中间件是洋葱圈模型，也就是koa处理完中间件后还会回来走一趟，这就给了我们更加大的操作空间，很明显，当koa处理中间件遇到await next()的时候会暂停当前中间件进而处理下一个中间件，最后再回过头来继续处理剩下的任务，虽然说起来很复杂，但是直觉上我们会有一种隐隐熟悉的感觉：不就是回调函数吗。这里暂且不说具体实现方法，但是确实就是回调函数。跟async/await的特性并无任何关系。</p>
+<h2 id="2-如何全局捕获错误"><a href="#2-如何全局捕获错误" class="headerlink" title="2.如何全局捕获错误"></a>2.如何全局捕获错误</h2><p>当被问到错误捕获这个问题时，自己只想到了try catch。当面试官问还有什么其他方法时，自己就楞住了，想了半天也没想出了。下来之后自己就查了一下，原来有个全局捕获错误的方法window.onerror 除此之外我们还能主动的抛出错误通过throw方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局捕获错误</span></span><br><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">message, url, line, column, error</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'error'</span>,message, url, line, column, error)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(error) <span class="comment">//打印未定义的变量  捕获到错误</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(err)</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-webpack与gulp的区别"><a href="#3-webpack与gulp的区别" class="headerlink" title="3.webpack与gulp的区别"></a>3.webpack与gulp的区别</h2><p>1.Gulp侧重于前端开发的 整个过程 的控制管理（像是流水线），我们可以通过给gulp配置不通的task（通过Gulp中的gulp.task()方法配置，比如启动server、sass/less预编译、文件的合并压缩等等）来让gulp实现不同的功能，从而构建整个前端开发流程。<br>2.Webpack有人也称之为 模块打包机 ，由此也可以看出Webpack更侧重于模块打包，当然我们可以把开发中的所有资源（图片、js文件、css文件等）都可以看成模块，最初Webpack本身就是为前端JS代码打包而设计的，后来被扩展到其他资源的打包处理。Webpack是通过loader（加载器）和plugins（插件）对资源进行处理的。<br>3.另外我们知道Gulp是对整个过程进行控制，所以在其配置文件（gulpfile.js）中配置的每一个task对项目中 该task配置路径下所有的资源 都可以管理。比如，对sass文件进行预编译的task可以对其配置路径下的所有sass文件进行预编译处理</p>
+<h2 id="4-jsonp只能post的原因"><a href="#4-jsonp只能post的原因" class="headerlink" title="4.jsonp只能post的原因"></a>4.jsonp只能post的原因</h2><p>之前了自己以为因为参数需要拼接在url上，所以只能使用get请求。但感觉回答之后不是那么的正确，于是下来之后就查了一下。因为 JSONP 的原理是通过「动态创建script」实现的，「动态创建script」只能用「get」，不能用「post」。</p>
+<h2 id="5-Es6函数默认赋值"><a href="#5-Es6函数默认赋值" class="headerlink" title="5.Es6函数默认赋值"></a>5.Es6函数默认赋值</h2><p>当给函数默认值赋值为undefined时，给函数传递空、undefined、null最终获取到的参数值是什么。直接上代码把吧<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">x=undefined</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">test() <span class="comment">//undefined</span></span><br><span class="line">test(<span class="literal">undefined</span>) <span class="comment">//undefined</span></span><br><span class="line">test(<span class="literal">null</span>) <span class="comment">//null</span></span><br></pre></td></tr></table></figure></p>
+<p>当传入的参数为空或者是undefined时就会使用到默认的赋值</p>
+<h2 id="6-localstoryge和sessionstoryge"><a href="#6-localstoryge和sessionstoryge" class="headerlink" title="6.localstoryge和sessionstoryge"></a>6.localstoryge和sessionstoryge</h2><p>提到这两个就必须还要加上cookie，下面用一张表来解释一下吧</p>
+<p><table> <tr><td>特性</td><td>Cookie</td><td>localStorage</td><td>sessionStorage</td></tr><tr><td>数据的生命期</td><td>一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效</td><td>除非被清除，否则永久保存</td><td>仅在当前会话下有效，关闭页面或浏览器后被清除</td></tr><tr><td>存放数据大小</td><td>4K左右</td><td colspan="2">一般为5MB</td></tr><tr><td>与服务器端通信</td><td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td><td colspan="2">仅在客户端（即浏览器）中保存，不参与和服务器的通信</td></tr><tr><td>易用性</td><td>需要程序员自己封装，源生的Cookie接口不友好</td><td colspan="2">源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td></tr></table><br>还有就是localstoryge能够跨域么  答案是当然不能拉 同理其他也不行</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/28/Node的一些问题/" rel="next" title="Node的一些问题">
+                <i class="fa fa-chevron-left"></i> Node的一些问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/26/字节面/" rel="prev" title="字节面">
+                字节面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-express-和-koa中间件的区别"><span class="nav-text">1.express 和 koa中间件的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-如何全局捕获错误"><span class="nav-text">2.如何全局捕获错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-webpack与gulp的区别"><span class="nav-text">3.webpack与gulp的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-jsonp只能post的原因"><span class="nav-text">4.jsonp只能post的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Es6函数默认赋值"><span class="nav-text">5.Es6函数默认赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-localstoryge和sessionstoryge"><span class="nav-text">6.localstoryge和sessionstoryge</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
