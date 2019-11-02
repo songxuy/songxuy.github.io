@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Canvas,正弦函数," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近看了几篇关于正弦函数如何实现一些比较常用和酷炫的动画效果，自己看了之后也下定决心要把很久没用的canvas给捡回来。下面就通过几个例子来简单介绍一下正弦在动画中的实现，例子都是通过react编写。">
+<meta name="keywords" content="Canvas,正弦函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正弦函数在动画中的运用(一)">
+<meta property="og:url" content="songxuy.github.io/2019/11/03/正弦函数在动画中的运用-一/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近看了几篇关于正弦函数如何实现一些比较常用和酷炫的动画效果，自己看了之后也下定决心要把很久没用的canvas给捡回来。下面就通过几个例子来简单介绍一下正弦在动画中的实现，例子都是通过react编写。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/images/sin1.png">
+<meta property="og:image" content="/images/sin2.gif">
+<meta property="og:image" content="/images/sin3.png">
+<meta property="og:image" content="/images/sin4.gif">
+<meta property="og:image" content="/images/sin5.png">
+<meta property="og:image" content="/images/sin6.gif">
+<meta property="og:image" content="/images/sin7.gif">
+<meta property="og:image" content="/images/sin8.gif">
+<meta property="og:updated_time" content="2019-11-02T16:59:19.724Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正弦函数在动画中的运用(一)">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近看了几篇关于正弦函数如何实现一些比较常用和酷炫的动画效果，自己看了之后也下定决心要把很久没用的canvas给捡回来。下面就通过几个例子来简单介绍一下正弦在动画中的实现，例子都是通过react编写。">
+<meta name="twitter:image" content="/images/sin1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2019/11/03/正弦函数在动画中的运用-一/"/>
+
+
+
+
+
+  <title>正弦函数在动画中的运用(一) | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/11/03/正弦函数在动画中的运用-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正弦函数在动画中的运用(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-03T00:52:00+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Canvas/" itemprop="url" rel="index">
+                    <span itemprop="name">Canvas</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Canvas/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;最近看了几篇关于正弦函数如何实现一些比较常用和酷炫的动画效果，自己看了之后也下定决心要把很久没用的canvas给捡回来。下面就通过几个例子来简单介绍一下正弦在动画中的实现，例子都是通过react编写。<br><a id="more"></a></p>
+<h3 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h3><blockquote>
+<p>这个大家应该都不陌生了，从小到大一直都和它纠缠在一起，只是不知道现在是否有遗忘了，反正我是忘了很多了，就先复习一下吧</p>
+</blockquote>
+<h4 id="勾股定理"><a href="#勾股定理" class="headerlink" title="勾股定理"></a>勾股定理</h4><blockquote>
+<p>对于直角三角形来说 a^2 + b^2 = h^2<br>除此之外还有一下特性<br>sinθ = a / h<br>cosθ = b / h<br>tanθ = a / b</p>
+<p><img src="/images/sin1.png" alt="My Pic"></p>
+</blockquote>
+<h4 id="极坐标系和单位圆"><a href="#极坐标系和单位圆" class="headerlink" title="极坐标系和单位圆"></a>极坐标系和单位圆</h4><blockquote>
+<p>重新复习的时候，感觉又回到了很痛苦的日子0.0<br>定义： 在笛卡尔直角坐标系中，任一点 (x, y) 都可以转化成极坐标表示 (r, θ)，其中<br>r = Math.sqrt(x^2 + y^2)<br>θ = Math.atn2(y, x)<br>单位圆的定义是半径为单位长度的圆，圆上任意一点的横坐标就是对应角度的余弦值，任意点的纵坐标就是对应角度的正弦值。下面是网上盗的一张图</p>
+<p><img src="/images/sin2.gif" alt="My Pic"></p>
+</blockquote>
+<h4 id="正弦函数"><a href="#正弦函数" class="headerlink" title="正弦函数"></a>正弦函数</h4><blockquote>
+<p>下面首先是一张标准的正弦图</p>
+<p><img src="/images/sin3.png" alt="My Pic"><br>然后我们在来看看正弦函数对应的标准表达式吧<br>y = A sin(Bx + C) + D<br>A: 代表振幅 即代表正弦函数的波峰和波谷的最大高度<br>B: 控制着正弦函数的周期  b越小则周期越长 反之越短 代表周期缩短增大了1/b<br>C: 代表初项 即正弦函数在x轴上移动的距离 为正则图像左移 反之右移<br>D: 控制图像的上下移动 为正的话则上移 反之下移<br>这个公式对于后面动画的编写那是非常的重要呀</p>
+</blockquote>
+<h3 id="波浪曲线动画"><a href="#波浪曲线动画" class="headerlink" title="波浪曲线动画"></a>波浪曲线动画</h3><blockquote>
+<p>最终实现的效果是下面这样的<br>主要分为下面的几步来实现</p>
+<p><img src="/images/sin4.gif" alt="My Pic"></p>
+</blockquote>
+<h4 id="画一个正弦曲线"><a href="#画一个正弦曲线" class="headerlink" title="画一个正弦曲线"></a>画一个正弦曲线</h4><blockquote>
+<p>主要是利用我们上一个公式 加上创建一个canvas 代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props)</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="keyword">const</span> canvas = <span class="keyword">this</span>.refs.canvas;</span><br><span class="line">    canvas.height = <span class="number">500</span>;</span><br><span class="line">    canvas.width = <span class="number">350</span>;</span><br><span class="line">    <span class="keyword">this</span>.canvas = canvas;</span><br><span class="line">    <span class="keyword">this</span>.canvasWidth = canvas.width;</span><br><span class="line">    <span class="keyword">this</span>.canvasHeight = canvas.height;</span><br><span class="line">    <span class="keyword">this</span>.ctx = <span class="keyword">this</span>.canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">    <span class="keyword">this</span>.draw()</span><br><span class="line">  &#125;</span><br><span class="line">  draw () &#123;</span><br><span class="line">    <span class="keyword">this</span>.ctx.beginPath();</span><br><span class="line">    <span class="keyword">this</span>.ctx.lineWidth = <span class="number">1</span></span><br><span class="line">    <span class="keyword">this</span>.ctx.strokeStyle = <span class="string">'#fff'</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; <span class="keyword">this</span>.canvasWidth; x++) &#123;</span><br><span class="line">      <span class="keyword">const</span> y = <span class="number">30</span>* <span class="built_in">Math</span>.sin(x * <span class="built_in">Math</span>.PI / <span class="number">30</span>)  * <span class="number">1</span> + <span class="keyword">this</span>.canvasHeight / <span class="number">2</span></span><br><span class="line">      <span class="keyword">this</span>.ctx.lineTo(x, y)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.ctx.stroke()</span><br><span class="line">    <span class="keyword">this</span>.ctx.closePath()</span><br><span class="line">  &#125;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"demo"</span>&gt;</span><br><span class="line">        &lt;canvas ref=<span class="string">"canvas"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="/images/sin5.png" alt="My Pic"></p>
+<h4 id="如何让它动起来"><a href="#如何让它动起来" class="headerlink" title="如何让它动起来"></a>如何让它动起来</h4><blockquote>
+<p>这里主要是利用的requestAnimationFrame来重新渲染的，但是要动起来还需要我们不断的修改正弦函数的相位周期等参数来实现 下面主要是通过修改相位来实现移动的</p>
+<p>其中clearRect方法我们每次重新画的时候都需要清空当前的画布要不然每次的结果都会就在画布上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">    <span class="keyword">const</span> canvas = <span class="keyword">this</span>.refs.canvas;</span><br><span class="line">    canvas.height = <span class="number">500</span>;</span><br><span class="line">    canvas.width = <span class="number">350</span>;</span><br><span class="line">    <span class="keyword">this</span>.canvas = canvas;</span><br><span class="line">    <span class="keyword">this</span>.canvasWidth = canvas.width;</span><br><span class="line">    <span class="keyword">this</span>.canvasHeight = canvas.height;</span><br><span class="line">    <span class="keyword">this</span>.ctx = <span class="keyword">this</span>.canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">    <span class="keyword">this</span>.moveX = <span class="number">0</span></span><br><span class="line">    requestAnimationFrame(<span class="keyword">this</span>.drawImg.bind(<span class="keyword">this</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  drawImg () &#123;</span><br><span class="line">    <span class="keyword">this</span>.moveX += <span class="number">100</span></span><br><span class="line">    <span class="keyword">this</span>.ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">this</span>.canvasWidth, <span class="keyword">this</span>.canvasHeight);</span><br><span class="line">    <span class="keyword">this</span>.draw()</span><br><span class="line">    requestAnimationFrame(<span class="keyword">this</span>.drawImg.bind(<span class="keyword">this</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  draw () &#123;</span><br><span class="line">    <span class="keyword">this</span>.ctx.beginPath();</span><br><span class="line">    <span class="keyword">this</span>.ctx.lineWidth = <span class="number">1</span></span><br><span class="line">    <span class="keyword">this</span>.ctx.strokeStyle = <span class="string">'#fff'</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; <span class="keyword">this</span>.canvasWidth; x++) &#123;</span><br><span class="line">      <span class="keyword">const</span> y = <span class="number">30</span>* <span class="built_in">Math</span>.sin(x * <span class="built_in">Math</span>.PI / <span class="number">30</span> + <span class="keyword">this</span>.moveX)  * <span class="number">1</span> + <span class="keyword">this</span>.canvasHeight / <span class="number">2</span></span><br><span class="line">      <span class="keyword">this</span>.ctx.lineTo(x, y)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.ctx.stroke()</span><br><span class="line">    <span class="keyword">this</span>.ctx.closePath()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="/images/sin6.gif" alt="My Pic"></p>
+<h4 id="再添加一条曲线"><a href="#再添加一条曲线" class="headerlink" title="再添加一条曲线"></a>再添加一条曲线</h4><blockquote>
+<p>按照上面的步骤，再添加一条曲线，修改其相位就会出现两条不同速度的曲线了</p>
+</blockquote>
+<p><img src="/images/sin7.gif" alt="My Pic"></p>
+<h4 id="最终实现"><a href="#最终实现" class="headerlink" title="最终实现"></a>最终实现</h4><blockquote>
+<p>要实现上面的变化，除了动态修改振幅之外还需要动态修改一些其他的参数，如振幅等 让左右成为波谷，中间成为波峰，就能得到曼妙的波纹   主要是利用下面</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</span><br><span class="line">  <span class="keyword">const</span> radians = x / width * <span class="built_in">Math</span>.PI * <span class="number">2</span></span><br><span class="line">  <span class="keyword">const</span> scale = (<span class="built_in">Math</span>.sin(radians - <span class="built_in">Math</span>.PI * <span class="number">0.5</span>) + <span class="number">1</span>) * <span class="number">0.5</span></span><br><span class="line">  <span class="keyword">const</span> y = <span class="built_in">Math</span>.sin(x * <span class="number">0.02</span> + xSpeed) * amplitude * scale</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>xSpeed和amplitude为外部传入的， 一个控制振幅，一个控制相位  关于这段控制的代码大家可以自己琢磨一下 也可以自己写写看</p>
+<p>在给曲线添加一点渐变的颜色<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grad = <span class="keyword">this</span>.ctx.createLinearGradient(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">this</span>.canvasWidth, <span class="number">0</span>); <span class="comment">//创建渐变 初始坐标到终点坐标</span></span><br><span class="line">grad.addColorStop(<span class="number">0</span>, <span class="string">'red'</span>);</span><br><span class="line">grad.addColorStop(<span class="number">1</span>, <span class="string">'#fff'</span>);</span><br><span class="line"><span class="keyword">this</span>.ctx.strokeStyle = grad</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="/images/sin8.gif" alt="My Pic"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Canvas/" rel="tag"># Canvas</a>
+          
+            <a href="/tags/正弦函数/" rel="tag"># 正弦函数</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/26/总结JS的一些小知识/" rel="next" title="总结JS的一些小知识">
+                <i class="fa fa-chevron-left"></i> 总结JS的一些小知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#三角函数"><span class="nav-text">三角函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#勾股定理"><span class="nav-text">勾股定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#极坐标系和单位圆"><span class="nav-text">极坐标系和单位圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正弦函数"><span class="nav-text">正弦函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#波浪曲线动画"><span class="nav-text">波浪曲线动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#画一个正弦曲线"><span class="nav-text">画一个正弦曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何让它动起来"><span class="nav-text">如何让它动起来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再添加一条曲线"><span class="nav-text">再添加一条曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最终实现"><span class="nav-text">最终实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
