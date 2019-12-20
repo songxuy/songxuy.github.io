@@ -83,26 +83,26 @@
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="console的调试技巧">
-<meta property="og:url" content="songxuy.github.io/2019/12/06/console的调试技巧/index.html">
+<meta property="og:url" content="songxuy.github.io/2019/12/20/console的调试技巧/index.html">
 <meta property="og:site_name" content="缘来">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;console是我么日常工作和学习中用到的最多的一个调试方法，而我们最常用的仅仅是console.log，在查阅文档和别人的介绍博客之后才知道原来其中还包含了挺多方法的，而且有一些还挺实用的，下面就简单的介绍一下这些方法:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="/images/console1.png">
-<meta property="og:image" content="/images/console2.png">
-<meta property="og:image" content="/images/console3.png">
-<meta property="og:image" content="/images/console4.png">
-<meta property="og:image" content="/images/console5.png">
-<meta property="og:image" content="/images/console6.png">
-<meta property="og:image" content="/images/console7.png">
-<meta property="og:image" content="/images/console8.png">
-<meta property="og:image" content="/images/console9.png">
-<meta property="og:image" content="/images/console10.png">
-<meta property="og:image" content="/images/console11.gif">
-<meta property="og:updated_time" content="2019-12-06T14:18:31.793Z">
+<meta property="og:image" content="/images/consolelog1.png">
+<meta property="og:image" content="/images/consolelog2.png">
+<meta property="og:image" content="/images/consolelog3.png">
+<meta property="og:image" content="/images/consolelog4.png">
+<meta property="og:image" content="/images/consolelog5.png">
+<meta property="og:image" content="/images/consolelog6.png">
+<meta property="og:image" content="/images/consolelog7.png">
+<meta property="og:image" content="/images/consolelog8.png">
+<meta property="og:image" content="/images/consolelog9.png">
+<meta property="og:image" content="/images/consolelog10.png">
+<meta property="og:image" content="/images/consolelog11.gif">
+<meta property="og:updated_time" content="2019-12-20T14:02:08.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="console的调试技巧">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;console是我么日常工作和学习中用到的最多的一个调试方法，而我们最常用的仅仅是console.log，在查阅文档和别人的介绍博客之后才知道原来其中还包含了挺多方法的，而且有一些还挺实用的，下面就简单的介绍一下这些方法:">
-<meta name="twitter:image" content="/images/console1.png">
+<meta name="twitter:image" content="/images/consolelog1.png">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="songxuy.github.io/2019/12/06/console的调试技巧/"/>
+  <link rel="canonical" href="songxuy.github.io/2019/12/20/console的调试技巧/"/>
 
 
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/12/06/console的调试技巧/">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/12/20/console的调试技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="coolsong">
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T22:13:00+08:00">
-                2019-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-20T21:40:11+08:00">
+                2019-12-20
               </time>
             
 
@@ -378,12 +378,12 @@
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'my name is %s'</span>, <span class="string">'sxb'</span>)</span><br><span class="line"> <span class="comment">// 整数</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'my age is %d'</span>, <span class="number">12</span>)</span><br><span class="line"> <span class="comment">// 浮点数</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'It cost %f'</span>, <span class="number">22.5</span>)</span><br><span class="line"> <span class="comment">// 对象</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'my obj is %o'</span>, &#123;<span class="attr">text</span>: <span class="string">'hello'</span>&#125;)</span><br><span class="line"> <span class="comment">// CSS</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'I like eat %c%s'</span>, <span class="string">'color:red'</span>, <span class="string">'cookie'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console1.png" alt="My Pic"></p>
+<p><img src="/images/consolelog1.png" alt="My Pic"></p>
 <h4 id="console-warn"><a href="#console-warn" class="headerlink" title="console.warn"></a>console.warn</h4><blockquote>
 <p>用法和console.log基本一致，只是该条打印信息属于警告级别，浏览器会做区别处理，并且会加入到警告信息中背景颜色和文字颜色会和普通的有所区别</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.warn(<span class="string">'It is a warning message'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console2.png" alt="My Pic"></p>
+<p><img src="/images/consolelog2.png" alt="My Pic"></p>
 <h4 id="console-dir"><a href="#console-dir" class="headerlink" title="console.dir"></a>console.dir</h4><blockquote>
 <p>在打印结果中和console.log对于对象的返回会有一定的区别。用到最多的就是用它来打印dom对象。</p>
 <ul>
@@ -391,32 +391,32 @@
 </li>
 </ul>
 </blockquote>
-<p><img src="/images/console3.png" alt="My Pic"></p>
+<p><img src="/images/consolelog3.png" alt="My Pic"></p>
 <ul>
 <li>dom对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.body)</span><br><span class="line"><span class="built_in">console</span>.dir(<span class="built_in">document</span>.body)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="/images/console4.png" alt="My Pic"></p>
+<p><img src="/images/consolelog4.png" alt="My Pic"></p>
 <h4 id="console-table"><a href="#console-table" class="headerlink" title="console.table"></a>console.table</h4><blockquote>
 <p>我们在工作中经常会遇到需要调试后端返回的数组或者比较复杂的对象，这个时候就可以使用console.table，让我们能更加好的展示数据，不用自己去点。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;</span><br><span class="line">  ]</span><br><span class="line">  <span class="built_in">console</span>.log(obj)</span><br><span class="line">  <span class="built_in">console</span>.table(obj)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console5.png" alt="My Pic"></p>
+<p><img src="/images/consolelog5.png" alt="My Pic"></p>
 <ul>
 <li>除此之外 这个方法还能传其他参数，第二个可选参数用于筛选表格需要显示的列，默认为全部列都显示。</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'sxb'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;</span><br><span class="line">  ]</span><br><span class="line">  <span class="built_in">console</span>.log(obj)</span><br><span class="line">  <span class="built_in">console</span>.table(obj, [<span class="string">'name'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console6.png" alt="My Pic"></p>
+<p><img src="/images/consolelog6.png" alt="My Pic"></p>
 <h4 id="console-assert"><a href="#console-assert" class="headerlink" title="console.assert"></a>console.assert</h4><blockquote>
 <p>assert这个单词相信大家也不会陌生，就断言的意思。这个方法只有当第一个参数表达式为false时才会输出,并且作为错误提示</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.assert(<span class="number">1</span> &lt; <span class="number">2</span>, <span class="string">'hahahaha you are wrong'</span>)</span><br><span class="line"> <span class="built_in">console</span>.assert(<span class="number">1</span> &gt; <span class="number">2</span>, <span class="string">'hahahaha you are wrong'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console7.png" alt="My Pic"></p>
+<p><img src="/images/consolelog7.png" alt="My Pic"></p>
 <h4 id="console-trace"><a href="#console-trace" class="headerlink" title="console.trace"></a>console.trace</h4><blockquote>
 <p>这个方法自己之前还没了解过，查了之后才知道该方法用于在控制台中显示当前代码在堆栈中的调用路径，通过这个调用路径我们可以很容易地在发生错误时找到原始错误点，下面就看一个例子吧</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (data === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.trace();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar1</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> foo(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar2</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> foo(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar1(&#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>&#125;); <span class="comment">// -&gt; [1, 2]</span></span><br><span class="line">bar2(<span class="literal">null</span>); <span class="comment">// -&gt; []</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/console8.png" alt="My Pic"></p>
+<p><img src="/images/consolelog8.png" alt="My Pic"></p>
 <blockquote>
 <p>我们从代码的逻辑看，首先调用的bar1 而bar1中又会调用foo。接着调用bar2中的foo，直到我们console.trace的地方。追踪到的路径就为 foo - bar2</p>
 </blockquote>
@@ -424,18 +424,18 @@
 <p>简单来讲这个方法就是一个计数器.用于记录调用次数，并将记录结果打印到控制台中。其接收一个可选参数console.count(label)，label表示指定标签，该标签会在调用次数之前显示。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.count(<span class="string">'label'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console9.png" alt="My Pic"></p>
+<p><img src="/images/consolelog9.png" alt="My Pic"></p>
 <h4 id="console-time-和-console-timeEnd"><a href="#console-time-和-console-timeEnd" class="headerlink" title="console.time 和 console.timeEnd"></a>console.time 和 console.timeEnd</h4><blockquote>
 <p>这两个是关于时间打印的方法，需要配合起来使用。console.time方法是作为计算的起始时间，console.timeEnd是作为计算的结束时间，并将执行时长显示在控制台。如果一个页面有多个地方需要使用到计算器，则可以为方法传入一个可选参数label来指定标签，该标签会在执行时间之前显示。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line"><span class="built_in">console</span>.time()</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  sum += sum</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.timeEnd()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/console10.png" alt="My Pic"></p>
+<p><img src="/images/consolelog10.png" alt="My Pic"></p>
 <p>*当没有传递参数时则会默认default参数名</p>
 <h4 id="检查DOM元素"><a href="#检查DOM元素" class="headerlink" title="检查DOM元素"></a>检查DOM元素</h4><blockquote>
 <p>控制台提供了inspect()方法让我们可以直接从控制台中检查一个DOM元素。</p>
 <p>inspect($(‘selector’))：将检查与选择器匹配的元素，并且会自动跳转到Chrome Developer Tools的Elements选项卡中。例如inspect($(‘#content’))将检查id为content的元素</p>
 </blockquote>
-<p><img src="/images/console11.gif" alt="My Pic"></p>
+<p><img src="/images/consolelog11.gif" alt="My Pic"></p>
 
       
     </div>
@@ -466,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/22/JS中常用方法的实现/" rel="next" title="JS中常用方法的实现">
-                <i class="fa fa-chevron-left"></i> JS中常用方法的实现
+              <a href="/2019/12/13/正弦函数在动画中的运用-二/" rel="next" title="正弦函数在动画中的运用(二)">
+                <i class="fa fa-chevron-left"></i> 正弦函数在动画中的运用(二)
               </a>
             
           </div>
@@ -475,10 +475,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/13/正弦函数在动画中的运用-二/" rel="prev" title="正弦函数在动画中的运用(二)">
-                正弦函数在动画中的运用(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
