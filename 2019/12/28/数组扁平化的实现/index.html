@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;数组方法中的flat方法相信大家并不陌生，作用是将传入的数组进行扁平化处理。接收1个参数，扁平化处理的层数默认为1层，我们先来看看其具体效果吧：">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组扁平化的实现">
+<meta property="og:url" content="songxuy.github.io/2019/12/28/数组扁平化的实现/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;数组方法中的flat方法相信大家并不陌生，作用是将传入的数组进行扁平化处理。接收1个参数，扁平化处理的层数默认为1层，我们先来看看其具体效果吧：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/images/flat1.png">
+<meta property="og:image" content="/images/flat2.png">
+<meta property="og:image" content="/images/flat3.png">
+<meta property="og:image" content="/images/flat4.png">
+<meta property="og:image" content="/images/flat5.png">
+<meta property="og:image" content="/images/flat6.png">
+<meta property="og:updated_time" content="2019-12-28T12:05:16.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数组扁平化的实现">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;数组方法中的flat方法相信大家并不陌生，作用是将传入的数组进行扁平化处理。接收1个参数，扁平化处理的层数默认为1层，我们先来看看其具体效果吧：">
+<meta name="twitter:image" content="/images/flat1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2019/12/28/数组扁平化的实现/"/>
+
+
+
+
+
+  <title>数组扁平化的实现 | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2019/12/28/数组扁平化的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数组扁平化的实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-28T19:54:00+08:00">
+                2019-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;数组方法中的flat方法相信大家并不陌生，作用是将传入的数组进行扁平化处理。接收1个参数，扁平化处理的层数默认为1层，我们先来看看其具体效果吧：<br><a id="more"></a></p>
+<h3 id="Array-prototype-flat"><a href="#Array-prototype-flat" class="headerlink" title="Array.prototype.flat"></a>Array.prototype.flat</h3><blockquote>
+<p>Array.prototype.flat() 用于将嵌套的数组“拉平”，变成一维的数组。<br>该方法返回一个新数组，对原数据没有影响。不传参数时，默认“拉平”一层，可以传入一个整数，表示想要“拉平”的层数。<br>传入 &lt;=0 的整数将返回原数组，不“拉平”Infinity 关键字作为参数时，无论多少层嵌套，都会转为一维数组如果原数组有空位，Array.prototype.flat() 会跳过空位。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">777</span>]]], [<span class="string">'hah'</span>, <span class="string">'xixi'</span>], &#123;<span class="attr">obj</span>: <span class="number">1</span>&#125;]</span><br><span class="line">  <span class="built_in">console</span>.log(arr.flat())</span><br><span class="line">  <span class="built_in">console</span>.log(arr.flat(<span class="literal">Infinity</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flat1.png" alt="My Pic"></p>
+<h3 id="Array-toString"><a href="#Array-toString" class="headerlink" title="Array.toString"></a>Array.toString</h3><blockquote>
+<p>这是最粗暴的方法，对于只有基本类型的数组能够生效。但是一旦存在引用类型就会出现问题,对于普通对象来说，除非自定义，否则返回内部属性[[Class]]的值。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">777</span>]]], [<span class="string">'hah'</span>, <span class="string">'xixi'</span>], &#123;<span class="attr">obj</span>: <span class="number">1</span>&#125;]</span><br><span class="line">  <span class="built_in">console</span>.log(arr.toString().split(<span class="string">','</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flat2.png" alt="My Pic"></p>
+<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><blockquote>
+<ol>
+<li>遍历数组（各种遍历方法）</li>
+<li>判断元素是否为数组（Array.isArray、Object.prototype.toString、instance of）</li>
+<li>将该数组元素展开（主要时使用concat方法用于合并两个或多个数组，在拼接的过程中加上扩展运算符会展开一层数组）</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[].concat(...arr)</span><br><span class="line"></span><br><span class="line">[].concat.apply([], arr)</span><br></pre></td></tr></table></figure>
+<h4 id="遍历-递归"><a href="#遍历-递归" class="headerlink" title="遍历+递归"></a>遍历+递归</h4><blockquote>
+<p>根据上面的三个思路，很容易编写出下面的代码</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFlat</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arrResult = []</span><br><span class="line">    arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(item)) &#123;</span><br><span class="line">        arrResult = arrResult.concat(myFlat(item))</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        arrResult.push(item)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> arrResult</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个基础上，我们再把递归次数给加上</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFlat</span> (<span class="params">arr, num = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arrResult = []</span><br><span class="line">    <span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(item)) &#123;</span><br><span class="line">          arrResult = arrResult.concat(myFlat(item, --num))</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          arrResult.push(item)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> arrResult</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> arr</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flat3.png" alt="My Pic"></p>
+<h4 id="Reduce-递归"><a href="#Reduce-递归" class="headerlink" title="Reduce + 递归"></a>Reduce + 递归</h4><blockquote>
+<p>利用reduce遍历 在加上concat就可以很容易的将数组展开</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(<span class="function">(<span class="params">pre, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> pre.concat(next)</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>根据上面的这种方法，我们也很容易的写出其具体实现</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myflat2 = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">pre, next</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> pre.concat(<span class="built_in">Array</span>.isArray(next) ? myflat2(next) : next)</span><br><span class="line">    &#125;, [])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 再加上递归层数</span></span><br><span class="line">  <span class="keyword">let</span> myflat2 = <span class="function">(<span class="params">arr, num = <span class="number">1</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num &gt; <span class="number">0</span> ? arr.reduce(<span class="function">(<span class="params">pre, next</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> pre.concat(<span class="built_in">Array</span>.isArray(next) ? myflat2(next, --num) : next)</span><br><span class="line">    &#125;, []) : arr</span><br><span class="line">  &#125;</span><br><span class="line"><span class="built_in">console</span>.log(myflat2(arr))</span><br><span class="line"><span class="built_in">console</span>.log(myflat2(arr, <span class="literal">Infinity</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flat4.png" alt="My Pic"></p>
+<h4 id="栈结构来实现"><a href="#栈结构来实现" class="headerlink" title="栈结构来实现"></a>栈结构来实现</h4><blockquote>
+<p>主要是利用栈先进后出的结构，不断pop出栈顶元素，判断其是否为数组，如果是的话将数组展开之后，再次push入栈。如果不是则取出来放入结果中的最前面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFlat3</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">let</span> tempArr = [].concat(arr)</span><br><span class="line">    <span class="keyword">while</span>(tempArr.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> val = tempArr.pop()</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(val)) &#123;</span><br><span class="line">        tempArr.push(...val)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result.unshift(val)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(myFlat3(arr))</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="/images/flat5.png" alt="My Pic"></p>
+<h4 id="Generator来实现"><a href="#Generator来实现" class="headerlink" title="Generator来实现"></a>Generator来实现</h4><blockquote>
+<p>调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象。<br>也就是遍历器对象（Iterator Object）。所以我们要用一次扩展运算符得到结果</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">myFlat4</span> (<span class="params">arr, num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num === <span class="literal">undefined</span>) num = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> arr) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(i) &amp;&amp; num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">yield</span>* myFlat4(i, --num)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="built_in">console</span>.log([...myFlat4(arr, <span class="number">1</span>)])</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flat6.png" alt="My Pic"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/20/console的调试技巧/" rel="next" title="console的调试技巧">
+                <i class="fa fa-chevron-left"></i> console的调试技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-prototype-flat"><span class="nav-text">Array.prototype.flat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-toString"><span class="nav-text">Array.toString</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现思路"><span class="nav-text">实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历-递归"><span class="nav-text">遍历+递归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduce-递归"><span class="nav-text">Reduce + 递归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈结构来实现"><span class="nav-text">栈结构来实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generator来实现"><span class="nav-text">Generator来实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
