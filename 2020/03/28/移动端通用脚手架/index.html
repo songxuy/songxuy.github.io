@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue-cli,移动端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近一段时间由于疫情的影响都在家，由于之前工作上的需要搭建了一个移动端的通用脚手架，使用vue-cli3搭建。主要包含了service插件开发、sass全局引入、移动端适配、图片预加载、全局错误收集、axios和vuex初始化。">
+<meta name="keywords" content="Vue-cli,移动端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端通用脚手架">
+<meta property="og:url" content="songxuy.github.io/2020/03/28/移动端通用脚手架/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近一段时间由于疫情的影响都在家，由于之前工作上的需要搭建了一个移动端的通用脚手架，使用vue-cli3搭建。主要包含了service插件开发、sass全局引入、移动端适配、图片预加载、全局错误收集、axios和vuex初始化。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/images/cli-load.png">
+<meta property="og:updated_time" content="2020-03-28T07:32:48.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端通用脚手架">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近一段时间由于疫情的影响都在家，由于之前工作上的需要搭建了一个移动端的通用脚手架，使用vue-cli3搭建。主要包含了service插件开发、sass全局引入、移动端适配、图片预加载、全局错误收集、axios和vuex初始化。">
+<meta name="twitter:image" content="/images/cli-load.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2020/03/28/移动端通用脚手架/"/>
+
+
+
+
+
+  <title>移动端通用脚手架 | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2020/03/28/移动端通用脚手架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端通用脚手架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-28T14:31:00+08:00">
+                2020-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue-cli/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue-cli</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue-cli/移动端/" itemprop="url" rel="index">
+                    <span itemprop="name">移动端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;最近一段时间由于疫情的影响都在家，由于之前工作上的需要搭建了一个移动端的通用脚手架，使用vue-cli3搭建。主要包含了service插件开发、sass全局引入、移动端适配、图片预加载、全局错误收集、axios和vuex初始化。<br><a id="more"></a></p>
+<h3 id="service插件开发"><a href="#service插件开发" class="headerlink" title="service插件开发"></a>service插件开发</h3><blockquote>
+<p>service插件主要放在项目本地，是一份js代码，然后导出一个函数，通过package.json配置指向这个js文件的路径。运行相应的命令时执行相应的功能。另外还有cli插件，有完整的开发目录它应该始终包含一个 Service 插件作为其主要导出，且可选的包含一个 Generator 和一个 Prompt 文件</p>
+</blockquote>
+<h4 id="导出函数"><a href="#导出函数" class="headerlink" title="导出函数"></a>导出函数</h4><blockquote>
+<p>一个 service 插件应该导出一个函数，这个函数接受两个参数：</p>
+<ul>
+<li>一个plugin实例</li>
+<li>一个包含 vue.config.js 内指定的项目本地选项的对象，或者在 package.json 内的 vue 字段</li>
+</ul>
+<p>这个 API 允许 service 插件针对不同的环境扩展/修改内部的 webpack 配置，并向 vue-cli-service 注入额外的命令。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">api, projectOptions</span>) =&gt;</span> &#123;</span><br><span class="line">  api.chainWebpack(<span class="function"><span class="params">webpackConfig</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 通过 webpack-chain 修改 webpack 配置</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  api.configureWebpack(<span class="function"><span class="params">webpackConfig</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改 webpack 配置</span></span><br><span class="line">    <span class="comment">// 或返回通过 webpack-merge 合并的配置对象</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  api.registerCommand(<span class="string">'test'</span>, args =&gt; &#123;</span><br><span class="line">    <span class="comment">// 注册 `vue-cli-service test`</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="在插件中解析-webpack-配置"><a href="#在插件中解析-webpack-配置" class="headerlink" title="在插件中解析 webpack 配置"></a>在插件中解析 webpack 配置</h4><blockquote>
+<p>一个插件可以通过调用 api.resolveWebpackConfig() 取回解析好的 webpack 配置。每次调用都会新生成一个 webpack 配置用来在需要时进一步修改。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">api</span> =&gt;</span> &#123;</span><br><span class="line">  api.registerCommand(<span class="string">'my-build'</span>, args =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> configA = api.resolveWebpackConfig()</span><br><span class="line">    <span class="keyword">const</span> configB = api.resolveWebpackConfig()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 针对不同的目的修改 `configA` 和 `configB`...</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请确保为正确的环境变量指定默认模式</span></span><br><span class="line"><span class="built_in">module</span>.exports.defaultModes = &#123;</span><br><span class="line">  <span class="string">'my-build'</span>: <span class="string">'production'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第三方插件的自定义选项"><a href="#第三方插件的自定义选项" class="headerlink" title="第三方插件的自定义选项"></a>第三方插件的自定义选项</h4><blockquote>
+<p>vue.config.js 的导出将会通过一个 schema 的验证以避免笔误和错误的配置值。然而，一个第三方插件仍然允许用户通过 pluginOptions 字段配置其行为。例如，对于下面的 vue.config.js：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  pluginOptions: &#123;</span><br><span class="line">      fontsmin: &#123;</span><br><span class="line">        originPath: <span class="string">'static/fonts'</span>,</span><br><span class="line">        destPath: <span class="string">'src/assets/fonts'</span>,</span><br><span class="line">        cssWritePath: <span class="string">'src/assets/styles/reset.scss'</span>,</span><br><span class="line">        fontCssRequirePath: <span class="string">'./assets/fonts'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可参照<a href="ttps://cli.vuejs.org/zh/dev-guide/plugin-dev.html#service-%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">官网</a></p>
+</blockquote>
+<h3 id="Sass全局引入"><a href="#Sass全局引入" class="headerlink" title="Sass全局引入"></a>Sass全局引入</h3><blockquote>
+<p>直接引入相应的包含变量、方法、mixin等的sass文件时，使用时会找不到相应的方法。所以需要使用相应的loader来解析引入。<br>安装依赖</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install sass-resources-loader --save</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在vue.config.js中配置引入</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  css: &#123;</span><br><span class="line">    loaderOptions: &#123;</span><br><span class="line">      scss: &#123;</span><br><span class="line">        prependData: <span class="string">`@import "~@/assets/styles/common.scss";`</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="移动端适配"><a href="#移动端适配" class="headerlink" title="移动端适配"></a>移动端适配</h3><blockquote>
+<p>主要是通过viewport设置、根元素font-size和rem实现。再利用flexible.js。<br>viewport使用的最常用的设置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0&quot;&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>根元素的font-size根据屏幕宽度自适应设置，当设备宽度为375(iPhone6)时，根元素font-size=16px</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">doc, win</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> docEl = win.document.documentElement;</span><br><span class="line">      <span class="keyword">var</span> resizeEvt = <span class="string">'orientationchange'</span> <span class="keyword">in</span> <span class="built_in">window</span> ? <span class="string">'orientationchange'</span> : <span class="string">'resize'</span>;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * ================================================</span></span><br><span class="line"><span class="comment">        *   设置根元素font-size</span></span><br><span class="line"><span class="comment">        * 当设备宽度为375(iPhone6)时，根元素font-size=16px; </span></span><br><span class="line"><span class="comment">        × ================================================</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">      <span class="keyword">var</span> refreshRem = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> clientWidth = win.innerWidth</span><br><span class="line">                          || doc.documentElement.clientWidth</span><br><span class="line">                          || doc.body.clientWidth;</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">if</span> (!clientWidth) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">var</span> fz;</span><br><span class="line">        <span class="keyword">var</span> width = clientWidth;</span><br><span class="line">        fz = <span class="number">16</span> * width / <span class="number">375</span>;</span><br><span class="line">        docEl.style.fontSize = fz + <span class="string">'px'</span>;</span><br><span class="line">      &#125;;</span><br><span class="line">    </span><br><span class="line">      <span class="keyword">if</span> (!doc.addEventListener) <span class="keyword">return</span>;</span><br><span class="line">      win.addEventListener(resizeEvt, refreshRem, <span class="literal">false</span>);</span><br><span class="line">      doc.addEventListener(<span class="string">'DOMContentLoaded'</span>, refreshRem, <span class="literal">false</span>);</span><br><span class="line">      refreshRem();</span><br><span class="line">    </span><br><span class="line">    &#125;)(<span class="built_in">document</span>, <span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="图片预加载"><a href="#图片预加载" class="headerlink" title="图片预加载"></a>图片预加载</h3><blockquote>
+<p>图片预加载就是在进入主页面之前，会将引入的一些图片预先加载到浏览器中它保证了图片快速、无缝地发布，也可帮助用户在浏览网站内容时获得更好的用户体验。当页面中需要loading页时也可以来作为页面加载的百分比数据。</p>
+</blockquote>
+<h4 id="整体实现"><a href="#整体实现" class="headerlink" title="整体实现"></a>整体实现</h4><blockquote>
+<p>主要包含两个js文件，一个用来导出需要预加载的图片名称，另一个来进行预加载功能的实现</p>
+</blockquote>
+<h4 id="loader-js"><a href="#loader-js" class="headerlink" title="loader.js"></a>loader.js</h4><blockquote>
+<p>主要是通过new Image后的onload来实现预加载，同时设置了一次的最大加载数。最终暴露出去的函数用户可以传递加载数和一个回调函数（接受当前加载的进度为参数）</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> list <span class="keyword">from</span> <span class="string">'./imgList'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> imgCount = list.length</span><br><span class="line"><span class="keyword">let</span> lists = [].concat(list)</span><br><span class="line"><span class="keyword">let</span> url = lists.map(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="built_in">require</span>(<span class="string">`../images/<span class="subst">$&#123;item&#125;</span>`</span>))</span><br><span class="line"><span class="keyword">let</span> loadCount = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> loadProcess = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> totalCount = list.length</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadHandler</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> img = <span class="keyword">new</span> Image()</span><br><span class="line">    img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      loadCount++</span><br><span class="line">      loadProcess = <span class="built_in">parseInt</span>((loadCount / totalCount) * <span class="number">100</span>, <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">return</span> resolve(url)</span><br><span class="line">    &#125;</span><br><span class="line">    img.onerror = reject</span><br><span class="line">    img.src = url</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadWarpHandler</span> (<span class="params">url, handler</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = handler(url).then(<span class="function"><span class="params">img</span> =&gt;</span> (&#123;</span><br><span class="line">    img,</span><br><span class="line">    index: promise</span><br><span class="line">  &#125;))</span><br><span class="line">  <span class="keyword">return</span> promise</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgLoaders</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;</span><br><span class="line">    limit,</span><br><span class="line">    url,</span><br><span class="line">    handler</span><br><span class="line">  &#125; = options</span><br><span class="line">  <span class="keyword">let</span> requestImgs = url.splice(<span class="number">0</span>, limit).map(<span class="function"><span class="params">url</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> loadWarpHandler(url, handler)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">if</span> (imgCount &lt; limit) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.all(requestImgs)</span><br><span class="line">  &#125;</span><br><span class="line">  url.reduce(<span class="function">(<span class="params">last, url</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> last.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.race(requestImgs)</span><br><span class="line">    &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> posIndex = requestImgs.findIndex(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> item === res.index</span><br><span class="line">      &#125;)</span><br><span class="line">      requestImgs.splice(posIndex, <span class="number">1</span>)</span><br><span class="line">      requestImgs.push(loadWarpHandler(url, handler))</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(error)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="built_in">Promise</span>.resolve())</span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.all(requestImgs)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgLoadersStart</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> process = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> &#123;</span><br><span class="line">    limit = <span class="number">5</span>, Process</span><br><span class="line">  &#125; = options</span><br><span class="line">  imgLoaders(&#123;</span><br><span class="line">    limit,</span><br><span class="line">    url,</span><br><span class="line">    handler: loadHandler</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// debug</span></span><br><span class="line">  <span class="comment">// 递归来加数字</span></span><br><span class="line">  <span class="keyword">let</span> numberGrow = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> accTimer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (process &lt; loadProcess) &#123;</span><br><span class="line">        process++</span><br><span class="line">      &#125;</span><br><span class="line">      Process(process)</span><br><span class="line">      <span class="keyword">if</span> (process &lt; <span class="number">100</span>) &#123;</span><br><span class="line">        numberGrow()</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        clearTimeout(accTimer)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">20</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  numberGrow()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始执行</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (imgLoadersStart)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当进入页面之后，图片就会被加载<br><img src="/images/cli-load.png" alt="My Pic"></p>
+</blockquote>
+<h3 id="全局错误收集"><a href="#全局错误收集" class="headerlink" title="全局错误收集"></a>全局错误收集</h3><blockquote>
+<p>主要目的是将项目运行中出现的错误收集起来（需要后端接口配合），便于找出问题，准确快速的修改错误，减少错误带来的损失。其中主要又包含了两种，一个是代码上的错误（主要是没考虑到一些情况如：后端返回数据的可能性、一些方法的兼容性等）。除此之外，还有接口的报错。</p>
+</blockquote>
+<h4 id="代码上的错误"><a href="#代码上的错误" class="headerlink" title="代码上的错误"></a>代码上的错误</h4><blockquote>
+<p>由于使用的是vue框架，可以直接使用官方推荐的vue.config.errorHandler来捕获代码上出现的错误。指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> errorHandler = <span class="function">(<span class="params">error, vm</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 调用相应的接口上传报错</span></span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'抛出全局异常'</span>)</span><br><span class="line">  <span class="built_in">console</span>.error(vm)</span><br><span class="line">  <span class="built_in">console</span>.error(error)</span><br><span class="line">&#125;</span><br><span class="line">Vue.config.errorHandler = errorHandler</span><br></pre></td></tr></table></figure>
+<h4 id="接口上的错误"><a href="#接口上的错误" class="headerlink" title="接口上的错误"></a>接口上的错误</h4><blockquote>
+<p>由于请求使用的axios，我们就可以通过拦截器拦截相应的请求和响应统一处理接口中出现的问题</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">service.interceptors.request.use(<span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Do something before request is sent</span></span><br><span class="line">  <span class="keyword">return</span> config</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Do something with request error</span></span><br><span class="line">  <span class="comment">// 上报相应的错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">service.interceptors.response.use(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (response.data.status) &#123;</span><br><span class="line">    <span class="keyword">return</span> response.data.data</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 上报相应的错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(response.data.description)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 上报相应的错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="axios和vuex初始化"><a href="#axios和vuex初始化" class="headerlink" title="axios和vuex初始化"></a>axios和vuex初始化</h3><h4 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h4><blockquote>
+<p>按照官网的推荐建立的目录结构，使用module将数据细化到相应的功能或者文件，防止单个store文件越来越大。文件中包含了相应的state、getter、action、mutation等</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> createLogger <span class="keyword">from</span> <span class="string">'vuex/dist/logger'</span></span><br><span class="line"><span class="keyword">import</span> home <span class="keyword">from</span> <span class="string">'./modules/home'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> debug = process.env.NODE_ENV !== <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    home</span><br><span class="line">  &#125;,</span><br><span class="line">  strict: debug,</span><br><span class="line">  plugins: debug ? [createLogger()] : []</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// getters</span></span><br><span class="line"><span class="keyword">const</span> getters = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// actions</span></span><br><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// mutations</span></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  namespaced: <span class="literal">true</span>,</span><br><span class="line">  state,</span><br><span class="line">  getters,</span><br><span class="line">  actions,</span><br><span class="line">  mutations</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h4><blockquote>
+<p>axios的初始化主要是对baseURl，以及请求中的一些通用参数的配置。还有拦截器中对请求或者相应作出统一的处理。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line">axios.defaults.withCredentials = <span class="literal">true</span></span><br><span class="line">axios.defaults.crossDomain = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> baseUrl = <span class="string">''</span></span><br><span class="line"><span class="keyword">var</span> service = axios.create()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add a response interceptor</span></span><br><span class="line">service.interceptors.request.use(<span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Do something before request is sent</span></span><br><span class="line">  <span class="keyword">return</span> config</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Do something with request error</span></span><br><span class="line">  <span class="comment">// 上报相应的错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">service.interceptors.response.use(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (response.data.status) &#123;</span><br><span class="line">    <span class="keyword">return</span> response.data.data</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 上报相应的错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(response.data.description)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 上报相应的错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> service</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue-cli/" rel="tag"># Vue-cli</a>
+          
+            <a href="/tags/移动端/" rel="tag"># 移动端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/17/Vue3的调试和测试/" rel="next" title="Vue3的调试和测试">
+                <i class="fa fa-chevron-left"></i> Vue3的调试和测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#service插件开发"><span class="nav-text">service插件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导出函数"><span class="nav-text">导出函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在插件中解析-webpack-配置"><span class="nav-text">在插件中解析 webpack 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三方插件的自定义选项"><span class="nav-text">第三方插件的自定义选项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sass全局引入"><span class="nav-text">Sass全局引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端适配"><span class="nav-text">移动端适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片预加载"><span class="nav-text">图片预加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体实现"><span class="nav-text">整体实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loader-js"><span class="nav-text">loader.js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局错误收集"><span class="nav-text">全局错误收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码上的错误"><span class="nav-text">代码上的错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口上的错误"><span class="nav-text">接口上的错误</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios和vuex初始化"><span class="nav-text">axios和vuex初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vuex"><span class="nav-text">Vuex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#axios"><span class="nav-text">axios</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
