@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Css,JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天看到一篇博客介绍一些很酷炫的hover效果和相应的库。于是自己就去学习和了解了一下，自己动手试着还原一下。">
+<meta name="keywords" content="Css,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个酷炫的hover">
+<meta property="og:url" content="songxuy.github.io/2020/07/13/几个酷炫的hover/index.html">
+<meta property="og:site_name" content="缘来">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天看到一篇博客介绍一些很酷炫的hover效果和相应的库。于是自己就去学习和了解了一下，自己动手试着还原一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/images/hover1.gif">
+<meta property="og:image" content="/images/hover2.gif">
+<meta property="og:image" content="/images/hover3.gif">
+<meta property="og:updated_time" content="2020-07-13T13:03:04.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="几个酷炫的hover">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天看到一篇博客介绍一些很酷炫的hover效果和相应的库。于是自己就去学习和了解了一下，自己动手试着还原一下。">
+<meta name="twitter:image" content="/images/hover1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="songxuy.github.io/2020/07/13/几个酷炫的hover/"/>
+
+
+
+
+
+  <title>几个酷炫的hover | 缘来</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">缘来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个菜鸟程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      
+
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2020/07/13/几个酷炫的hover/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="coolsong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="缘来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">几个酷炫的hover</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-13T20:55:00+08:00">
+                2020-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Css/" itemprop="url" rel="index">
+                    <span itemprop="name">Css</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Css/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天看到一篇博客介绍一些很酷炫的hover效果和相应的库。于是自己就去学习和了解了一下，自己动手试着还原一下。<br><a id="more"></a></p>
+<h3 id="悬停图库切割合成大图"><a href="#悬停图库切割合成大图" class="headerlink" title="悬停图库切割合成大图"></a>悬停图库切割合成大图</h3><ul>
+<li>先来看看最终的效果</li>
+</ul>
+<p><img src="/images/hover1.gif" alt="Image"></p>
+<blockquote>
+<p>效果就是当我们hover在图片上时，会分割的产生该图片变大之后的效果，分割效果主要是使用的splitting.js这个库去实现的，具体的代码如下：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://unpkg.com/splitting/dist/splitting.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://unpkg.com/splitting/dist/splitting-cells.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./index.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1067"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1061"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1057"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1052"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1043"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1055"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1036"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1037"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tiler"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://picsum.photos/1000/600?image=1039"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'https://unpkg.com/splitting@1.0.0/dist/splitting.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    Splitting(&#123;</span></span><br><span class="line"><span class="javascript">     target: <span class="string">'.tiler'</span>,</span></span><br><span class="line"><span class="javascript">     by: <span class="string">'cells'</span>,</span></span><br><span class="line"><span class="undefined">     rows: 3,</span></span><br><span class="line"><span class="undefined">     columns: 3,</span></span><br><span class="line"><span class="javascript">     image: <span class="literal">true</span></span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.tiler</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">33.3%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tiler</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">visibility</span>: visible; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tiler</span> <span class="selector-class">.cell-grid</span> &#123;</span><br><span class="line">  <span class="attribute">background-position</span>: center center;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">10</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">max-height</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">perspective</span>: <span class="number">30px</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tiler</span> <span class="selector-class">.cell</span> &#123;</span><br><span class="line">  <span class="attribute">pointer-events</span>: none;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateZ</span>(-15px);</span><br><span class="line">  <span class="attribute">transform-style</span>: preserve-<span class="number">3</span>d;</span><br><span class="line">  <span class="attribute">transition-property</span>: transform, opacity;</span><br><span class="line">  <span class="attribute">transition-duration</span>: <span class="number">0.5s</span>, <span class="number">0.4s</span>;</span><br><span class="line">  <span class="attribute">transition-timing-function</span>: <span class="built_in">cubic-bezier</span>(0.65, 0.01, 0.15, 1.33);</span><br><span class="line">  <span class="comment">/* The center character index */</span></span><br><span class="line">  <span class="attribute">--center-x</span>: <span class="built_in">calc</span>((var(--col-total) - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">  <span class="attribute">--center-y</span>: <span class="built_in">calc</span>((var(--row-total) - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">  <span class="comment">/* Offset from center, positive &amp; negative */</span></span><br><span class="line">  <span class="attribute">--offset-x</span>: <span class="built_in">calc</span>(var(--col-index) - <span class="built_in">var</span>(--center-x));</span><br><span class="line">  <span class="attribute">--offset-y</span>: <span class="built_in">calc</span>(var(--row-index) - <span class="built_in">var</span>(--center-y));</span><br><span class="line">  <span class="comment">/* Absolute distance from center, only positive */</span></span><br><span class="line">  <span class="attribute">--distance-x</span>: <span class="built_in">calc</span>(</span><br><span class="line">    (var(--offset-x) * <span class="built_in">var</span>(--offset-x)) / <span class="built_in">var</span>(--center-x)</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">/* Absolute distance from center, only positive */</span></span><br><span class="line">  <span class="attribute">--distance-y</span>: <span class="built_in">calc</span>(</span><br><span class="line">    (var(--offset-y) * <span class="built_in">var</span>(--offset-y)) / <span class="built_in">var</span>(--center-y)</span><br><span class="line">  );</span><br><span class="line">  <span class="attribute">transition-delay</span>: <span class="built_in">calc</span>( 0.1s * var(--distance-y) + <span class="number">0.1s</span> * <span class="built_in">var</span>(--distance-x) ); &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tiler-overlay</span> &#123;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">2</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tiler</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.cell</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#000</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2em</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*# sourceMappingURL=index.css.map */</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://splitting.js.org/guide.html" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<h3 id="叠加运动悬停效应"><a href="#叠加运动悬停效应" class="headerlink" title="叠加运动悬停效应"></a>叠加运动悬停效应</h3><ul>
+<li>同样的 我们还是先来看看最终的效果吧</li>
+</ul>
+<p><img src="/images/hover2.gif" alt="Image"></p>
+<blockquote>
+<p>效果是hover的时候图片后面会有相应的阴影形成3D堆叠的效果，一些动画效果主要是利用anime.js这个动画库去实现的。具体代码可见<a href="https://github.com/codrops/StackMotionHoverEffects/" target="_blank" rel="noopener">github</a></p>
+</blockquote>
+<h3 id="3D-缩略图悬停效果"><a href="#3D-缩略图悬停效果" class="headerlink" title="3D 缩略图悬停效果"></a>3D 缩略图悬停效果</h3><ul>
+<li>同样的先来看看最终的效果吧<br><img src="/images/hover3.gif" alt="Image"></li>
+</ul>
+<blockquote>
+<p>效果就是我们hover时图片的一边会卷起来形成一个3D的效果，同时展示一些其他的信息。主要是利用jquery+css来实现的，我们先来看看js部分的代码：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">( <span class="function"><span class="keyword">function</span>(<span class="params"> $ </span>) </span>&#123;</span><br><span class="line">	</span><br><span class="line">	$.fn.hoverfold = <span class="function"><span class="keyword">function</span>(<span class="params"> args </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.each( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		</span><br><span class="line">			$( <span class="keyword">this</span> ).children( <span class="string">'.view'</span> ).each( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			</span><br><span class="line">				<span class="keyword">var</span> $item 	= $( <span class="keyword">this</span> ),</span><br><span class="line">					img		= $item.children( <span class="string">'img'</span> ).attr( <span class="string">'src'</span> ),</span><br><span class="line">					struct	= <span class="string">'&lt;div class="slice s1"&gt;'</span>;</span><br><span class="line">						struct	+=<span class="string">'&lt;div class="slice s2"&gt;'</span>;</span><br><span class="line">							struct	+=<span class="string">'&lt;div class="slice s3"&gt;'</span>;</span><br><span class="line">								struct	+=<span class="string">'&lt;div class="slice s4"&gt;'</span>;</span><br><span class="line">									struct	+=<span class="string">'&lt;div class="slice s5"&gt;'</span>;</span><br><span class="line">									struct	+=<span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">								struct	+=<span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">							struct	+=<span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">						struct	+=<span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">					struct	+=<span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">					</span><br><span class="line">				<span class="keyword">var</span> $struct = $( struct );</span><br><span class="line">				</span><br><span class="line">				$item.find( <span class="string">'img'</span> ).remove().end().append( $struct ).find( <span class="string">'div.slice'</span> ).css( <span class="string">'background-image'</span>, <span class="string">'url('</span> + img + <span class="string">')'</span> ).prepend( $( <span class="string">'&lt;span class="overlay" &gt;&lt;/span&gt;'</span> ) );</span><br><span class="line">				</span><br><span class="line">			&#125; );</span><br><span class="line">			</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">&#125; )( jQuery );</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后直接选择相应的dom节点，调用这个方法<br>还有就是相关的css代码</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.view</span> &#123;</span><br><span class="line">	<span class="attribute">-webkit-perspective</span>: <span class="number">800px</span>;</span><br><span class="line">	<span class="attribute">-moz-perspective</span>: <span class="number">800px</span>;</span><br><span class="line">	<span class="attribute">-o-perspective</span>: <span class="number">800px</span>;</span><br><span class="line">	<span class="attribute">-ms-perspective</span>: <span class="number">800px</span>;</span><br><span class="line">	<span class="attribute">perspective</span>: <span class="number">800px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.view</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.s1</span>&#123;</span><br><span class="line">	<span class="attribute">-webkit-transition-delay</span>: <span class="number">200ms</span>;</span><br><span class="line">	<span class="attribute">-moz-transition-delay</span>: <span class="number">200ms</span>;</span><br><span class="line">	<span class="attribute">-o-transition-delay</span>: <span class="number">200ms</span>;</span><br><span class="line">	<span class="attribute">-ms-transition-delay</span>: <span class="number">200ms</span>;</span><br><span class="line">	<span class="attribute">transition-delay</span>: <span class="number">200ms</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">-webkit-transform</span>: <span class="built_in">rotate3d</span>(0,1,0,-3deg);</span><br><span class="line">	<span class="attribute">-moz-transform</span>: <span class="built_in">rotate3d</span>(0,1,0,-3deg);</span><br><span class="line">	<span class="attribute">-o-transform</span>: <span class="built_in">rotate3d</span>(0,1,0,-3deg);</span><br><span class="line">	<span class="attribute">-ms-transform</span>: <span class="built_in">rotate3d</span>(0,1,0,-3deg);</span><br><span class="line">	<span class="attribute">transform</span>: <span class="built_in">rotate3d</span>(0,1,0,-3deg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.view</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.s2</span>&#123;</span><br><span class="line">	<span class="attribute">-webkit-transition-delay</span>: <span class="number">150ms</span>;</span><br><span class="line">	<span class="attribute">-moz-transition-delay</span>: <span class="number">150ms</span>;</span><br><span class="line">	<span class="attribute">-o-transition-delay</span>: <span class="number">150ms</span>;</span><br><span class="line">	<span class="attribute">-ms-transition-delay</span>: <span class="number">150ms</span>;</span><br><span class="line">	<span class="attribute">transition-delay</span>: <span class="number">150ms</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-10deg);</span><br><span class="line">	<span class="attribute">-moz-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-10deg);</span><br><span class="line">	<span class="attribute">-o-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-10deg);</span><br><span class="line">	<span class="attribute">-ms-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-10deg);</span><br><span class="line">	<span class="attribute">transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-10deg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.view</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.s3</span>&#123;</span><br><span class="line">	<span class="attribute">-webkit-transition-delay</span>: <span class="number">100ms</span>;</span><br><span class="line">	<span class="attribute">-moz-transition-delay</span>: <span class="number">100ms</span>;</span><br><span class="line">	<span class="attribute">-o-transition-delay</span>: <span class="number">100ms</span>;</span><br><span class="line">	<span class="attribute">-ms-transition-delay</span>: <span class="number">100ms</span>;</span><br><span class="line">	<span class="attribute">transition-delay</span>: <span class="number">100ms</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-16deg);</span><br><span class="line">	<span class="attribute">-moz-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-16deg);</span><br><span class="line">	<span class="attribute">-o-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-16deg);</span><br><span class="line">	<span class="attribute">-ms-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-16deg);</span><br><span class="line">	<span class="attribute">transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-16deg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.view</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.s4</span>&#123;</span><br><span class="line">	<span class="attribute">-webkit-transition-delay</span>: <span class="number">50ms</span>;</span><br><span class="line">	<span class="attribute">-moz-transition-delay</span>: <span class="number">50ms</span>;</span><br><span class="line">	<span class="attribute">-o-transition-delay</span>: <span class="number">50ms</span>;</span><br><span class="line">	<span class="attribute">-ms-transition-delay</span>: <span class="number">50ms</span>;</span><br><span class="line">	<span class="attribute">transition-delay</span>: <span class="number">50ms</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-30deg);</span><br><span class="line">	<span class="attribute">-moz-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-30deg);</span><br><span class="line">	<span class="attribute">-o-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-30deg);</span><br><span class="line">	<span class="attribute">-ms-transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-30deg);</span><br><span class="line">	<span class="attribute">transform</span>: <span class="built_in">translate3d</span>(59px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-30deg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.view</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.s5</span>&#123;</span><br><span class="line">	<span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(60px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-42deg);</span><br><span class="line">	<span class="attribute">-moz-transform</span>: <span class="built_in">translate3d</span>(60px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-42deg);</span><br><span class="line">	<span class="attribute">-o-transform</span>: <span class="built_in">translate3d</span>(60px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-42deg);</span><br><span class="line">	<span class="attribute">-ms-transform</span>: <span class="built_in">translate3d</span>(60px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-42deg);</span><br><span class="line">	<span class="attribute">transform</span>: <span class="built_in">translate3d</span>(60px,0,0) <span class="built_in">rotate3d</span>(0,1,0,-42deg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.view</span> <span class="selector-class">.s4</span> &gt; <span class="selector-class">.overlay</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-moz-linear-gradient</span>(right, rgba(0,0,0,0.3) <span class="number">0%</span>, <span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-webkit-linear-gradient</span>(right, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-o-linear-gradient</span>(right, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-ms-linear-gradient</span>(right, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(right, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.view</span> <span class="selector-class">.s5</span> &gt; <span class="selector-class">.overlay</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-moz-linear-gradient</span>(left, rgba(0,0,0,0.3) <span class="number">0%</span>, <span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-webkit-linear-gradient</span>(left, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-o-linear-gradient</span>(left, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-ms-linear-gradient</span>(left, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(left, rgba(0,0,0,0.3) <span class="number">0%</span>,<span class="built_in">rgba</span>(0,0,0,0) <span class="number">100%</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.view</span> <span class="selector-tag">div</span><span class="selector-class">.view-back</span>&#123;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#0a0a0a</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-moz-linear-gradient</span>(left, #0a0a0a 0%, #666666 100%);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-webkit-gradient</span>(linear, left top, right top, color-stop(0%,#0a0a0a), <span class="built_in">color-stop</span>(100%,#666666));</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-webkit-linear-gradient</span>(left, #0a0a0a 0%,#666666 100%);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-o-linear-gradient</span>(left, #0a0a0a 0%,#666666 100%);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">-ms-linear-gradient</span>(left, #0a0a0a 0%,#666666 100%);</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(left, #0a0a0a 0%,#666666 100%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以看到主要利用translate+rotate+transtion实现的3d效果</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Css/" rel="tag"># Css</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/28/一些面试的总结/" rel="next" title="一些面试的总结">
+                <i class="fa fa-chevron-left"></i> 一些面试的总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="coolsong" />
+            
+              <p class="site-author-name" itemprop="name">coolsong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
+                      
+                        <i class="fa fa-fw fa-google"></i>谷歌</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#悬停图库切割合成大图"><span class="nav-text">悬停图库切割合成大图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#叠加运动悬停效应"><span class="nav-text">叠加运动悬停效应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D-缩略图悬停效果"><span class="nav-text">3D 缩略图悬停效果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">coolsong</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider" style="display:none;">|</span>
+
+
+
+  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
