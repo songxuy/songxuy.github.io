@@ -1,367 +1,67 @@
+
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html lang="zh-Hans" class="loading">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="组件库," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;之前由于有开发自己的组件库的需求，于是自己去了解和学习了一下比较成熟的一些框架。主要从各自的优缺点、组件功能整理、以及对于其实现的学习等方面进行总结。">
-<meta name="keywords" content="组件库">
-<meta property="og:type" content="article">
-<meta property="og:title" content="UI组件库总结">
-<meta property="og:url" content="songxuy.github.io/2020/04/03/UI组件库总结/index.html">
-<meta property="og:site_name" content="缘来">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;之前由于有开发自己的组件库的需求，于是自己去了解和学习了一下比较成熟的一些框架。主要从各自的优缺点、组件功能整理、以及对于其实现的学习等方面进行总结。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="/images/element.png">
-<meta property="og:image" content="/images/vant.png">
-<meta property="og:image" content="/images/iview.png">
-<meta property="og:image" content="/images/ant.png">
-<meta property="og:image" content="/images/elgithub.png">
-<meta property="og:updated_time" content="2020-04-03T06:47:06.575Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UI组件库总结">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;之前由于有开发自己的组件库的需求，于是自己去了解和学习了一下比较成熟的一些框架。主要从各自的优缺点、组件功能整理、以及对于其实现的学习等方面进行总结。">
-<meta name="twitter:image" content="/images/element.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="songxuy.github.io/2020/04/03/UI组件库总结/"/>
-
-
-
-
-
-  <title>UI组件库总结 | 缘来</title>
-  
-
-
-
-
-
-
-
-
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UI组件库总结 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;之前由于有开发自己的组件库的需求，于是自己去了解和学习了一下比较成熟的一些框架。主要从各自的优缺点、组件功能整理、以及对于其实现的学习等方面进行总结。
+各类组件的,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">缘来</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">UI组件库总结</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
     </div>
-      
-        <p class="site-subtitle">一个菜鸟程序员</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div class="scrollbar"></div>
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">UI组件库总结</h1>
+        <div class="stuff">
+            <span>四月 03, 2020</span>
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/组件库/">组件库</a></li></ul>
 
-      
-
-      
-
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="songxuy.github.io/2020/04/03/UI组件库总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="coolsong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="缘来">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">UI组件库总结</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:27:00+08:00">
-                2020-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/组件库/" itemprop="url" rel="index">
-                    <span itemprop="name">组件库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>&nbsp;&nbsp;&nbsp;之前由于有开发自己的组件库的需求，于是自己去了解和学习了一下比较成熟的一些框架。主要从各自的优缺点、组件功能整理、以及对于其实现的学习等方面进行总结。<br><a id="more"></a></p>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;之前由于有开发自己的组件库的需求，于是自己去了解和学习了一下比较成熟的一些框架。主要从各自的优缺点、组件功能整理、以及对于其实现的学习等方面进行总结。<br><a id="more"></a></p>
 <h3 id="各类组件的优缺点调研"><a href="#各类组件的优缺点调研" class="headerlink" title="各类组件的优缺点调研"></a>各类组件的优缺点调研</h3><blockquote>
 <p>这里主要是调研elementUI、Vant、ant-design-vue、iView。对比其使用率、组件库丰富度、API风格、项目优化等进行比较。</p>
 </blockquote>
@@ -1187,423 +887,110 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div :<span class="class"><span class="keyword">class</span></span>=<span class="string">"[</span></span><br><span class="line"><span class="string">    type === 'textarea' ? 'el-textarea' : 'el-input',</span></span><br><span class="line"><span class="string">    inputSize ? 'el-input--' + inputSize : '',</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">      'is-disabled': inputDisabled,</span></span><br><span class="line"><span class="string">      'is-exceed': inputExceed,</span></span><br><span class="line"><span class="string">      'el-input-group': $slots.prepend || $slots.append,</span></span><br><span class="line"><span class="string">      'el-input-group--append': $slots.append,</span></span><br><span class="line"><span class="string">      'el-input-group--prepend': $slots.prepend,</span></span><br><span class="line"><span class="string">      'el-input--prefix': $slots.prefix || prefixIcon,</span></span><br><span class="line"><span class="string">      'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    ]"</span></span><br><span class="line">    @mouseenter=<span class="string">"hovering = true"</span></span><br><span class="line">    @mouseleave=<span class="string">"hovering = false"</span></span><br><span class="line">  &gt;</span><br><span class="line">    &lt;template v-<span class="keyword">if</span>=<span class="string">"type !== 'textarea'"</span>&gt;</span><br><span class="line">      &lt;!-- 前置元素 --&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input-group__prepend"</span> v-<span class="keyword">if</span>=<span class="string">"$slots.prepend"</span>&gt;</span><br><span class="line">        &lt;slot name=<span class="string">"prepend"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;input</span></span><br><span class="line"><span class="regexp">        :tabindex="tabindex"</span></span><br><span class="line"><span class="regexp">        v-if="type !== 'textarea'"</span></span><br><span class="line"><span class="regexp">        class="el-input__inner"</span></span><br><span class="line"><span class="regexp">        v-bind="$attrs"</span></span><br><span class="line"><span class="regexp">        :type="showPassword ? (passwordVisible ? 'text': 'password') : type"</span></span><br><span class="line"><span class="regexp">        :disabled="inputDisabled"</span></span><br><span class="line"><span class="regexp">        :readonly="readonly"</span></span><br><span class="line"><span class="regexp">        :autocomplete="autoComplete || autocomplete"</span></span><br><span class="line"><span class="regexp">        ref="input"</span></span><br><span class="line"><span class="regexp">        @compositionstart="handleCompositionStart"</span></span><br><span class="line"><span class="regexp">        @compositionupdate="handleCompositionUpdate"</span></span><br><span class="line"><span class="regexp">        @compositionend="handleCompositionEnd"</span></span><br><span class="line"><span class="regexp">        @input="handleInput"</span></span><br><span class="line"><span class="regexp">        @focus="handleFocus"</span></span><br><span class="line"><span class="regexp">        @blur="handleBlur"</span></span><br><span class="line"><span class="regexp">        @change="handleChange"</span></span><br><span class="line"><span class="regexp">        :aria-label="label"</span></span><br><span class="line"><span class="regexp">      &gt;</span></span><br><span class="line"><span class="regexp">      &lt;!-- 前置内容 --&gt;</span></span><br><span class="line"><span class="regexp">      &lt;span class="el-input__prefix" v-if="$slots.prefix || prefixIcon"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;slot name="prefix"&gt;&lt;/</span>slot&gt;</span><br><span class="line">        &lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__icon"</span></span><br><span class="line">           v-<span class="keyword">if</span>=<span class="string">"prefixIcon"</span></span><br><span class="line">           :<span class="class"><span class="keyword">class</span></span>=<span class="string">"prefixIcon"</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/i&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>span&gt;</span><br><span class="line">      &lt;!-- 后置内容 --&gt;</span><br><span class="line">      &lt;span</span><br><span class="line">        <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__suffix"</span></span><br><span class="line">        v-<span class="keyword">if</span>=<span class="string">"getSuffixVisible()"</span>&gt;</span><br><span class="line">        &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__suffix-inner"</span>&gt;</span><br><span class="line">          &lt;template v-<span class="keyword">if</span>=<span class="string">"!showClear || !showPwdVisible || !isWordLimitVisible"</span>&gt;</span><br><span class="line">            &lt;slot name=<span class="string">"suffix"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span></span><br><span class="line">            &lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__icon"</span></span><br><span class="line">              v-<span class="keyword">if</span>=<span class="string">"suffixIcon"</span></span><br><span class="line">              :<span class="class"><span class="keyword">class</span></span>=<span class="string">"suffixIcon"</span>&gt;</span><br><span class="line">            &lt;<span class="regexp">/i&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>template&gt;</span><br><span class="line">          &lt;i v-<span class="keyword">if</span>=<span class="string">"showClear"</span></span><br><span class="line">            <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__icon el-icon-circle-close el-input__clear"</span></span><br><span class="line">            @mousedown.prevent</span><br><span class="line">            @click=<span class="string">"clear"</span></span><br><span class="line">          &gt;<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line">          &lt;i v-<span class="keyword">if</span>=<span class="string">"showPwdVisible"</span></span><br><span class="line">            <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__icon el-icon-view el-input__clear"</span></span><br><span class="line">            @click=<span class="string">"handlePasswordVisible"</span></span><br><span class="line">          &gt;<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line">          &lt;span v-<span class="keyword">if</span>=<span class="string">"isWordLimitVisible"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__count"</span>&gt;</span><br><span class="line">            &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-input__count-inner"</span>&gt;</span><br><span class="line">              &#123;&#123; textLength &#125;&#125;/&#123;&#123; upperLimit &#125;&#125;</span><br><span class="line">            &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>span&gt;</span><br><span class="line">        &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">        &lt;i class="el-input__icon"</span></span><br><span class="line"><span class="regexp">          v-if="validateState"</span></span><br><span class="line"><span class="regexp">          :class="['el-input__validateIcon', validateIcon]"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/i</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;!-- 后置元素 --&gt;</span></span><br><span class="line"><span class="regexp">      &lt;div class="el-input-group__append" v-if="$slots.append"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;slot name="append"&gt;&lt;/</span>slot&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>template&gt;</span><br><span class="line">    &lt;textarea</span><br><span class="line">      v-<span class="keyword">else</span></span><br><span class="line">      :tabindex=<span class="string">"tabindex"</span></span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-textarea__inner"</span></span><br><span class="line">      @compositionstart=<span class="string">"handleCompositionStart"</span></span><br><span class="line">      @compositionupdate=<span class="string">"handleCompositionUpdate"</span></span><br><span class="line">      @compositionend=<span class="string">"handleCompositionEnd"</span></span><br><span class="line">      @input=<span class="string">"handleInput"</span></span><br><span class="line">      ref=<span class="string">"textarea"</span></span><br><span class="line">      v-bind=<span class="string">"$attrs"</span></span><br><span class="line">      :disabled=<span class="string">"inputDisabled"</span></span><br><span class="line">      :readonly=<span class="string">"readonly"</span></span><br><span class="line">      :autocomplete=<span class="string">"autoComplete || autocomplete"</span></span><br><span class="line">      :style=<span class="string">"textareaStyle"</span></span><br><span class="line">      @focus=<span class="string">"handleFocus"</span></span><br><span class="line">      @blur=<span class="string">"handleBlur"</span></span><br><span class="line">      @change=<span class="string">"handleChange"</span></span><br><span class="line">      :aria-label=<span class="string">"label"</span></span><br><span class="line">    &gt;</span><br><span class="line">    &lt;<span class="regexp">/textarea&gt;</span></span><br><span class="line"><span class="regexp">    &lt;span v-if="isWordLimitVisible &amp;&amp; type === 'textarea'" class="el-input__count"&gt;&#123;&#123; textLength &#125;&#125;/</span>&#123;&#123; upperLimit &#125;&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  import emitter from 'element-ui/</span>src/mixins/emitter<span class="string">';</span></span><br><span class="line"><span class="string">  import Migrating from '</span>element-ui/src/mixins/migrating<span class="string">';</span></span><br><span class="line"><span class="string">  import calcTextareaHeight from '</span>./calcTextareaHeight<span class="string">';</span></span><br><span class="line"><span class="string">  import merge from '</span>element-ui/src/utils/merge<span class="string">';</span></span><br><span class="line"><span class="string">  import &#123;isKorean&#125; from '</span>element-ui/src/utils/shared<span class="string">';</span></span><br><span class="line"><span class="string">  export default &#123;</span></span><br><span class="line"><span class="string">    name: '</span>ElInput<span class="string">',</span></span><br><span class="line"><span class="string">    componentName: '</span>ElInput<span class="string">',</span></span><br><span class="line"><span class="string">    mixins: [emitter, Migrating],</span></span><br><span class="line"><span class="string">    inheritAttrs: false,</span></span><br><span class="line"><span class="string">    inject: &#123;</span></span><br><span class="line"><span class="string">      elForm: &#123;</span></span><br><span class="line"><span class="string">        default: '</span><span class="string">'</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      elFormItem: &#123;</span></span><br><span class="line"><span class="string">        default: '</span><span class="string">'</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    data() &#123;</span></span><br><span class="line"><span class="string">      return &#123;</span></span><br><span class="line"><span class="string">        textareaCalcStyle: &#123;&#125;,</span></span><br><span class="line"><span class="string">        hovering: false,</span></span><br><span class="line"><span class="string">        focused: false,</span></span><br><span class="line"><span class="string">        isComposing: false,</span></span><br><span class="line"><span class="string">        passwordVisible: false</span></span><br><span class="line"><span class="string">      &#125;;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    props: &#123;</span></span><br><span class="line"><span class="string">      value: [String, Number],</span></span><br><span class="line"><span class="string">      size: String,</span></span><br><span class="line"><span class="string">      resize: String,</span></span><br><span class="line"><span class="string">      form: String,</span></span><br><span class="line"><span class="string">      disabled: Boolean,</span></span><br><span class="line"><span class="string">      readonly: Boolean,</span></span><br><span class="line"><span class="string">      type: &#123;</span></span><br><span class="line"><span class="string">        type: String,</span></span><br><span class="line"><span class="string">        default: '</span>text<span class="string">'</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      autosize: &#123;</span></span><br><span class="line"><span class="string">        type: [Boolean, Object],</span></span><br><span class="line"><span class="string">        default: false</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      autocomplete: &#123;</span></span><br><span class="line"><span class="string">        type: String,</span></span><br><span class="line"><span class="string">        default: '</span>off<span class="string">'</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      /** @Deprecated in next major version */</span></span><br><span class="line"><span class="string">      autoComplete: &#123;</span></span><br><span class="line"><span class="string">        type: String,</span></span><br><span class="line"><span class="string">        validator(val) &#123;</span></span><br><span class="line"><span class="string">          process.env.NODE_ENV !== '</span>production<span class="string">' &amp;&amp;</span></span><br><span class="line"><span class="string">            console.warn('</span>[Element Warn][Input]\<span class="string">'auto-complete\' property will be deprecated in next major version. please use \'autocomplete\' instead.'</span>);</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      validateEvent: &#123;</span><br><span class="line">        type: <span class="built_in">Boolean</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      suffixIcon: <span class="built_in">String</span>,</span><br><span class="line">      prefixIcon: <span class="built_in">String</span>,</span><br><span class="line">      label: <span class="built_in">String</span>,</span><br><span class="line">      clearable: &#123;</span><br><span class="line">        type: <span class="built_in">Boolean</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      showPassword: &#123;</span><br><span class="line">        type: <span class="built_in">Boolean</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      showWordLimit: &#123;</span><br><span class="line">        type: <span class="built_in">Boolean</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      tabindex: <span class="built_in">String</span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      _elFormItemSize() &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span>.elFormItem || &#123;&#125;).elFormItemSize;</span><br><span class="line">      &#125;,</span><br><span class="line">      validateState() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.elFormItem ? <span class="keyword">this</span>.elFormItem.validateState : <span class="string">''</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">      needStatusIcon() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.elForm ? <span class="keyword">this</span>.elForm.statusIcon : <span class="literal">false</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">      validateIcon() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          validating: <span class="string">'el-icon-loading'</span>,</span><br><span class="line">          success: <span class="string">'el-icon-circle-check'</span>,</span><br><span class="line">          error: <span class="string">'el-icon-circle-close'</span></span><br><span class="line">        &#125;[<span class="keyword">this</span>.validateState];</span><br><span class="line">      &#125;,</span><br><span class="line">      textareaStyle() &#123;</span><br><span class="line">        <span class="keyword">return</span> merge(&#123;&#125;, <span class="keyword">this</span>.textareaCalcStyle, &#123; <span class="attr">resize</span>: <span class="keyword">this</span>.resize &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      inputSize() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.size || <span class="keyword">this</span>._elFormItemSize || (<span class="keyword">this</span>.$ELEMENT || &#123;&#125;).size;</span><br><span class="line">      &#125;,</span><br><span class="line">      inputDisabled() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.disabled || (<span class="keyword">this</span>.elForm || &#123;&#125;).disabled;</span><br><span class="line">      &#125;,</span><br><span class="line">      nativeInputValue() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value === <span class="literal">null</span> || <span class="keyword">this</span>.value === <span class="literal">undefined</span> ? <span class="string">''</span> : <span class="built_in">String</span>(<span class="keyword">this</span>.value);</span><br><span class="line">      &#125;,</span><br><span class="line">      showClear() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.clearable &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.inputDisabled &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.readonly &amp;&amp;</span><br><span class="line">          <span class="keyword">this</span>.nativeInputValue &amp;&amp;</span><br><span class="line">          (<span class="keyword">this</span>.focused || <span class="keyword">this</span>.hovering);</span><br><span class="line">      &#125;,</span><br><span class="line">      showPwdVisible() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.showPassword &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.inputDisabled &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.readonly &amp;&amp;</span><br><span class="line">          (!!<span class="keyword">this</span>.nativeInputValue || <span class="keyword">this</span>.focused);</span><br><span class="line">      &#125;,</span><br><span class="line">      isWordLimitVisible() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.showWordLimit &amp;&amp;</span><br><span class="line">          <span class="keyword">this</span>.$attrs.maxlength &amp;&amp;</span><br><span class="line">          (<span class="keyword">this</span>.type === <span class="string">'text'</span> || <span class="keyword">this</span>.type === <span class="string">'textarea'</span>) &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.inputDisabled &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.readonly &amp;&amp;</span><br><span class="line">          !<span class="keyword">this</span>.showPassword;</span><br><span class="line">      &#125;,</span><br><span class="line">      upperLimit() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$attrs.maxlength;</span><br><span class="line">      &#125;,</span><br><span class="line">      textLength() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.value === <span class="string">'number'</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>.value).length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span>.value || <span class="string">''</span>).length;</span><br><span class="line">      &#125;,</span><br><span class="line">      inputExceed() &#123;</span><br><span class="line">        <span class="comment">// show exceed style if length of initial value greater then maxlength</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.isWordLimitVisible &amp;&amp;</span><br><span class="line">          (<span class="keyword">this</span>.textLength &gt; <span class="keyword">this</span>.upperLimit);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">      value(val) &#123;</span><br><span class="line">        <span class="keyword">this</span>.$nextTick(<span class="keyword">this</span>.resizeTextarea);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.validateEvent) &#123;</span><br><span class="line">          <span class="keyword">this</span>.dispatch(<span class="string">'ElFormItem'</span>, <span class="string">'el.form.change'</span>, [val]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// native input value is set explicitly</span></span><br><span class="line">      <span class="comment">// do not use v-model / :value in template</span></span><br><span class="line">      <span class="comment">// see: https://github.com/ElemeFE/element/issues/14521</span></span><br><span class="line">      nativeInputValue() &#123;</span><br><span class="line">        <span class="keyword">this</span>.setNativeInputValue();</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// when change between &lt;input&gt; and &lt;textarea&gt;,</span></span><br><span class="line">      <span class="comment">// update DOM dependent value and styles</span></span><br><span class="line">      <span class="comment">// https://github.com/ElemeFE/element/issues/14857</span></span><br><span class="line">      type() &#123;</span><br><span class="line">        <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.setNativeInputValue();</span><br><span class="line">          <span class="keyword">this</span>.resizeTextarea();</span><br><span class="line">          <span class="keyword">this</span>.updateIconOffset();</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      focus() &#123;</span><br><span class="line">        <span class="keyword">this</span>.getInput().focus();</span><br><span class="line">      &#125;,</span><br><span class="line">      blur() &#123;</span><br><span class="line">        <span class="keyword">this</span>.getInput().blur();</span><br><span class="line">      &#125;,</span><br><span class="line">      getMigratingConfig() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          props: &#123;</span><br><span class="line">            <span class="string">'icon'</span>: <span class="string">'icon is removed, use suffix-icon / prefix-icon instead.'</span>,</span><br><span class="line">            <span class="string">'on-icon-click'</span>: <span class="string">'on-icon-click is removed.'</span></span><br><span class="line">          &#125;,</span><br><span class="line">          events: &#123;</span><br><span class="line">            <span class="string">'click'</span>: <span class="string">'click is removed.'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;,</span><br><span class="line">      handleBlur(event) &#123;</span><br><span class="line">        <span class="keyword">this</span>.focused = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'blur'</span>, event);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.validateEvent) &#123;</span><br><span class="line">          <span class="keyword">this</span>.dispatch(<span class="string">'ElFormItem'</span>, <span class="string">'el.form.blur'</span>, [<span class="keyword">this</span>.value]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      select() &#123;</span><br><span class="line">        <span class="keyword">this</span>.getInput().select();</span><br><span class="line">      &#125;,</span><br><span class="line">      resizeTextarea() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.$isServer) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">const</span> &#123; autosize, type &#125; = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">if</span> (type !== <span class="string">'textarea'</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (!autosize) &#123;</span><br><span class="line">          <span class="keyword">this</span>.textareaCalcStyle = &#123;</span><br><span class="line">            minHeight: calcTextareaHeight(<span class="keyword">this</span>.$refs.textarea).minHeight</span><br><span class="line">          &#125;;</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> minRows = autosize.minRows;</span><br><span class="line">        <span class="keyword">const</span> maxRows = autosize.maxRows;</span><br><span class="line">        <span class="keyword">this</span>.textareaCalcStyle = calcTextareaHeight(<span class="keyword">this</span>.$refs.textarea, minRows, maxRows);</span><br><span class="line">      &#125;,</span><br><span class="line">      setNativeInputValue() &#123;</span><br><span class="line">        <span class="keyword">const</span> input = <span class="keyword">this</span>.getInput();</span><br><span class="line">        <span class="keyword">if</span> (!input) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (input.value === <span class="keyword">this</span>.nativeInputValue) <span class="keyword">return</span>;</span><br><span class="line">        input.value = <span class="keyword">this</span>.nativeInputValue;</span><br><span class="line">      &#125;,</span><br><span class="line">      handleFocus(event) &#123;</span><br><span class="line">        <span class="keyword">this</span>.focused = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'focus'</span>, event);</span><br><span class="line">      &#125;,</span><br><span class="line">      handleCompositionStart() &#123;</span><br><span class="line">        <span class="keyword">this</span>.isComposing = <span class="literal">true</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">      handleCompositionUpdate(event) &#123;</span><br><span class="line">        <span class="keyword">const</span> text = event.target.value;</span><br><span class="line">        <span class="keyword">const</span> lastCharacter = text[text.length - <span class="number">1</span>] || <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">this</span>.isComposing = !isKorean(lastCharacter);</span><br><span class="line">      &#125;,</span><br><span class="line">      handleCompositionEnd(event) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.isComposing) &#123;</span><br><span class="line">          <span class="keyword">this</span>.isComposing = <span class="literal">false</span>;</span><br><span class="line">          <span class="keyword">this</span>.handleInput(event);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      handleInput(event) &#123;</span><br><span class="line">        <span class="comment">// should not emit input during composition</span></span><br><span class="line">        <span class="comment">// see: https://github.com/ElemeFE/element/issues/10516</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.isComposing) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// hack for https://github.com/ElemeFE/element/issues/8548</span></span><br><span class="line">        <span class="comment">// should remove the following line when we don't support IE</span></span><br><span class="line">        <span class="keyword">if</span> (event.target.value === <span class="keyword">this</span>.nativeInputValue) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, event.target.value);</span><br><span class="line">        <span class="comment">// ensure native input value is controlled</span></span><br><span class="line">        <span class="comment">// see: https://github.com/ElemeFE/element/issues/12850</span></span><br><span class="line">        <span class="keyword">this</span>.$nextTick(<span class="keyword">this</span>.setNativeInputValue);</span><br><span class="line">      &#125;,</span><br><span class="line">      handleChange(event) &#123;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'change'</span>, event.target.value);</span><br><span class="line">      &#125;,</span><br><span class="line">      calcIconOffset(place) &#123;</span><br><span class="line">        <span class="keyword">let</span> elList = [].slice.call(<span class="keyword">this</span>.$el.querySelectorAll(<span class="string">`.el-input__<span class="subst">$&#123;place&#125;</span>`</span>) || []);</span><br><span class="line">        <span class="keyword">if</span> (!elList.length) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">let</span> el = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; elList.length; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (elList[i].parentNode === <span class="keyword">this</span>.$el) &#123;</span><br><span class="line">            el = elList[i];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!el) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">const</span> pendantMap = &#123;</span><br><span class="line">          suffix: <span class="string">'append'</span>,</span><br><span class="line">          prefix: <span class="string">'prepend'</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">const</span> pendant = pendantMap[place];</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.$slots[pendant]) &#123;</span><br><span class="line">          el.style.transform = <span class="string">`translateX(<span class="subst">$&#123;place === <span class="string">'suffix'</span> ? <span class="string">'-'</span> : <span class="string">''</span>&#125;</span><span class="subst">$&#123;<span class="keyword">this</span>.$el.querySelector(<span class="string">`.el-input-group__<span class="subst">$&#123;pendant&#125;</span>`</span>).offsetWidth&#125;</span>px)`</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          el.removeAttribute(<span class="string">'style'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      updateIconOffset() &#123;</span><br><span class="line">        <span class="keyword">this</span>.calcIconOffset(<span class="string">'prefix'</span>);</span><br><span class="line">        <span class="keyword">this</span>.calcIconOffset(<span class="string">'suffix'</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      clear() &#123;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, <span class="string">''</span>);</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'change'</span>, <span class="string">''</span>);</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'clear'</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      handlePasswordVisible() &#123;</span><br><span class="line">        <span class="keyword">this</span>.passwordVisible = !<span class="keyword">this</span>.passwordVisible;</span><br><span class="line">        <span class="keyword">this</span>.focus();</span><br><span class="line">      &#125;,</span><br><span class="line">      getInput() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$refs.input || <span class="keyword">this</span>.$refs.textarea;</span><br><span class="line">      &#125;,</span><br><span class="line">      getSuffixVisible() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$slots.suffix ||</span><br><span class="line">          <span class="keyword">this</span>.suffixIcon ||</span><br><span class="line">          <span class="keyword">this</span>.showClear ||</span><br><span class="line">          <span class="keyword">this</span>.showPassword ||</span><br><span class="line">          <span class="keyword">this</span>.isWordLimitVisible ||</span><br><span class="line">          (<span class="keyword">this</span>.validateState &amp;&amp; <span class="keyword">this</span>.needStatusIcon);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$on(<span class="string">'inputSelect'</span>, <span class="keyword">this</span>.select);</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">      <span class="keyword">this</span>.setNativeInputValue();</span><br><span class="line">      <span class="keyword">this</span>.resizeTextarea();</span><br><span class="line">      <span class="keyword">this</span>.updateIconOffset();</span><br><span class="line">    &#125;,</span><br><span class="line">    updated() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$nextTick(<span class="keyword">this</span>.updateIconOffset);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/组件库/" rel="tag"># 组件库</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
             
-              <a href="/2020/03/28/移动端通用脚手架/" rel="next" title="移动端通用脚手架">
-                <i class="fa fa-chevron-left"></i> 移动端通用脚手架
-              </a>
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
             
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/04/数组乱序/" rel="prev" title="数组乱序">
-                数组乱序 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
         </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
 
-  <aside id="sidebar" class="sidebar">
+
+    </div>
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="coolsong" />
-            
-              <p class="site-author-name" itemprop="name">coolsong</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">69</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">27</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.google.cn/" target="_blank" title="谷歌">
-                      
-                        <i class="fa fa-fw fa-google"></i>谷歌</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/songxuy" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://weibo.com/u/5581822726?refer_flag=1001030201_&is_hot=1" target="_blank" title="新浪微博">
-                      
-                        <i class="fa fa-fw fa-weibo"></i>新浪微博</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://mail.qq.com/" target="_blank" title="邮箱">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#各类组件的优缺点调研"><span class="toc-number">1.</span> <span class="toc-text">各类组件的优缺点调研</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用率"><span class="toc-number">1.1.</span> <span class="toc-text">使用率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组件库丰富度"><span class="toc-number">1.2.</span> <span class="toc-text">组件库丰富度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#API风格"><span class="toc-number">1.3.</span> <span class="toc-text">API风格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目优化"><span class="toc-number">1.4.</span> <span class="toc-text">项目优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#针对对象"><span class="toc-number">1.5.</span> <span class="toc-text">针对对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件整理"><span class="toc-number">2.</span> <span class="toc-text">组件整理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#移动端"><span class="toc-number">2.1.</span> <span class="toc-text">移动端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PC端"><span class="toc-number">2.2.</span> <span class="toc-text">PC端</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件初步学习"><span class="toc-number">3.</span> <span class="toc-text">组件初步学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#elementUi源码"><span class="toc-number">3.1.</span> <span class="toc-text">elementUi源码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#详情分析"><span class="toc-number">3.2.</span> <span class="toc-text">详情分析</span></a></li></ol></li></ol>	
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#各类组件的优缺点调研"><span class="nav-text">各类组件的优缺点调研</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用率"><span class="nav-text">使用率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件库丰富度"><span class="nav-text">组件库丰富度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API风格"><span class="nav-text">API风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目优化"><span class="nav-text">项目优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对对象"><span class="nav-text">针对对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件整理"><span class="nav-text">组件整理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#移动端"><span class="nav-text">移动端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PC端"><span class="nav-text">PC端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件初步学习"><span class="nav-text">组件初步学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#elementUi源码"><span class="nav-text">elementUi源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#详情分析"><span class="nav-text">详情分析</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" style="color:#ffffff;">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">coolsong</span>
-
-  
+    
 </div>
 
 
-  <div class="powered-by" style="display:none;">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider" style="display:none;">|</span>
-
-
-
-  <div class="theme-info" style="display:none;">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
+    </div>
+</div>
 </body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 </html>
