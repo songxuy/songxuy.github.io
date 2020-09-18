@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vue3的初步使用(-) - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前就看过了很多关于Vue3的介绍，新特性，Composition API等特性。但是自己一直处于看文档和简单的源码上。虽然Vue3.0至,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Vue3的初步使用(-)</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Vue3的初步使用(-)</h1>
+        <div class="stuff">
+            <span>九月 18, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Composition-API/">Composition API</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Vue3/">Vue3</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前就看过了很多关于Vue3的介绍，新特性，Composition API等特性。但是自己一直处于看文档和简单的源码上。虽然Vue3.0至今还是rc版，但是我们已经可以开始动起来了，下面就简单的介绍一下Vue3中一些新特性的使用。<br><a id="more"></a></p>
+<h4 id="Vue3安装"><a href="#Vue3安装" class="headerlink" title="Vue3安装"></a>Vue3安装</h4><blockquote>
+<p>这里有两种方式，一种是通过新版的cli安装，另一种是通过vite创建。</p>
+</blockquote>
+<h5 id="Vite"><a href="#Vite" class="headerlink" title="Vite"></a>Vite</h5><blockquote>
+<p>Vite其实是一个前端构建工具。才出来没多久，也是尤大大搞得。1.0版本已经进入rc版本。主要是和Vue3配合使用。所以我们可以用它来搭建vue3的环境。作为构建工具它也有它很多的优势。<br>由于我们这里主要是通过cli去搭建的（vite并没有完善到支撑一个完整项目的地步）这里不做赘述了。<br>感兴趣可以看github  <a href="https://github.com/vitejs/vite" target="_blank" rel="noopener">Vite</a></p>
+</blockquote>
+<h5 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h5><blockquote>
+<p>我这里使用的版本是4.5.4<br>安装过程：</p>
+</blockquote>
+<ul>
+<li>命令行新建项目 vue create my-vue3-test</li>
+<li>选择Manually select features 自定义安装</li>
+<li>选择下面的这些<br><img src="/images/usevue31.png" alt="Image"></li>
+<li>回车选择3.x(preview)</li>
+<li>Use class-style component syntax?选择n,即输入n然后回车</li>
+<li>Use Babel alongside TypeScript,输入y`</li>
+<li>Use history mode for router输入n</li>
+<li>然后css预处理可以任意选择</li>
+<li>eslint选择ESLint + Prettier</li>
+<li>然后是Lint on save和In dedicater config files</li>
+</ul>
+<blockquote>
+<p>安装好项目之后  ，进入项目启动就可以了</p>
+</blockquote>
+<ul>
+<li>由于下面的有些例子会用到一些组件，这里就选择将Vue3.0继承到自家的UI库中的ant-design-vue。</li>
+</ul>
+<ol>
+<li><p>安装依赖以及按需加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add ant-design-vue@2.0.0-beta.6 </span><br><span class="line">yarn add babel-plugin-import -D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改babel.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  presets: [<span class="string">"@vue/cli-plugin-babel/preset"</span>],</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 按需加载</span></span><br><span class="line">    [</span><br><span class="line">      <span class="string">"import"</span>,</span><br><span class="line">      <span class="comment">// style 为 true 加载 less文件</span></span><br><span class="line">      &#123; <span class="attr">libraryName</span>: <span class="string">"ant-design-vue"</span>, <span class="attr">libraryDirectory</span>: <span class="string">"es"</span>, <span class="attr">style</span>: <span class="string">"css"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="setUp的使用"><a href="#setUp的使用" class="headerlink" title="setUp的使用"></a>setUp的使用</h4><blockquote>
+<p>setup是Vue3.0提供的一个新的属性，可以在setup中使用Composition API。创建组件实例，然后初始化 props ，紧接着就调用setup 函数。从生命周期钩子的视角来看，它会在 beforeCreate 钩子之前被调用。我们先来看一个例子吧：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"home"</span>&gt;</span><br><span class="line">    &lt;About msg=<span class="string">"hello"</span>&gt;&lt;<span class="regexp">/About&gt;</span></span><br><span class="line"><span class="regexp">    &lt;a-form layout="inline" :model="state.form"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;a-form-item&gt;</span></span><br><span class="line"><span class="regexp">        &lt;a-input v-model:value="state.form.user" placeholder="Username"&gt;</span></span><br><span class="line"><span class="regexp">          &lt;template v-slot:prefix&gt;&lt;UserOutlined style="color:rgba(0,0,0,.25)"/</span>&gt;&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>a-input&gt;</span><br><span class="line">      &lt;<span class="regexp">/a-form-item&gt;</span></span><br><span class="line"><span class="regexp">      &lt;a-form-item&gt;</span></span><br><span class="line"><span class="regexp">        &lt;a-input v-model:value="state.form.password" type="password" placeholder="Password"&gt;</span></span><br><span class="line"><span class="regexp">          &lt;template v-slot:prefix&gt;&lt;LockOutlined style="color:rgba(0,0,0,.25)"/</span>&gt;&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>a-input&gt;</span><br><span class="line">      &lt;<span class="regexp">/a-form-item&gt;</span></span><br><span class="line"><span class="regexp">      &lt;a-form-item&gt;</span></span><br><span class="line"><span class="regexp">        &lt;a-button</span></span><br><span class="line"><span class="regexp">          type="primary"</span></span><br><span class="line"><span class="regexp">          :disabled="state.form.user === '' || state.form.password === ''"</span></span><br><span class="line"><span class="regexp">          @click="handleSubmit"</span></span><br><span class="line"><span class="regexp">        &gt;</span></span><br><span class="line"><span class="regexp">          登录</span></span><br><span class="line"><span class="regexp">        &lt;/</span>a-button&gt;</span><br><span class="line">      &lt;<span class="regexp">/a-form-item&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>a-form&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; UserOutlined, LockOutlined &#125; <span class="keyword">from</span> <span class="string">'@ant-design/icons-vue'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Form, Input, Button &#125; <span class="keyword">from</span> <span class="string">'ant-design-vue'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'@/views/About'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    UserOutlined,</span><br><span class="line">    LockOutlined,</span><br><span class="line">    [Form.name]: Form,</span><br><span class="line">    [Form.Item.name]: Form.Item,</span><br><span class="line">    [Input.name]: Input,</span><br><span class="line">    [Button.name]: Button,</span><br><span class="line">    About,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">      form: &#123;</span><br><span class="line">        user: <span class="string">''</span>,</span><br><span class="line">        password: <span class="string">''</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleSubmit</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(state.form);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      state,</span><br><span class="line">      handleSubmit,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以看到， 我们在setup中使用reactive创建了一个响应式对象，和一个方法，然后return出来之后就可以在template中使用了。</p>
+</blockquote>
+<h5 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h5><blockquote>
+<p>setup有两个参数，分别是props和context</p>
+</blockquote>
+<ul>
+<li>props</li>
+</ul>
+<blockquote>
+<p>props是setup函数的第一个参数，是组件外部传入进来的属性。可以直接在template中使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    name: <span class="built_in">String</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(props.name)</span><br><span class="line">  &#125;,&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的一点是不要对props使用解构赋值，那样会使其失去响应性。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    name: <span class="built_in">String</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(&#123; name &#125;) &#123;</span><br><span class="line">    watchEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`name is: `</span> + name) <span class="comment">// Will not be reactive!</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>context</li>
+</ul>
+<blockquote>
+<p>context是setup函数的第二个参数，context是一个对象，里面包含了三个属性，分别是:</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>attrs: attrs与Vue2.0的this.$attrs是一样的，即外部传入的未在props中定义的属性。对于attrs与props一样，我们不能对attrs使用es6的解构，必须使用attrs.name的写法</li>
+<li>slots: slots对应的是组件的插槽，与Vue2.0的this.$slots是对应的,与props和attrs一样，slots也是不能解构的。</li>
+<li>emit: emit对应的是Vue2.0的this.$emit, 即对外暴露事件。</li>
+</ol>
+</blockquote>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><blockquote>
+<p>setup函数一般会返回一个对象，这个对象里面包含了组件模板里面要使用到的data与一些函数或者事件，但是setup也可以返回一个函数，这个函数对应的就是Vue2.0的render函数，可以在这个函数里面使用JSX，对于Vue3.0中使用JSX。</p>
+</blockquote>
+<ul>
+<li>官网例子</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; h, ref, reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> count = ref(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">const</span> object = reactive(&#123; <span class="attr">foo</span>: <span class="string">'bar'</span> &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> h(<span class="string">'div'</span>, [count.value, object.foo])</span><br><span class="line">  &#125;,&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Reactive和Ref"><a href="#Reactive和Ref" class="headerlink" title="Reactive和Ref"></a>Reactive和Ref</h4><blockquote>
+<p>这两个新的api都是和创建响应式数据有关，但它们又有一些不同。</p>
+</blockquote>
+<h5 id="reactive"><a href="#reactive" class="headerlink" title="reactive"></a>reactive</h5><ul>
+<li>它接收一个普通对象然后返回该普通对象的响应式代理。等同于 2.x 的 Vue.observable()。响应式转换是“深层的”：会影响对象内部所有嵌套的属性。基于 ES2015 的 Proxy 实现，返回的代理对象不等于原始对象。建议仅使用代理对象而避免依赖原始对象。</li>
+</ul>
+<p>一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"about"</span>&gt;</span><br><span class="line">    &lt;h1 @click=<span class="string">"changeName"</span>&gt;&#123;&#123; state.name &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;a-input v-model:value="state.name" placeholder="Basic usage" /</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Button, Input &#125; <span class="keyword">from</span> <span class="string">'ant-design-vue'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    [Button.name]: Button,</span><br><span class="line">    [Input.name]: Input,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">      name: <span class="string">'子君'</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> changeName = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      state.name = <span class="string">'hello, world'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> state1 = reactive(obj);</span><br><span class="line">    <span class="comment">// 输出false</span></span><br><span class="line">    <span class="built_in">console</span>.log(obj === state1);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      state,</span><br><span class="line">      changeName</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h5><ul>
+<li>和reactive类似，接受一个参数值并返回一个响应式且可改变的 ref 对象。ref 对象拥有一个指向内部值的单一属性 .value。ref更像是定义对象中的单个属性。</li>
+</ul>
+<p>一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"about"</span>&gt;</span><br><span class="line">    &lt;h4&gt;&#123;&#123; age &#125;&#125;&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">    &lt;a-input v-model:value="age" placeholder="Basic usage" /</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Button, Input &#125; <span class="keyword">from</span> <span class="string">'ant-design-vue'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    [Button.name]: Button,</span><br><span class="line">    [Input.name]: Input,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> age = ref(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">const</span> changeAge = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      age.value++;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      age,</span><br><span class="line">      changeAge,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h5><ul>
+<li>通过上面的两个例子，我们可以总结出：</li>
+</ul>
+<ol>
+<li>reactive传入的是一个对象，返回的是一个响应式对象，而ref传入的是一个基本数据类型（其实引用类型也可以），返回的是传入值的响应式值</li>
+<li>reactive获取或修改属性可以直接通过state.prop来操作，而ref返回值需要通过name.value的方式来修改或者读取数据。但是需要注意的是，在template中并不需要通过.value来获取值，这是因为template中已经做了解套。</li>
+</ol>
+<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><blockquote>
+<p>之前我们实现双向数据绑定有两种方式，一种是使用v-mode，而另一种是使用:value.sync+emit(‘update:value’))。<br>v-model一般用于input、select等上，绑定value并监听相应的事件实现双向绑定，在组件上使用v-mode默认会利用名为 value 的 prop 和名为 input 的事件，我们也可以使用model去自定义。但是有一个缺点是只能绑定一个。</p>
+<p>使用:value.sync+emit(‘update:value’))我们就可以绑定多个数据。</p>
+<p>在Vue3.0中为了实现统一，实现了让一个组件可以拥有多个v-model，同时删除掉了.sync。在vue3.0中，v-model后面需要跟一个modelValue，即要双向绑定的属性名，Vue3.0就是通过给不同的v-model指定不同的modelValue来实现多个v-model。</p>
+</blockquote>
+<p>一个例子:<br>child.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"child"</span>&gt;</span><br><span class="line">    &lt;input :value=<span class="string">"value"</span> @input=<span class="string">"_handleChangeValue"</span> /&gt;</span><br><span class="line">    &lt;input :value=<span class="string">"title"</span> @input=<span class="string">"_handleChangeTitle"</span> /&gt;</span><br><span class="line">    &lt;a-button @click=<span class="string">"changeValue('xiuxiu')"</span>&gt;change value&lt;<span class="regexp">/a-button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;a-button @click="changeTitle('biubiu')"&gt;change title&lt;/</span>a-button&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; Button &#125; <span class="keyword">from</span> <span class="string">'ant-design-vue'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    [Button.name]: Button,</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    value: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">''</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    title: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">''</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, &#123; emit &#125;) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_handleChangeValue</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      emit(<span class="string">'update:value'</span>, e.target.value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_handleChangeTitle</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      emit(<span class="string">'update:title'</span>, e.target.value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">      emit(<span class="string">'update:value'</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeTitle</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">      emit(<span class="string">'update:title'</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      _handleChangeValue,</span><br><span class="line">      _handleChangeTitle,</span><br><span class="line">      changeValue,</span><br><span class="line">      changeTitle,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>parent.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"demo"</span>&gt;</span><br><span class="line">    &lt;Child v-model:value=<span class="string">"state.value"</span> v-model:title=<span class="string">"state.title"</span>&gt;&lt;<span class="regexp">/Child&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">import &#123; reactive &#125; from 'vue';</span></span><br><span class="line"><span class="regexp">import Child from './</span>child<span class="string">';</span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  components: &#123;</span></span><br><span class="line"><span class="string">    Child,</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  setup() &#123;</span></span><br><span class="line"><span class="string">    /* const count = ref(0);</span></span><br><span class="line"><span class="string">    const object = reactive(&#123; foo: '</span>bar<span class="string">' &#125;);</span></span><br><span class="line"><span class="string">    return () =&gt; h('</span>div<span class="string">', [count.value, object.foo]); */</span></span><br><span class="line"><span class="string">    const state = reactive(&#123;</span></span><br><span class="line"><span class="string">      value: '</span><span class="number">0</span><span class="string">',</span></span><br><span class="line"><span class="string">      title: '</span>test<span class="string">',</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">    return &#123;</span></span><br><span class="line"><span class="string">      state,</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可以看到我们在v-model上绑定了两个变量</p>
+</blockquote>
+<h4 id="watch的使用"><a href="#watch的使用" class="headerlink" title="watch的使用"></a>watch的使用</h4><blockquote>
+<p>在Vue3.0中，除了Vue2.0的写法之外，有两个api可以对数据变化进行监听，第一种是watch,第二种是watchEffect。对于watch,其与Vue2.0中的$watch用法基本是一模一样的，而watchEffect是Vue3.0新提供的api。</p>
+</blockquote>
+<h5 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h5><blockquote>
+<p>监听单个值和函数返回</p>
+<ul>
+<li>一个例子：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; watch, ref, reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> title = ref(<span class="string">'活着'</span>)</span><br><span class="line">    <span class="keyword">const</span> titles = reactive(&#123;</span><br><span class="line">      title1: <span class="string">'book1'</span>,</span><br><span class="line">      title2: <span class="string">'book2'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    watch(name, (newValue, oldValue) =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(newValue, oldValue)</span><br><span class="line">    &#125;)</span><br><span class="line">    watch(</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> titles.title1 + titles.titles</span><br><span class="line">      &#125;,</span><br><span class="line">      value =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value)</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      title.value = <span class="string">'hello world'</span></span><br><span class="line">      titles.title1 = <span class="string">'miss'</span></span><br><span class="line">    &#125;, <span class="number">3000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>watch除了可以监听单个值和函数返回的变化，还可以监听多个值得变化<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; watch, ref, reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> title1 = ref(<span class="string">'活着'</span>)</span><br><span class="line">    <span class="keyword">const</span> title2 = ref(<span class="string">'活着2'</span>)</span><br><span class="line">    watch([title1, title2], ([title1, title2], [pretitle1, pretitle2]) =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(title1, pretitle1)</span><br><span class="line">      <span class="built_in">console</span>.log(title2, pretitle2)</span><br><span class="line">    &#125;)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      title1.value = <span class="string">'hello world'</span></span><br><span class="line">      title2.value = <span class="string">'miss you'</span></span><br><span class="line">    &#125;, <span class="number">3000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="watchEffect"><a href="#watchEffect" class="headerlink" title="watchEffect"></a>watchEffect</h5><blockquote>
+<p>会立即执行传入的一个函数，并响应式追踪其依赖，并在其依赖变更时重新运行该函数。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = ref(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">watchEffect(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(count.value))<span class="comment">// -&gt; 打印出 0</span></span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  count.value++</span><br><span class="line">  <span class="comment">// -&gt; 打印出 1</span></span><br><span class="line"> &#125;, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="停止侦听"><a href="#停止侦听" class="headerlink" title="停止侦听"></a>停止侦听</h5><blockquote>
+<p>当 watchEffect 在组件的 setup() 函数或生命周期钩子被调用时， 侦听器会被链接到该组件的生命周期，并在组件卸载时自动停止。在一些情况下，也可以显式调用返回值以停止侦听：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> stop = watchEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line"> &#125;)</span><br><span class="line"><span class="comment">// 之后</span></span><br><span class="line">stop()</span><br></pre></td></tr></table></figure>
+<h5 id="清除副作用"><a href="#清除副作用" class="headerlink" title="清除副作用"></a>清除副作用</h5><blockquote>
+<p>有时副作用函数会执行一些异步的副作用, 这些响应需要在其失效时清除（即完成之前状态已改变了）。所以侦听副作用传入的函数可以接收一个 onInvalidate 函数作入参, 用来注册清理失效时的回调。当以下情况发生时，这个失效回调会被触发:</p>
+<ol>
+<li>副作用即将重新执行时<br>2.侦听器被停止 (如果在 setup() 或 生命周期钩子函数中使用了 watchEffect, 则在卸载组件时)</li>
+</ol>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadData</span>(<span class="params">id, cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(</span><br><span class="line">        <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">10</span>).fill(<span class="number">0</span>).map(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> id.value + <span class="built_in">Math</span>.random()</span><br><span class="line">        &#125;)</span><br><span class="line">      )</span><br><span class="line">    &#125;, <span class="number">2000</span>)</span><br><span class="line">    cb(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="comment">// 下拉框1 选中的数据</span></span><br><span class="line">    <span class="keyword">const</span> select1Id = ref(<span class="number">0</span>)</span><br><span class="line">    <span class="comment">// 下拉框2的数据</span></span><br><span class="line">    <span class="keyword">const</span> select2List = ref([])</span><br><span class="line">    watchEffect(<span class="function"><span class="params">onInvalidate</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 模拟请求</span></span><br><span class="line">      <span class="keyword">let</span> cancel = <span class="literal">undefined</span></span><br><span class="line">      <span class="comment">// 第一个参数是一个回调函数，用于模拟取消请求，关于取消请求，可以了解axios的CancelToken</span></span><br><span class="line">      loadData(select1Id, cb =&gt; &#123;</span><br><span class="line">        cancel = cb</span><br><span class="line">      &#125;).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        select2List.value = data</span><br><span class="line">        <span class="built_in">console</span>.log(data)</span><br><span class="line">      &#125;)</span><br><span class="line">      onInvalidate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        cancel &amp;&amp; cancel()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结分享"><a href="#总结分享" class="headerlink" title="总结分享"></a>总结分享</h4><blockquote>
+<p>这一篇只介绍了一部分的api和特性，下一篇会继续介绍其他的特性<br>参考文档：<br><a href="https://composition-api.vuejs.org/" target="_blank" rel="noopener">Vue Composition API</a><br><a href="https://juejin.im/post/6869521076771094536" target="_blank" rel="noopener">Vue3.0来袭，你想学的都在这里</a></p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue3安装"><span class="toc-number">1.</span> <span class="toc-text">Vue3安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Vite"><span class="toc-number">1.1.</span> <span class="toc-text">Vite</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#CLI"><span class="toc-number">1.2.</span> <span class="toc-text">CLI</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setUp的使用"><span class="toc-number">2.</span> <span class="toc-text">setUp的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参数说明"><span class="toc-number">2.1.</span> <span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#返回值"><span class="toc-number">2.2.</span> <span class="toc-text">返回值</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reactive和Ref"><span class="toc-number">3.</span> <span class="toc-text">Reactive和Ref</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#reactive"><span class="toc-number">3.1.</span> <span class="toc-text">reactive</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ref"><span class="toc-number">3.2.</span> <span class="toc-text">ref</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#区别"><span class="toc-number">3.3.</span> <span class="toc-text">区别</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-model"><span class="toc-number">4.</span> <span class="toc-text">v-model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#watch的使用"><span class="toc-number">5.</span> <span class="toc-text">watch的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#watch"><span class="toc-number">5.1.</span> <span class="toc-text">watch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#watchEffect"><span class="toc-number">5.2.</span> <span class="toc-text">watchEffect</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#停止侦听"><span class="toc-number">5.3.</span> <span class="toc-text">停止侦听</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#清除副作用"><span class="toc-number">5.4.</span> <span class="toc-text">清除副作用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结分享"><span class="toc-number">6.</span> <span class="toc-text">总结分享</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
