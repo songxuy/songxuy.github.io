@@ -23,7 +23,7 @@ welcome_cover: /img/bg.jpg
 # 默认文章封面图（随机调用,支持外链）
 cover: 
   - /img/welcome-cover.jpg
-  - /img/bg2.jpg
+  - /img/bg3.jpg
 
  
 # 是否使用mathjax
