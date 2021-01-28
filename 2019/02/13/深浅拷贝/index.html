@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>深浅拷贝 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;自己之前对于深浅拷贝理解的不是很清楚，前几天又看到了关于这个内容的一篇bolg，决定自己要把这个搞清楚，于是下面自己总结一些。
+1.直接赋值和拷贝&amp;n,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">深浅拷贝</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">深浅拷贝</h1>
+        <div class="stuff">
+            <span>二月 13, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;自己之前对于深浅拷贝理解的不是很清楚，前几天又看到了关于这个内容的一篇bolg，决定自己要把这个搞清楚，于是下面自己总结一些。<br><a id="more"></a></p>
+<h1 id="1-直接赋值和拷贝"><a href="#1-直接赋值和拷贝" class="headerlink" title="1.直接赋值和拷贝"></a>1.直接赋值和拷贝</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;直接赋值中我们也要分为基本数据类型赋值（undefined、null、string、number、boolean）和引用数据类型赋值（object、array、function）下面是一个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//基本数据类型 名值存储在栈内存中</span><br><span class="line">var a = 1</span><br><span class="line">var b = a </span><br><span class="line">a = 2</span><br><span class="line">console.log(a+ &apos; &apos;+ b) // 2 1 </span><br><span class="line"></span><br><span class="line">//引用类型 名存在栈内存中，值存在于堆内存中</span><br><span class="line">var arr = [1,2,3,4]</span><br><span class="line">var arr1 = arr</span><br><span class="line">arr[0] = 2</span><br><span class="line">console.log(arr)</span><br><span class="line">console.log(arr1)//两个都发生改变了</span><br><span class="line">var obj1 = &#123;</span><br><span class="line">  &apos;name&apos; : &apos;zhangsan&apos;,</span><br><span class="line">  &apos;age&apos; :  &apos;18&apos;,</span><br><span class="line">  &apos;language&apos; : [1,[2,3],[4,5]],</span><br><span class="line">&#125;;</span><br><span class="line">var obj2 = obj1;</span><br><span class="line">obj2.name = &quot;lisi&quot;;</span><br><span class="line">obj2.language[1] = [&quot;二&quot;,&quot;三&quot;];</span><br><span class="line">console.log(&apos;obj1&apos;,obj1)</span><br><span class="line">console.log(&apos;obj2&apos;,obj2)//两个都发生改变了</span><br></pre></td></tr></table></figure></p>
+<p>下面我们使用一个浅拷贝与之做一个对比<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//浅拷贝</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    <span class="string">'name'</span> : <span class="string">'zhangsan'</span>,</span><br><span class="line">    <span class="string">'age'</span> :  <span class="string">'18'</span>,</span><br><span class="line">    <span class="string">'language'</span> : [<span class="number">1</span>,[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>]],</span><br><span class="line">&#125;;</span><br><span class="line"> <span class="keyword">var</span> obj3 = shallowCopy(obj1);</span><br><span class="line"> obj3.name = <span class="string">"lisi"</span>;</span><br><span class="line"> obj3.language[<span class="number">1</span>] = [<span class="string">"二"</span>,<span class="string">"三"</span>];</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dst = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> src) &#123;</span><br><span class="line">        <span class="keyword">if</span> (src.hasOwnProperty(prop)) &#123;</span><br><span class="line">            dst[prop] = src[prop];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dst;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'obj1'</span>,obj1)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'obj3'</span>,obj3)<span class="comment">//结果是第一层的数据没变 第二层的数据变了</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="2-深拷贝和浅拷贝"><a href="#2-深拷贝和浅拷贝" class="headerlink" title="2.深拷贝和浅拷贝"></a>2.深拷贝和浅拷贝</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;其实以我的理解简单的说浅拷贝就只是拷贝了了对象的第一层的属性但是没有拷贝到对象中的应用类型属性，而深拷贝是递归拷贝全部都拷贝了，下面是一张网上的图<br><img src="/images/copy.png" alt="My Pic"></p>
+<h1 id="2-浅拷贝的实现"><a href="#2-浅拷贝的实现" class="headerlink" title="2.浅拷贝的实现"></a>2.浅拷贝的实现</h1><h2 id="2-1-通过遍历实现"><a href="#2-1-通过遍历实现" class="headerlink" title="2.1 通过遍历实现"></a>2.1 通过遍历实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dst = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> src) &#123;</span><br><span class="line">        <span class="keyword">if</span> (src.hasOwnProperty(prop)) &#123;<span class="comment">//过滤掉自身的继承属性</span></span><br><span class="line">            dst[prop] = src[prop];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dst;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-Object-assign"><a href="#2-2-Object-assign" class="headerlink" title="2.2 Object.assign"></a>2.2 Object.assign</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;</span><br><span class="line">  a: &#123;</span><br><span class="line">    a: <span class="string">'nane'</span>,</span><br><span class="line">    b: <span class="number">13</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="built_in">Object</span>.assign(&#123;&#125;,o1)</span><br><span class="line">o2.a.a = <span class="string">'name'</span></span><br><span class="line"><span class="built_in">console</span>.log(o1)</span><br><span class="line"><span class="built_in">console</span>.log(o2)<span class="comment">//都改变 当只有一层的时候是深拷贝</span></span><br><span class="line"><span class="keyword">var</span> o3 = &#123;</span><br><span class="line">    a: <span class="string">'nane'</span>,</span><br><span class="line">    b: <span class="number">13</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o4 = <span class="built_in">Object</span>.assign(&#123;&#125;,o3)</span><br><span class="line">o4.a = <span class="string">'name'</span></span><br><span class="line"><span class="built_in">console</span>.log(o3)</span><br><span class="line"><span class="built_in">console</span>.log(o4)<span class="comment">//只有一个改变</span></span><br></pre></td></tr></table></figure>
+<p>有一点需要注意的是 如果这样写的话Object.assign(o1)的话返回的是对象本身 不会新创建</p>
+<h2 id="2-3-slice-concat方法"><a href="#2-3-slice-concat方法" class="headerlink" title="2.3 slice concat方法"></a>2.3 slice concat方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o5 = [<span class="number">1</span>, <span class="number">3</span>, &#123;</span><br><span class="line">    username: <span class="string">'kobe'</span></span><br><span class="line">    &#125;];</span><br><span class="line"><span class="keyword">let</span> o6=o5.concat();    </span><br><span class="line">o6[<span class="number">2</span>].username = <span class="string">'wade'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(o5);</span><br><span class="line"><span class="built_in">console</span>.log(o6);<span class="comment">//都改变 如果修改的不是引用类型则不会影响原数组</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-深拷贝的实现"><a href="#3-深拷贝的实现" class="headerlink" title="3.深拷贝的实现"></a>3.深拷贝的实现</h1><h2 id="3-1-JSON-parse-JSON-stringify"><a href="#3-1-JSON-parse-JSON-stringify" class="headerlink" title="3.1 JSON.parse(JSON.stringify())"></a>3.1 JSON.parse(JSON.stringify())</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o7 = [<span class="number">1</span>, <span class="number">3</span>, &#123;</span><br><span class="line">    username: <span class="string">' kobe'</span></span><br><span class="line">&#125;];</span><br><span class="line"><span class="keyword">let</span> o8 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(o7));</span><br><span class="line">o8[<span class="number">2</span>].username = <span class="string">'duncan'</span>; </span><br><span class="line"><span class="built_in">console</span>.log(o7, o8)<span class="comment">//只有一个变了</span></span><br><span class="line"><span class="comment">//需要注意的是 这个没办法处理函数 如果有函数得话 拷贝时会拷贝掉</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-递归拷贝"><a href="#3-2-递归拷贝" class="headerlink" title="3.2 递归拷贝"></a>3.2 递归拷贝</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkedType</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(target).slice(<span class="number">8</span>, <span class="number">-1</span>)<span class="comment">//获取参数的数据类型</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//实现深度克隆---对象/数组</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">clone</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">      <span class="comment">//判断拷贝的数据类型</span></span><br><span class="line">      <span class="comment">//初始化变量result 成为最终克隆的数据</span></span><br><span class="line">      <span class="keyword">let</span> result, targetType = checkedType(target)</span><br><span class="line">      <span class="keyword">if</span> (targetType === <span class="string">'Object'</span>) &#123;</span><br><span class="line">        result = &#123;&#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (targetType === <span class="string">'Array'</span>) &#123;</span><br><span class="line">        result = []</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> target</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//遍历目标数据</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> target) &#123;</span><br><span class="line">        <span class="comment">//获取遍历数据结构的每一项值。</span></span><br><span class="line">        <span class="keyword">let</span> value = target[i]</span><br><span class="line">        <span class="comment">//判断目标结构里的每一值是否存在对象/数组</span></span><br><span class="line">        <span class="keyword">if</span> (checkedType(value) === <span class="string">'Object'</span> ||</span><br><span class="line">          checkedType(value) === <span class="string">'Array'</span>) &#123; <span class="comment">//对象/数组里嵌套了对象/数组</span></span><br><span class="line">          <span class="comment">//继续遍历获取到value值</span></span><br><span class="line">          result[i] = clone(value)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//获取到value值是基本的数据类型或者是函数。</span></span><br><span class="line">          result[i] = value;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> o9 = &#123;</span><br><span class="line">      a:<span class="number">1</span>,</span><br><span class="line">      b:&#123;</span><br><span class="line">        a:<span class="number">2</span>,</span><br><span class="line">        c:&#123;</span><br><span class="line">          num: <span class="number">100</span></span><br><span class="line">        &#125;,</span><br><span class="line">        d:&#123;</span><br><span class="line">          <span class="keyword">do</span>: <span class="literal">true</span>,</span><br><span class="line">          e:&#123;</span><br><span class="line">            go: <span class="literal">false</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> o10 = clone(o9)</span><br><span class="line">    o10.a = <span class="string">'b'</span></span><br><span class="line">    o10.b.a = <span class="number">200</span></span><br><span class="line">    o10.b.c.num = <span class="number">1000</span></span><br><span class="line">    <span class="built_in">console</span>.log(o9)</span><br><span class="line">    <span class="built_in">console</span>.log(o10)<span class="comment">//都只会改变一个</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-3-第三方库（lodash）"><a href="#3-3-第三方库（lodash）" class="headerlink" title="3.3 第三方库（lodash）"></a>3.3 第三方库（lodash）</h2><p><a href="https://juejin.im/post/5b5dcf8351882519790c9a2e" target="_blank" rel="noopener">参考链接</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-直接赋值和拷贝"><span class="toc-number">1.</span> <span class="toc-text">1.直接赋值和拷贝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-深拷贝和浅拷贝"><span class="toc-number">2.</span> <span class="toc-text">2.深拷贝和浅拷贝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-浅拷贝的实现"><span class="toc-number">3.</span> <span class="toc-text">2.浅拷贝的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-通过遍历实现"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 通过遍历实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Object-assign"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 Object.assign</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-slice-concat方法"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 slice concat方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-深拷贝的实现"><span class="toc-number">4.</span> <span class="toc-text">3.深拷贝的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-JSON-parse-JSON-stringify"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 JSON.parse(JSON.stringify())</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-递归拷贝"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 递归拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-第三方库（lodash）"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 第三方库（lodash）</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
