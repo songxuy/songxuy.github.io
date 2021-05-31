@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>初探VUE3 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;VUE3的第一版也已经出来好几个月了，自己一直说要去看看，结果一直拖到了现在。目前依然是pre-alpha状态，但主要的架构改进、优化和新功能都已经完成，剩下的主,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">初探VUE3</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">初探VUE3</h1>
+        <div class="stuff">
+            <span>一月 10, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;VUE3的第一版也已经出来好几个月了，自己一直说要去看看，结果一直拖到了现在。目前依然是pre-alpha状态，但主要的架构改进、优化和新功能都已经完成，剩下的主要是完成一些Vue2现有功能的移植（尤大大原话）。下面就通过代码为大家初探一下Vue3：<br><a id="more"></a></p>
+<h3 id="拉取源代码"><a href="#拉取源代码" class="headerlink" title="拉取源代码"></a>拉取源代码</h3><blockquote>
+<p>GIthub源码：<a href="https://github.com/vuejs/vue-next" target="_blank" rel="noopener">vue-next</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull https://github.com/vuejs/vue-next.git</span><br><span class="line">cd vue-next</span><br></pre></td></tr></table></figure>
+<h3 id="相对于之前的改变"><a href="#相对于之前的改变" class="headerlink" title="相对于之前的改变"></a>相对于之前的改变</h3><ul>
+<li><p>双向数据绑定的实现（由Obejct.defineProperty-&gt;Proxy）</p>
+<blockquote>
+<p>这一点是众所周知的，使用代理解决了之前数组没实现的问题（使用之前的实现消耗太大）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, &#123;</span><br><span class="line">    <span class="keyword">get</span>(obj, prop) &#123; ... &#125;,</span><br><span class="line">    <span class="keyword">set</span>(obj, prop, newVal) &#123; ... &#125;,</span><br><span class="line">    deleteProperty() &#123;</span><br><span class="line">        <span class="comment">//invoked when property from source data object is deleted</span></span><br><span class="line">    &#125;&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>源码几乎都是使用TypeScript编写，ts的优势就不用多说了吧</p>
+</li>
+<li>重构了虚拟DOM</li>
+<li>OptionApi =&gt; Composition API</li>
+</ul>
+<h3 id="走进源代码"><a href="#走进源代码" class="headerlink" title="走进源代码"></a>走进源代码</h3><h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><blockquote>
+<p>我们主要需要关注package文件夹，里面包含了功能的实现</p>
+</blockquote>
+<p><img src="/images/vue31.png" alt="My Pic"></p>
+<ul>
+<li>compiler-core 目录: 平台无关的编译器. 它既包含可扩展的基础功能，也包含所有平台无关的插件。</li>
+<li>compiler-dom 目录: 针对浏览器而写的编译器。</li>
+<li>reactivity 目录：数据响应式系统，这是一个单独的系统，可以与任何框架配合使用。</li>
+<li>runtime-core 目录：与平台无关的运行时。其实现的功能有虚拟 DOM 渲染器、Vue 组件和 Vue 的各种API，我们可以利用这个 runtime 实现针对某个具体平台的高阶 runtime，比如自定义渲染器。</li>
+<li>runtime-dom 目录: 针对浏览器的 runtime。其功能包括处理原生 DOM API、DOM 事件和 DOM 属性等。</li>
+<li>runtime-test 目录: 一个专门为了测试而写的轻量级 runtime。由于这个 rumtime 「渲染」出的 DOM 树其实是一个 JS 对象，所以这个 runtime 可以用在所有 JS 环境里。你可以用它来测试渲染是否正确。它还可以用于序列化 DOM、触发 DOM 事件，以及记录某次更新中的 DOM 操作。</li>
+<li>server-renderer 目录: 用于 SSR。尚未实现。</li>
+<li>shared 目录: 没有暴露任何 API，主要包含了一些平台无关的内部帮助方法。</li>
+<li>vue 目录: 用于构建「完整构建」版本，引用了上面提到的 runtime 和 compiler。</li>
+</ul>
+<h4 id="runtime-core-模块"><a href="#runtime-core-模块" class="headerlink" title="runtime-core 模块"></a>runtime-core 模块</h4><blockquote>
+<p>这部分包含了Vue中各种Api的实现以及生命周期等功能，我们可以在这个模块看看相应的方法的具体实现。<br>apiCreateComponent中是关于createComponent的实现<br>apiInject中是关于provide和inject的实现<br>apiLifecycle中是关于生命周期的实现<br>其他的大家可以自己去看看，这里就不再赘述了</p>
+</blockquote>
+<p><img src="/images/vue32.png" alt="My Pic"></p>
+<h4 id="reactivity-模块"><a href="#reactivity-模块" class="headerlink" title="reactivity 模块"></a>reactivity 模块</h4><blockquote>
+<p>这个文件主要是数据响应模块的实现。其暴露的主要 API 有 ref（数据容器）、reactive（基于 Proxy 实现的响应式数据）、computed（计算数据）、effect（副作用） 等几部分。</p>
+</blockquote>
+<p><img src="/images/vue33.png" alt="My Pic"></p>
+<blockquote>
+<p>下面是一个源码实现的一个方法createReactiveObject,可以看到里面已经是使用Proxy了<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createReactiveObject</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  target: <span class="built_in">any</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">  toProxy: WeakMap&lt;<span class="built_in">any</span>, <span class="built_in">any</span>&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  toRaw: WeakMap&lt;<span class="built_in">any</span>, <span class="built_in">any</span>&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  baseHandlers: ProxyHandler&lt;<span class="built_in">any</span>&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  collectionHandlers: ProxyHandler&lt;<span class="built_in">any</span>&gt;</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!isObject(target)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">      <span class="built_in">console</span>.warn(<span class="string">`value cannot be made reactive: <span class="subst">$&#123;<span class="built_in">String</span>(target)&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> target</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// target already has corresponding Proxy</span></span><br><span class="line">  <span class="keyword">let</span> observed = toProxy.get(target)</span><br><span class="line">  <span class="keyword">if</span> (observed !== <span class="built_in">void</span> <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> observed</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// target is already a Proxy</span></span><br><span class="line">  <span class="keyword">if</span> (toRaw.has(target)) &#123;</span><br><span class="line">    <span class="keyword">return</span> target</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// only a whitelist of value types can be observed.</span></span><br><span class="line">  <span class="keyword">if</span> (!canObserve(target)) &#123;</span><br><span class="line">    <span class="keyword">return</span> target</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> handlers = collectionTypes.has(target.<span class="keyword">constructor</span>)</span><br><span class="line">    ? collectionHandlers</span><br><span class="line">    : baseHandlers</span><br><span class="line">  observed = new Proxy(<span class="params">target, handlers</span>)</span><br><span class="line">  toProxy.set(<span class="params">target, observed</span>)</span><br><span class="line">  toRaw.set(<span class="params">observed, target</span>)</span><br><span class="line">  if (<span class="params">!targetMap.has(target)</span>) &#123;</span><br><span class="line">    targetMap.set(target, <span class="keyword">new</span> Map())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> observed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="runtime-dom-模块"><a href="#runtime-dom-模块" class="headerlink" title="runtime-dom 模块"></a>runtime-dom 模块</h4><blockquote>
+<p>这部分主要是写的浏览器上的 runtime，主要功能是适配了浏览器环境下节点和节点属性的增删改查。它暴露了两个重要 API：render 和 createApp，并声明了一个 ComponentPublicInstance 接口。</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRenderer &#125; <span class="keyword">from</span> <span class="string">'@vue/runtime-core'</span></span><br><span class="line"><span class="keyword">import</span> &#123; nodeOps &#125; <span class="keyword">from</span> <span class="string">'./nodeOps'</span></span><br><span class="line"><span class="keyword">import</span> &#123; patchProp &#125; <span class="keyword">from</span> <span class="string">'./patchProp'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; render, createApp &#125; = createRenderer&lt;Node, Element&gt;(&#123;</span><br><span class="line">  patchProp,</span><br><span class="line">  ...nodeOps</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; render, createApp &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// re-export everything from core</span></span><br><span class="line"><span class="comment">// h, Component, reactivity API, nextTick, flags &amp; types</span></span><br><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">'@vue/runtime-core'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> ComponentPublicInstance &#123;</span><br><span class="line">  $el: Element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><blockquote>
+<p>这次就先介绍这几个模块了，大家还是可以自己去看看。之后还会给大家介绍，相应的demo的编写以及运行其中编写好的测试demo。</p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取源代码"><span class="toc-number">1.</span> <span class="toc-text">拉取源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相对于之前的改变"><span class="toc-number">2.</span> <span class="toc-text">相对于之前的改变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#走进源代码"><span class="toc-number">3.</span> <span class="toc-text">走进源代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">3.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#runtime-core-模块"><span class="toc-number">3.2.</span> <span class="toc-text">runtime-core 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reactivity-模块"><span class="toc-number">3.3.</span> <span class="toc-text">reactivity 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#runtime-dom-模块"><span class="toc-number">3.4.</span> <span class="toc-text">runtime-dom 模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结尾"><span class="toc-number">4.</span> <span class="toc-text">结尾</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
