@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vue中diff算法详解 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近看到了一篇关于Vue diff算法的详解的文章，写的真的挺好的，解答了很多之前自己对一些概念和一些比较过程的过程中模糊的地方。自己也来,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Vue中diff算法详解</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Vue中diff算法详解</h1>
+        <div class="stuff">
+            <span>八月 06, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近看到了一篇关于Vue diff算法的详解的文章，写的真的挺好的，解答了很多之前自己对一些概念和一些比较过程的过程中模糊的地方。自己也来总结一下，理下思路：<br><a id="more"></a></p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ul>
+<li>数据发生变化时，vue是怎么更新视图的？<blockquote>
+<p>我们应该都知道vue使用了虚拟dom来减轻频繁的操作修改真实的dom元素带来的性能的消耗。在更新视图时，vDom不会进行频繁修改，然后一次性比较并修改真实的dom中需要修改的dom。其本质vDom映射到真实的dom元素。其主要需要经历vnode的create、diff、patch。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li>VDom和真实Dom的区别<blockquote>
+<p>VDom本质上是从真实的Dom的数据中抽出来形成的一个类似于对象的结构，而真实的Dom对应的就是相应的Dom节点。VDom不会立马进行排版和重绘操作，同时可以有效降低大面积真实Dom的重绘和排版，可以只渲染局部。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li>vue2.x和Vue3.x渲染器的diff算法<blockquote>
+<p>总的来说，diff算法有一下的过程：</p>
+<ul>
+<li>同级比较，再比较子节点</li>
+<li>先判断一方有子节点一方没有子节点的情况(如果新的children没有子节点，将旧的子节点移除)</li>
+<li>比较都有子节点的情况(核心diff)</li>
+<li>递归比较子节点</li>
+</ul>
+<p>正常Diff两个树的时间复杂度是<strong>O(n^3)</strong>，但实际情况下我们很少会进行<strong>跨层级的移动DOM</strong>，所以Vue将Diff进行了优化，从<strong>O(n^3) -&gt; O(n)</strong>，只有当新旧children都为多个子节点时才需要用核心的Diff算法进行同层级比较。<br>Vue2的核心Diff算法采用了<strong>双端比较</strong>的算法，同时从新旧children的两端开始进行比较，借助key值找到可复用的节点，再进行相关操作。相比React的Diff算法，同样情况下可以减少移动节点次数，减少不必要的性能损耗，更加的优雅。<br>Vue3.x借鉴了 <strong>ivi算法</strong>和 <strong>inferno算法</strong>在创建VNode时就确定其类型，以及在mount/patch的过程中采用位运算来判断一个VNode的类型，在这个基础之上再配合核心的Diff算法，使得性能上较Vue2.x有了提升。(实际的实现可以结合Vue3.x源码看。)</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="DIff流程图"><a href="#DIff流程图" class="headerlink" title="DIff流程图"></a>DIff流程图</h4><blockquote>
+<p>总的来说就是触发更新时，比较两个节点是否相同，不同则直接返回新的，相同再去比较子节点。</p>
+</blockquote>
+<p><img src="/images/diff.png" alt="Image"></p>
+<h4 id="详细分析"><a href="#详细分析" class="headerlink" title="详细分析"></a>详细分析</h4><h5 id="Diff"><a href="#Diff" class="headerlink" title="Diff"></a>Diff</h5><ul>
+<li>初次比较两个原始节点的过程（主要是核心部分）首先传入新节点和之前的旧节点</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diff</span> (<span class="params">oldVnode, newnode</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// some code</span></span><br><span class="line">    <span class="keyword">if</span> (sameVnode(oldVnode, newnode)) &#123;</span><br><span class="line">    	patchVnode(oldVnode, newnode)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    	<span class="keyword">const</span> oEl = oldVnode.el <span class="comment">// 当前oldVnode对应的真实元素节点</span></span><br><span class="line">    	<span class="keyword">let</span> parentEle = api.parentNode(oEl)  <span class="comment">// 父元素</span></span><br><span class="line">    	createEle(newnode)  <span class="comment">// 根据Vnode生成新元素</span></span><br><span class="line">    	<span class="keyword">if</span> (parentEle !== <span class="literal">null</span>) &#123;</span><br><span class="line">            api.insertBefore(parentEle, newnode.el, api.nextSibling(oEl)) <span class="comment">// 将新元素添加进父元素</span></span><br><span class="line">            api.removeChild(parentEle, oldVnode.el)  <span class="comment">// 移除以前的旧元素节点</span></span><br><span class="line">            oldVnode = <span class="literal">null</span></span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// some code </span></span><br><span class="line">    <span class="keyword">return</span> newnode</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="isSameNode"><a href="#isSameNode" class="headerlink" title="isSameNode"></a>isSameNode</h5><ul>
+<li>之后判断两个节点是否值得比较（是否相同），相同则进行下一步的比较（深入检查其子节点），不同则直接进行替换。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSameNode</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    a.key === b.key &amp;&amp;  <span class="comment">// key值</span></span><br><span class="line">    a.tag === b.tag &amp;&amp;  <span class="comment">// 标签名</span></span><br><span class="line">    a.isComment === b.isComment &amp;&amp;  <span class="comment">// 是否为注释节点</span></span><br><span class="line">    <span class="comment">// 是否都定义了data，data包含一些具体信息，例如onclick , style</span></span><br><span class="line">    isDef(a.data) === isDef(b.data) &amp;&amp;  </span><br><span class="line">    sameInputType(a, b) <span class="comment">// 当标签是&lt;input&gt;的时候，type必须相同</span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="patchNode"><a href="#patchNode" class="headerlink" title="patchNode"></a>patchNode</h5><blockquote>
+<p>对子节点进行深入的比较，会进行以下的操作</p>
+<ul>
+<li>找到真实的dom设为el</li>
+<li>判断oldVnode和vnode是否指向同一个对象，如果是 则返回。</li>
+<li>如果它们两个都有文本节点且不相等，则将真实dom的文本节点设为vnode的文本节点</li>
+<li>如果oldVnode有子节点而Vnode没有，则删除el的子节点</li>
+<li>如果oldVnode没有子节点而Vnode有，则将Vnode的子节点真实化之后添加到el</li>
+<li>如果两者都有子节点，则执行updateChildren函数比较子节点，这一步很重要（即核心diff）</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">patchVnode (oldVnode, vnode) &#123;</span><br><span class="line">    <span class="keyword">const</span> el = vnode.el = oldVnode.el</span><br><span class="line">    <span class="keyword">let</span> i, oldCh = oldVnode.children, ch = vnode.children</span><br><span class="line">    <span class="keyword">if</span> (oldVnode === vnode) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> (oldVnode.text !== <span class="literal">null</span> &amp;&amp; vnode.text !== <span class="literal">null</span> &amp;&amp; oldVnode.text !== vnode.text) &#123;</span><br><span class="line">        api.setTextContent(el, vnode.text)</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        updateEle(el, vnode, oldVnode)</span><br><span class="line">    	<span class="keyword">if</span> (oldCh &amp;&amp; ch &amp;&amp; oldCh !== ch) &#123;</span><br><span class="line">            updateChildren(el, oldCh, ch)</span><br><span class="line">    	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ch)&#123;</span><br><span class="line">            createEle(vnode) <span class="comment">//create el's children dom</span></span><br><span class="line">    	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (oldCh)&#123;</span><br><span class="line">            api.removeChildren(el)</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="updateChildren"><a href="#updateChildren" class="headerlink" title="updateChildren"></a>updateChildren</h5><blockquote>
+<p>这个核心diff算法会比较复杂一点，我们先来看看具体的代码吧</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">updateChildren (parentElm, oldCh, newCh) &#123;</span><br><span class="line">    <span class="keyword">let</span> oldStartIdx = <span class="number">0</span>, newStartIdx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> oldEndIdx = oldCh.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> oldStartVnode = oldCh[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">let</span> oldEndVnode = oldCh[oldEndIdx]</span><br><span class="line">    <span class="keyword">let</span> newEndIdx = newCh.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> newStartVnode = newCh[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">let</span> newEndVnode = newCh[newEndIdx]</span><br><span class="line">    <span class="keyword">let</span> oldKeyToIdx</span><br><span class="line">    <span class="keyword">let</span> idxInOld</span><br><span class="line">    <span class="keyword">let</span> elmToMove</span><br><span class="line">    <span class="keyword">let</span> before</span><br><span class="line">    <span class="keyword">while</span> (oldStartIdx &lt;= oldEndIdx &amp;&amp; newStartIdx &lt;= newEndIdx) &#123;</span><br><span class="line">        <span class="keyword">if</span> (oldStartVnode == <span class="literal">null</span>) &#123;   <span class="comment">// 对于vnode.key的比较，会把oldVnode = null</span></span><br><span class="line">            oldStartVnode = oldCh[++oldStartIdx] </span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (oldEndVnode == <span class="literal">null</span>) &#123;</span><br><span class="line">            oldEndVnode = oldCh[--oldEndIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (newStartVnode == <span class="literal">null</span>) &#123;</span><br><span class="line">            newStartVnode = newCh[++newStartIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (newEndVnode == <span class="literal">null</span>) &#123;</span><br><span class="line">            newEndVnode = newCh[--newEndIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (sameVnode(oldStartVnode, newStartVnode)) &#123;</span><br><span class="line">            patchVnode(oldStartVnode, newStartVnode)</span><br><span class="line">            oldStartVnode = oldCh[++oldStartIdx]</span><br><span class="line">            newStartVnode = newCh[++newStartIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (sameVnode(oldEndVnode, newEndVnode)) &#123;</span><br><span class="line">            patchVnode(oldEndVnode, newEndVnode)</span><br><span class="line">            oldEndVnode = oldCh[--oldEndIdx]</span><br><span class="line">            newEndVnode = newCh[--newEndIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (sameVnode(oldStartVnode, newEndVnode)) &#123;</span><br><span class="line">            patchVnode(oldStartVnode, newEndVnode)</span><br><span class="line">            api.insertBefore(parentElm, oldStartVnode.el, api.nextSibling(oldEndVnode.el))</span><br><span class="line">            oldStartVnode = oldCh[++oldStartIdx]</span><br><span class="line">            newEndVnode = newCh[--newEndIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (sameVnode(oldEndVnode, newStartVnode)) &#123;</span><br><span class="line">            patchVnode(oldEndVnode, newStartVnode)</span><br><span class="line">            api.insertBefore(parentElm, oldEndVnode.el, oldStartVnode.el)</span><br><span class="line">            oldEndVnode = oldCh[--oldEndIdx]</span><br><span class="line">            newStartVnode = newCh[++newStartIdx]</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">// 使用key时的比较</span></span><br><span class="line">            <span class="keyword">if</span> (oldKeyToIdx === <span class="literal">undefined</span>) &#123;</span><br><span class="line">                oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx) <span class="comment">// 有key生成index表</span></span><br><span class="line">            &#125;</span><br><span class="line">            idxInOld = oldKeyToIdx[newStartVnode.key]</span><br><span class="line">            <span class="keyword">if</span> (!idxInOld) &#123;</span><br><span class="line">                api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el)</span><br><span class="line">                newStartVnode = newCh[++newStartIdx]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                elmToMove = oldCh[idxInOld]</span><br><span class="line">                <span class="keyword">if</span> (elmToMove.sel !== newStartVnode.sel) &#123;</span><br><span class="line">                    api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el)</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    patchVnode(elmToMove, newStartVnode)</span><br><span class="line">                    oldCh[idxInOld] = <span class="literal">null</span></span><br><span class="line">                    api.insertBefore(parentElm, elmToMove.el, oldStartVnode.el)</span><br><span class="line">                &#125;</span><br><span class="line">                newStartVnode = newCh[++newStartIdx]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (oldStartIdx &gt; oldEndIdx) &#123;</span><br><span class="line">        before = newCh[newEndIdx + <span class="number">1</span>] == <span class="literal">null</span> ? <span class="literal">null</span> : newCh[newEndIdx + <span class="number">1</span>].el</span><br><span class="line">        addVnodes(parentElm, before, newCh, newStartIdx, newEndIdx)</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (newStartIdx &gt; newEndIdx) &#123;</span><br><span class="line">        removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里采用的是双端比较，即分别设置一头一尾两个变量指向oldvnode和vnode。然后开始循环比较4个节点（4种比较的方式oldstart，start、oldstart，end、oldend，start、oldend，end）。循环结束的条件oldstart&gt;oldend或者start&gt;end。<br>如果oldstart和end匹配上了，则真实dom中第一个节点会移到最后。oldstart向后移，end向前移<br>如果oldend和start匹配上了，则真实dom中最后一个节点会移到最前面，匹配上的两个指针向中间移动<br>如果四种匹配没有一对是成功的，分为两种情况</p>
+<blockquote>
+<p>如果新旧子节点都存在key，那么会根据oldChild的key生成一张hash表，用S的key与hash表做匹配，匹配成功就判断S和匹配节点是否为sameNode，如果是，就在真实dom中将成功的节点移到最前面，否则，将S生成对应的节点插入到dom中对应的oldS位置，S指针向中间移动，被匹配old中的节点置为null。</p>
+<p>如果没有key,则直接将S生成新的节点插入真实DOM（ps：这下可以解释为什么v-for的时候需要设置key了，如果没有key那么就只会做四种匹配，就算指针中间有可复用的节点都不能被复用了）</p>
+</blockquote>
+</blockquote>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://juejin.im/post/6844903607913938951" target="_blank" rel="noopener">详解vue的diff算法</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DIff流程图"><span class="toc-number">2.</span> <span class="toc-text">DIff流程图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#详细分析"><span class="toc-number">3.</span> <span class="toc-text">详细分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Diff"><span class="toc-number">3.1.</span> <span class="toc-text">Diff</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isSameNode"><span class="toc-number">3.2.</span> <span class="toc-text">isSameNode</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#patchNode"><span class="toc-number">3.3.</span> <span class="toc-text">patchNode</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#updateChildren"><span class="toc-number">3.4.</span> <span class="toc-text">updateChildren</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考文章"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

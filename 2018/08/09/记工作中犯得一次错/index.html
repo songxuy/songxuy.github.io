@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>记工作中犯得一次错 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;感觉工作以后 ，就变得很忙了 出了下班和周末  很难有自己思考和学习的时间了。最近在完成了一个项目之后，提测的过程中出现了一个问题。就是一个数据的显示,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">记工作中犯得一次错</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">记工作中犯得一次错</h1>
+        <div class="stuff">
+            <span>八月 09, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JS/">JS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/">vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;感觉工作以后 ，就变得很忙了 出了下班和周末  很难有自己思考和学习的时间了。最近在完成了一个项目之后，提测的过程中出现了一个问题。就是一个数据的显示问题，与用户的状态不匹配。最后找出来原因，都是异步回调惹的祸。发现自己要学习的东西还有很多很多，对一些工具的使用太过于表面，不懂其实现的原理。<br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;下面就讲一下我在项目中所遇到的问题吧。<br>&nbsp;&nbsp;&nbsp;&nbsp;一段文字 我需要通过从接口返回来的数据来判断应该在这里显示什么。由于我使用的是vue框架 我在app.vue变通过vuex封装的action 调用了获取用户信息的方法，在首页中通过获取vuex中保存的用户信息来进行判断，这时就有就有一个奇怪的事发生了 用户进来这里显示的文字不一定和用户的信息相匹配。于是我在判断的上面输出了此时的userinfo里面的值，发现打印出来都是有值的 但是就是下面的显示会有问题 此时自己也慌了 因为定的时间就是等会就要上线。此时就会出现一个大佬，也就是我的前端经理 让我先直接用笨办法先解决 也就是直接在判断的时候加一个setTimeout 让这个放在消息队列的最后，也就一定会等到异步回调返回结果之后 再进行判断。虽然问题解决了 但是还是觉得很沮丧 自己太菜了 。<br>所以就要开始学习了。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面讲一下自己后来学习到的东西<br>&nbsp;&nbsp;&nbsp;&nbsp;首先我最常使用的async+await 让异步回调的每一步都在你的掌控之中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">await</span> axios.get(<span class="string">'https://www.codoon.com/activity/v1/marathon-test-2018/user/info'</span>)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(response.status)&#123;</span><br><span class="line">that.$store.commit(<span class="string">'UPDATEUSERINFO'</span>, response.data);</span><br><span class="line"><span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">alert(response.description)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(response)</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">alert(error);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">await</span> axios.get(<span class="string">'https://www.codoon.com/www/v2/training_plan_v3/get_race_score'</span>, &#123;</span><br><span class="line">params: &#123;</span><br><span class="line">race_type: that.data.choosed1.value,</span><br><span class="line">user_id: that.actInfo.userId</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(response.status)&#123;</span><br><span class="line"><span class="keyword">if</span>(response.data.score==<span class="number">0</span>)&#123;</span><br><span class="line">alert(<span class="string">'抱歉未获取到您该类型的成绩,请自行填写'</span>)</span><br><span class="line">&#125;</span><br><span class="line">that.total = response.data.score;</span><br><span class="line">that.data.choosed2.hour = that.total%<span class="number">3600</span>;</span><br><span class="line">that.data.choosed2.min = (that.total - that.data.choosed2.hour*<span class="number">3600</span>)%<span class="number">60</span>;</span><br><span class="line">that.data.choosed2.sec = (that.total - that.data.choosed2.hour*<span class="number">3600</span> - that.data.choosed2.min*<span class="number">60</span>);</span><br><span class="line"><span class="built_in">console</span>.log(response)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">alert(response.description)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(response)</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">alert(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">g().then(<span class="function"><span class="params">v</span>=&gt;</span>&#123;</span><br><span class="line"><span class="keyword">this</span>.data.choosed2.hour = <span class="built_in">Math</span>.floor(<span class="keyword">this</span>.total/<span class="number">3600</span>);</span><br><span class="line"><span class="keyword">this</span>.data.choosed2.min = <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.total - <span class="keyword">this</span>.data.choosed2.hour*<span class="number">3600</span>)/<span class="number">60</span>);</span><br><span class="line"><span class="keyword">this</span>.data.choosed2.sec = (<span class="keyword">this</span>.total - <span class="keyword">this</span>.data.choosed2.hour*<span class="number">3600</span> - <span class="keyword">this</span>.data.choosed2.min*<span class="number">60</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.data.choosed2)</span><br><span class="line"><span class="keyword">this</span>.setMum(<span class="literal">false</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这里就使用了async+await调用了两个接口  并且确定是先执行user/info接口在执行后面那个接口 这样就不怕数据还没获取到就进行了操作了。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+				
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
