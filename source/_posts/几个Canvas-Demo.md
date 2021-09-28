@@ -10,7 +10,7 @@ categories:
 - Canvas
 
 date: 2021-08-27 16:54:00
-cover: /images/bg17.jpg
+cover: /images/bg18.jpg
 
 ---
 
