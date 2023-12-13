@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Node的一些问题 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近的几次面试都问到了关于node的一些问题。一个是nodeJS的使用场景有哪些，它的优势有哪些呀。还有一个是node与java等其他后端语言的区别。,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Node的一些问题</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Node的一些问题</h1>
+        <div class="stuff">
+            <span>三月 28, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/NodeJs/">NodeJs</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;最近的几次面试都问到了关于node的一些问题。一个是nodeJS的使用场景有哪些，它的优势有哪些呀。还有一个是node与java等其他后端语言的区别。还有就是node的事件机制与浏览器的事件机制有什么区别。<br><a id="more"></a></p>
+<h2 id="1-node的使用场景"><a href="#1-node的使用场景" class="headerlink" title="1.node的使用场景"></a>1.node的使用场景</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;首先看一下node的特点吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 它是一个Javascript运行环境</span><br><span class="line">2. 依赖于Chrome V8引擎进行代码解释</span><br><span class="line">3. 事件驱动</span><br><span class="line">4. 非阻塞I/O</span><br><span class="line">5. 轻量、可伸缩，适于实时数据交互应用</span><br><span class="line">6. 单进程，单线程</span><br></pre></td></tr></table></figure></p>
+<p>优点：<br>　　1. 高并发（最重要的优点）<br>　　2. 适合I/O密集型应用<br>缺点：<br>　　1. 不适合CPU密集型应用；CPU密集型应用给Node带来的挑战主要是：由于JavaScript单线程的原因，如果有长时间运行的计算（比如大循环），将会导致CPU时间片不能释放，使得后续I/O无法发起；<br>　　　　解决方案：分解大型运算任务为多个小任务，使得运算能够适时释放，不阻塞I/O调用的发起；<br>　　2. 只支持单核CPU，不能充分利用CPU<br>　　3. 可靠性低，一旦代码某个环节崩溃，整个系统都崩溃<br>　　　　原因：单进程，单线程<br>　　　　解决方案：（1）Nnigx反向代理，负载均衡，开多个进程，绑定多个端口；<br>　　　　　　　　　（2）开多个进程监听同一个端口，使用cluster模块；<br>　　4. 开源组件库质量参差不齐，更新快，向下不兼容<br>　　5. Debug不方便，错误没有stack trace<br>所以适用场景大概就是满足这些特点的：在高并发、I/O密集、少量业务逻辑的场景</p>
+<h2 id="2-node与java的对比"><a href="#2-node与java的对比" class="headerlink" title="2.node与java的对比"></a>2.node与java的对比</h2><p>首先就是node是单线程而java是多线程的<br>（1）node.js比Java更快 ：node.js开发快，运行的效率也算比较高，但是如果项目大了就容易乱，而且javascript不是静态类型的语言，<br>要到运行时才知道类型错误，所以写的多了之后免不了会出现光知道有错但是找不到哪儿错的情况，所以测试就得些的更好更详细。<br>     java开发慢，但是如果项目大、复杂的话，用java就不容易乱，管理起来比node.js省。</p>
+<p>（2）Node.js 前后端都采用Javascript，代表未来发展的趋势，而java则是现在的最流行的服务器端编程语言。<br>（3）Node.js和Java EE——一种是解释语言，一种是编译语言.</p>
+<h2 id="3-node的事件机制"><a href="#3-node的事件机制" class="headerlink" title="3.node的事件机制"></a>3.node的事件机制</h2><p>Node 10以前：<br>执行完一个阶段的所有任务<br>执行完nextTick队列里面的内容<br>然后执行完微任务队列的内容</p>
+<p>Node 11以后： 和浏览器的行为统一了，都是每执行一个宏任务就执行完微任务队列。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-node的使用场景"><span class="toc-number">1.</span> <span class="toc-text">1.node的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-node与java的对比"><span class="toc-number">2.</span> <span class="toc-text">2.node与java的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-node的事件机制"><span class="toc-number">3.</span> <span class="toc-text">3.node的事件机制</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
