@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hexo博客添加helper-live2d - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;大家应该都看到过，有的博客右下方有一个会跟着鼠标转动的小人。当我们打开控制台又找不到找不到相应的元素。其实它是使用了helper-live,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Hexo博客添加helper-live2d</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Hexo博客添加helper-live2d</h1>
+        <div class="stuff">
+            <span>八月 27, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大家应该都看到过，有的博客右下方有一个会跟着鼠标转动的小人。当我们打开控制台又找不到找不到相应的元素。其实它是使用了helper-live2d插件，在下载相应的模型进行配置。<br><a id="more"></a></p>
+<h4 id="Hexo-helper-live2d"><a href="#Hexo-helper-live2d" class="headerlink" title="Hexo-helper-live2d"></a>Hexo-helper-live2d</h4><blockquote>
+<p>由于我的博客是使用hexo搭建的，因此所选择的插件就是hexo-helper-live2d，其实就是一个动态模型插件，<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">github地址</a>。</p>
+<p>除了针对于hexo的之外，还有针对vue-press的vuepress-plugin-helper-live2d插件，<a href="https://github.com/JoeyBling/vuepress-plugin-helper-live2d" target="_blank" rel="noopener">github地址</a></p>
+<p>注意事项： 必须要装有Node环境，已经相应的live2d模型</p>
+</blockquote>
+<h4 id="Live2d模型"><a href="#Live2d模型" class="headerlink" title="Live2d模型"></a>Live2d模型</h4><blockquote>
+<p>Live2d模型对应的就是相应的小人，目前作者提供的模型如下：（<a href="https://github.com/xiazeyu/live2d-widget-models" target="_blank" rel="noopener">github地址</a>）</p>
+</blockquote>
+<ul>
+<li>live2d-widget-model-chitose</li>
+<li>live2d-widget-model-epsilon2_1</li>
+<li>live2d-widget-model-gf</li>
+<li>live2d-widget-model-haru/01 (use npm install –save live2d-widget-model-haru)</li>
+<li>live2d-widget-model-haru/02 (use npm install –save live2d-widget-model-haru)</li>
+<li>live2d-widget-model-harutolive2d-widget-model-hibiki</li>
+<li>live2d-widget-model-hijiki</li>
+<li>live2d-widget-model-izumi</li>
+<li>live2d-widget-model-koharu</li>
+<li>live2d-widget-model-miku</li>
+<li>live2d-widget-model-ni-j</li>
+<li>live2d-widget-model-nico</li>
+<li>live2d-widget-model-nietzsche</li>
+<li>live2d-widget-model-nipsilon</li>
+<li>live2d-widget-model-nito</li>
+<li>live2d-widget-model-shizuku</li>
+<li>live2d-widget-model-tororo</li>
+<li>live2d-widget-model-tsumiki</li>
+<li>live2d-widget-model-unitychan</li>
+<li>live2d-widget-model-wanko</li>
+<li>live2d-widget-model-z16</li>
+</ul>
+<blockquote>
+<p>对应的截图如下，<a href="https://huaji8.top/post/live2d-plugin-2.0/" target="_blank" rel="noopener">原文链接</a></p>
+</blockquote>
+<p><img src="/images/live2d1.png" alt="Image"></p>
+<h4 id="具体安装"><a href="#具体安装" class="headerlink" title="具体安装"></a>具体安装</h4><ul>
+<li>安装模块（在hexo根目录安装）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//安装lived2d插件</span><br><span class="line">cnpm install --save hexo-helper-live2d</span><br><span class="line"></span><br><span class="line">// 安装2d模型 我这里装的是live2d-widget-model-haruto</span><br><span class="line">cnpm install --save live2d-widget-model-haruto</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在_config.yml中配置<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="string">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="string">scriptFrom:</span> <span class="string">local</span> <span class="comment"># 默认</span></span><br><span class="line">  <span class="string">pluginRootPath:</span> <span class="string">live2dw/</span> <span class="comment"># 插件在站点上的根目录(相对路径)</span></span><br><span class="line">  <span class="string">pluginJsPath:</span> <span class="string">lib/</span> <span class="comment"># 脚本文件相对与插件根目录路径</span></span><br><span class="line">  <span class="string">pluginModelPath:</span> <span class="string">assets/</span> <span class="comment"># 模型文件相对与插件根目录路径</span></span><br><span class="line">  <span class="comment"># scriptFrom: jsdelivr # jsdelivr CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: unpkg # unpkg CDN</span></span><br><span class="line">  <span class="comment"># scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url</span></span><br><span class="line">  <span class="string">tagMode:</span> <span class="literal">false</span> <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  <span class="string">debug:</span> <span class="literal">false</span> <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="string">use:</span> <span class="string">live2d-widget-model-haruto</span></span><br><span class="line">    <span class="comment"># use: live2d-widget-model-wanko # npm-module package name</span></span><br><span class="line">    <span class="comment"># use: wanko # 博客根目录/live2d_models/ 下的目录名</span></span><br><span class="line">    <span class="comment"># use: ./wives/wanko # 相对于博客根目录的路径</span></span><br><span class="line">    <span class="comment"># use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url</span></span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="string">position:</span> <span class="string">right</span></span><br><span class="line">    <span class="string">width:</span> <span class="number">145</span></span><br><span class="line">    <span class="string">height:</span> <span class="number">315</span></span><br><span class="line">    <span class="string">vOffset:</span> <span class="number">-60</span> <span class="comment">#竖直偏移量</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="string">show:</span> <span class="literal">true</span> <span class="comment"># 是否在移动设备上显示</span></span><br><span class="line">    <span class="string">scale:</span> <span class="number">0.5</span> <span class="comment"># 移动设备上的缩放</span></span><br><span class="line">  <span class="attr">react:</span></span><br><span class="line">    <span class="string">opacityDefault:</span> <span class="number">0.7</span></span><br><span class="line">    <span class="string">opacityOnHover:</span> <span class="number">0.8</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p><img src="/images/live2d2.png" alt="Image"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo-helper-live2d"><span class="toc-number">1.</span> <span class="toc-text">Hexo-helper-live2d</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Live2d模型"><span class="toc-number">2.</span> <span class="toc-text">Live2d模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#具体安装"><span class="toc-number">3.</span> <span class="toc-text">具体安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最终效果"><span class="toc-number">4.</span> <span class="toc-text">最终效果</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

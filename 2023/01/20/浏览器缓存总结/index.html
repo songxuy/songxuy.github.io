@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>浏览器缓存总结 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="❝众所周知浏览器的缓存机制分为强缓存和协商缓存，而缓存也是前端性能优化中很重要的一种方法，下面就是对这两种缓存触发的过程介绍。❞强缓存浏览器首先检查强缓存，这个阶段不需要发送HTTP请求。主要是根据,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">浏览器缓存总结</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">浏览器缓存总结</h1>
+        <div class="stuff">
+            <span>一月 20, 2023</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/浏览器缓存/">浏览器缓存</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; padding: 0 10px; word-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; line-height: 1.25; color: #2b2b2b; letter-spacing: 2px; background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%); background-size: 20px 20px; background-position: center center; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">众所周知浏览器的缓存机制分为强缓存和协商缓存，而缓存也是前端性能优化中很重要的一种方法，下面就是对这两种缓存触发的过程介绍。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h2 data-tool="mdnice编辑器" id="强缓存" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px; display: block; border-bottom: 4px solid #40B8FA;"><span class="prefix" style="display: flex; width: 20px; height: 20px; background-size: 20px 20px; background-image: url(https://files.mdnice.com/fullstack-1.png); margin-bottom: -22px;"></span><span class="content" style="display: flex; color: #40B8FA; font-size: 20px; margin-left: 25px;"><a href="#强缓存" class="headerlink" title="强缓存">强缓存</a></span><span class="suffix" style="display: flex; box-sizing: border-box; width: 200px; height: 10px; border-top-left-radius: 20px; background: RGBA(64, 184, 250, .5); color: rgb(255, 255, 255); font-size: 16px; letter-spacing: 0.544px; justify-content: flex-end; float: right; margin-top: -10px; box-sizing: border-box !important; overflow-wrap: break-word !important;"></span></h2><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">浏览器首先检查强缓存，这个阶段不需要发送HTTP请求。主要是根据之前请求返回的字段来判断。在HTTP/1.0中使用的是Expires字段，而HTTP/1.1 中使用的是Cache-Control字段。当这两个字段同时存在时，会优先考虑Cache-Control</section></li></ul><br><h3 data-tool="mdnice编辑器" id="Expires" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#Expires" class="headerlink" title="Expires">Expires</a></span><span class="suffix" style="display: none;"></span></h3><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">Expires 为过期时间，即时间之内可直接使用，否则未命中</section></li></ul><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px; text-align: left;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;">Expires:&nbsp;Thu,&nbsp;14&nbsp;Dec&nbsp;2023&nbsp;22:26:25&nbsp;GMT<br></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">表示资源在2023/12/14 22:26:25 过期，过期之后就需要再次发送请求。但这个字段存在一个问题，服务端与客户端的时间可能不一致，因此在HTTP1.1中舍弃改为Cache-Control了</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="cacheControl" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#cacheControl" class="headerlink" title="cacheControl">Cache-Control</a></span><span class="suffix" style="display: none;"></span></h3><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">Cache-Control中就没有采用具体时间而是使用过期时常（S）</section></li></ul><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px; text-align: left;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;">Cache-Control:&nbsp;max-age=600&nbsp;//&nbsp;表示在响应返回的600S&nbsp;之内可以使用缓存<br></code></pre><br><p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; line-height: 26px; color: #2b2b2b; margin: 10px 0px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px;">除此之外，Cache-Control还提供了很多字段：</p><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">public: 客户端和代理服务器都可以缓存（由于一个请求到达目标可能回经过很多代理服务器）<br>private: 只有浏览器能够缓存<br>no-cache：跳过当前强缓存，发送请求进入协商缓存阶段<br>no-store: 不进行任何形式缓存<br>s-maxage: 代理服务器的缓存时间</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h2 data-tool="mdnice编辑器" id="协商缓存" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px; display: block; border-bottom: 4px solid #40B8FA;"><span class="prefix" style="display: flex; width: 20px; height: 20px; background-size: 20px 20px; background-image: url(https://files.mdnice.com/fullstack-1.png); margin-bottom: -22px;"></span><span class="content" style="display: flex; color: #40B8FA; font-size: 20px; margin-left: 25px;"><a href="#协商缓存" class="headerlink" title="协商缓存">协商缓存</a></span><span class="suffix" style="display: flex; box-sizing: border-box; width: 200px; height: 10px; border-top-left-radius: 20px; background: RGBA(64, 184, 250, .5); color: rgb(255, 255, 255); font-size: 16px; letter-spacing: 0.544px; justify-content: flex-end; float: right; margin-top: -10px; box-sizing: border-box !important; overflow-wrap: break-word !important;"></span></h2><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">当强缓存失效了，就进入协商缓存阶段。此时浏览器在请求头中携带相应的缓存字段向服务器发送请求，由服务器根据字段来决定是否使用缓存。字段主要为Last-Modified和ETag，如果两个方式都支持，会优先考虑ETag。</section></li></ul><br><h3 data-tool="mdnice编辑器" id="lastModified" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#lastModified" class="headerlink" title="lastModified">Last-Modified</a></span><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">为最后修改时间，当第一次发送请求后，服务器会在响应中加上这个字段。再次请求时，会在请求头中添加If-Modified-Since字段，这个字段的值就是Last-Modified的值。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; line-height: 26px; color: #2b2b2b; margin: 10px 0px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px;">服务端拿到该字段后会和服务端中该资源最后修改时间对比：</p><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">如果小于最后修改时间，则需要更新返回新的资源，跟第一次响应流程相同</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">否则返回304，告诉浏览器直接用缓存</section></li></ul><br><h3 data-tool="mdnice编辑器" id="etag" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#etag" class="headerlink" title="etag">ETag</a></span><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">ETag是根据 当前资源内容生成的唯一标识，只要资源内容改动，就会变化。服务端同样通过响应头返回给浏览器，浏览器下次请求时会在请求头中添加If-None-Match字段值与ETag相同，发送给服务端</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; line-height: 26px; color: #2b2b2b; margin: 10px 0px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px;">服务端拿到If-None-Match，会与服务端上该资源的ETag对比：</p><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">如果两者不相同，则说明需要更新，与常规请求响应流程一致</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">否则返回304，告诉浏览器直接用缓存</section></li></ul><br><h3 data-tool="mdnice编辑器" id="对比" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#对比" class="headerlink" title="对比">对比</a></span><span class="suffix" style="display: none;"></span></h3><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">在精准度上，ETag优于Last-Modified。ETag是按照内容给资源上标识，因此能准确感知资源的变化，而Last-Modified在一些情况下不能准确感知资源变化。</section></li></ul><br><ol data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; list-style-type: decimal; font-size: 15px; color: #595959;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">编辑了资源文件，但是文件内容并没有更改</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">Last-Modified 能够感知的单位时间是秒，如果文件在 1 秒内改变了多次，那么这时候的 Last-Modified 并没有体现出修改了</section></li></ol><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">在性能上，Last-Modified优于ETag，因为ETag需要根据文件具体内容生成而Last-Modified只是记录时间</section></li></ul><br></section>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#强缓存"><span class="toc-number">1.</span> <span class="toc-text">强缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Expires"><span class="toc-number">1.1.</span> <span class="toc-text">Expires</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cacheControl"><span class="toc-number">1.2.</span> <span class="toc-text">Cache-Control</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协商缓存"><span class="toc-number">2.</span> <span class="toc-text">协商缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lastModified"><span class="toc-number">2.1.</span> <span class="toc-text">Last-Modified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etag"><span class="toc-number">2.2.</span> <span class="toc-text">ETag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">2.3.</span> <span class="toc-text">对比</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
