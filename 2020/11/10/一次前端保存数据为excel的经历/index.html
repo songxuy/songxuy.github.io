@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>一次前端保存数据为excel的经历 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近遇到一个需求，需要上传两个表格，点击按钮将这两个文件的差异相对于第一个文件标红之后的表格下载到本地。刚开始感觉前端还蛮简单的，直接一个a链接访问相应的接口就行,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">一次前端保存数据为excel的经历</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">一次前端保存数据为excel的经历</h1>
+        <div class="stuff">
+            <span>十一月 10, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Blob/">Blob</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; padding: 0 10px; word-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; line-height: 1.25; color: #2b2b2b; font-family: Optima-Regular, Optima, PingFangTC-Light, PingFangSC-light, PingFangTC-light; letter-spacing: 2px; background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%); background-size: 20px 20px; background-position: center center;"><p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; line-height: 26px; color: #2b2b2b; margin: 10px 0px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px;">&nbsp;&nbsp;&nbsp;最近遇到一个需求，需要上传两个表格，点击按钮将这两个文件的差异相对于第一个文件标红之后的表格下载到本地。刚开始感觉前端还蛮简单的，直接一个a链接访问相应的接口就行了，但在实际编写过程中肯定是不行的。</p><br><a id="more"></a><br><h3 data-tool="mdnice编辑器" id="a链接可以么" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://my-wechat.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#a链接可以么" class="headerlink" title="a链接可以么"></a>a链接可以么？</span><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">这是肯定不行的，由于a链接中的href相当于一个get请求，而我们需求中需要传递文件，这样肯定是不能满足需求的。于是只能走到下一步使用refuse的接口请求。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="GET or POST" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://my-wechat.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#GET or POST" class="headerlink" title="GET or POST"></a>GET or POST</span><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">这里使用的是post（强行使用get也是可以的，可以把数据加到body中可以在postman中模拟）</p><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;"><a href="https://www.zhihu.com/question/28586791" style="text-decoration: none; word-wrap: break-word; color: #40B8FA; font-weight: normal; border-bottom: 1px solid #3BAAFA;" target="_blank" rel="noopener">参考链接</a></p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;"><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;formdata&nbsp;=&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">new</span>&nbsp;FormData()<br>formdata.append(<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘file1’</span>,&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">this</span>.fileData1)<br>formdata.append(<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘file2’</span>,&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">this</span>.fileData2)<br>$.ajax({<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">url</span>:&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">this</span>.url,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">type</span>:&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘post,<br>&nbsp;&nbsp;&nbsp;&nbsp;data:&nbsp;formdata<br>}).done((res)&nbsp;=&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(res)<br>})<br></span></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">这样写感觉上应该没什么问题应该能拿到相应的表格数据，但结果是不行的，传递formdata时，要设置两个参数为false才能成功请求，否则会报错。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;">processData:&nbsp;<span class="hljs-literal" style="color: #0184bb; line-height: 26px;">false</span>,<br><span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">//processData用于对data参数进行序列化处理，默认值是true。默认情况下发送的数据将被转换为对象，如果不希望把File转换，需要设置为false</span><br><span class="hljs-attr" style="color: #986801; line-height: 26px;">contentType</span>:&nbsp;<span class="hljs-literal" style="color: #0184bb; line-height: 26px;">false</span><br><span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">//jQuery不要去设置Content-Type请求头</span><br></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">修改为这样之后能够成功的获取到数据，但是关键来了我们要怎么将后端返回的数据转为excel下载</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="AJAX的返回值" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://my-wechat.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#AJAX的返回值" class="headerlink" title="AJAX的返回值"></a>AJAX的返回值？</span><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">我们最理想的情况是后端返回数据流给我们，然后通过相应的方法转化生成文件链接，再去模拟点击实现。于是自己就在这条路上越走越远，能够成功下载文件，但是全是乱码。对于返回值的处理代码如下：</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;"><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;link&nbsp;=&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">document</span>.createElement(<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘a’</span>)<br>link.download&nbsp;=&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘xxxx.xls’</span><br>link.style.display&nbsp;=&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘none’</span><br><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;blob&nbsp;=&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">new</span>&nbsp;Blob([res],&nbsp;{<span class="hljs-attr" style="color: #986801; line-height: 26px;">type</span>:&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘application/vnd.ms-excel’</span>})<br>link.href&nbsp;=&nbsp;URL.createObjectURL(blob)<br><span class="hljs-built_in" style="color: #c18401; line-height: 26px;">document</span>.body.appendChild(link)<br>link.click()<br><span class="hljs-built_in" style="color: #c18401; line-height: 26px;">document</span>.body.removeChild(link)<br></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">最后才注意到ajax的返回值类型上，自己先typeof了一下发现返回的值的类型为string。这才发现了问题ajax的返回值只能是（XML、html、script、JSON、jsonp、text）。那接下来要怎么解决呢？</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="通过base64转" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://my-wechat.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span><a href="#通过base64转" class="headerlink" title="通过base64转"></a>通过base64转？</span><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">最终的解决的方法就是后端返回文件base64格式的数据，前端再将base64转blob来实现</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;">base64ToBlob&nbsp;(code)&nbsp;{<br><span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">//btoa和atob是window对象的两个函数，其中btoa是binary&nbsp;to&nbsp;ascii，用于将binary的数据用ascii码表示，即Base64的编码过程，而atob则是ascii&nbsp;to&nbsp;binary，用于将ascii码解析成binary数据</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">const</span>&nbsp;raw&nbsp;=&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">window</span>.atob(code)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">const</span>&nbsp;rawLength&nbsp;=&nbsp;raw.length<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">const</span>&nbsp;uInt8Array&nbsp;=&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">new</span>&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">Uint8Array</span>(rawLength)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">for</span>&nbsp;(<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;i&nbsp;=&nbsp;<span class="hljs-number" style="color: #986801; line-height: 26px;">0</span>;&nbsp;i&nbsp;&lt;&nbsp;rawLength;&nbsp;i++)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uInt8Array[i]&nbsp;=&nbsp;raw.charCodeAt(i)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">new</span>&nbsp;Blob([uInt8Array],&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">type</span>:&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘application/vnd.ms-excel’</span><br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>}<br></code></pre><br></section>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#a链接可以么"><span class="toc-number">1.</span> <span class="toc-text">a链接可以么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET or POST"><span class="toc-number">2.</span> <span class="toc-text">GET or POST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX的返回值"><span class="toc-number">3.</span> <span class="toc-text">AJAX的返回值？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过base64转"><span class="toc-number">4.</span> <span class="toc-text">通过base64转？</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

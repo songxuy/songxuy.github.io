@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JSON.stringify的使用 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="最近在JSON.stringify上遇到了几个坑，虽然之前也知道过，但只有在真正遇到的时候才知道有多难搞，下面简单总结下：深拷贝平常我们用到最多的就是使用JSON.stringify+JSON.pa,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">JSON.stringify的使用</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JSON.stringify的使用</h1>
+        <div class="stuff">
+            <span>四月 26, 2022</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; padding: 0 10px; word-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; line-height: 1.25; color: #2b2b2b; letter-spacing: 2px; background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.04) 3%, rgba(0, 0, 0, 0) 3%); background-size: 20px 20px; background-position: center center; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; line-height: 26px; color: #2b2b2b; margin: 10px 0px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px;">最近在JSON.stringify上遇到了几个坑，虽然之前也知道过，但只有在真正遇到的时候才知道有多难搞，下面简单总结下：</p><br><h3 data-tool="mdnice编辑器" id="stringify1" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span>深拷贝</span><a href="#stringify1" class="headerlink" title="深拷贝"></a><span class="suffix" style="display: none;"></span></h3><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">平常我们用到最多的就是使用JSON.stringify+JSON.parse深拷贝一个对象，但是当value值是function、undefind或者Symbol时会被丢失。</section></li></ul><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;"><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;obj&nbsp;=&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">a</span>:<span class="hljs-number" style="color: #986801; line-height: 26px;">123</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">fn</span>:<span class="hljs-function" style="line-height: 26px;"><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">function</span>(<span class="hljs-params" style="line-height: 26px;"></span>)</span>{<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;a&nbsp;=&nbsp;<span class="hljs-number" style="color: #986801; line-height: 26px;">123</span>;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">console</span>.log(a)},<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">c</span>:<span class="hljs-literal" style="color: #0184bb; line-height: 26px;">undefined</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">d</span>:<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">Symbol</span>(<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘foo’</span>)<br>&nbsp;}<br><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">let</span>&nbsp;newObj&nbsp;=&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">JSON</span>.parse(<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">JSON</span>.stringify(obj));<br></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">这个问题是自己实际遇到的（需求是将一个对象toString保存到服务端，获取之后再parse解析，其中有个key的value是一个function，结果就丢失了）。<br>解决方法可以试试第二点。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="stringify2" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span>指定转换</span><a href="#stringify2" class="headerlink" title="指定转换"></a><span class="suffix" style="display: none;"></span></h3><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">第二个参数就是用来自定义转换的</section></li></ul><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">如果该参数是一个函数，则在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理；如果该参数是一个数组，则只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中；如果该参数为 null 或者未提供，则对象所有的属性都会被序列化。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;"><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">const</span>&nbsp;FUNC_PREFIX&nbsp;=&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">“FUNC_PREFIX”</span><br><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">export</span>&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">const</span>&nbsp;JSONStringify&nbsp;=&nbsp;<span class="hljs-function" style="line-height: 26px;">(<span class="hljs-params" style="line-height: 26px;">option</span>)&nbsp;=&gt;</span>&nbsp;{<br>&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">JSON</span>.stringify(option,<br>&nbsp;&nbsp;&nbsp;&nbsp;(key,&nbsp;val)&nbsp;=&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">//&nbsp;处理函数丢失问题</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">if</span>&nbsp;(<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">typeof</span>&nbsp;val&nbsp;===&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘function’</span>)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;"><code>&lt;span class=&quot;hljs-subst&quot; style=&quot;color: #e45649; line-height: 26px;&quot;&gt;${FUNC_PREFIX}&lt;/span&gt;&lt;span class=&quot;hljs-subst&quot; style=&quot;color: #e45649; line-height: 26px;&quot;&gt;${val}&lt;/span&gt;</code></span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;val;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;)<br>}<br><span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">export</span>&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">const</span>&nbsp;JSONParse&nbsp;=&nbsp;<span class="hljs-function" style="line-height: 26px;">(<span class="hljs-params" style="line-height: 26px;">objStr</span>)&nbsp;=&gt;</span>&nbsp;{<br>&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">JSON</span>.parse(objStr,&nbsp;(k,&nbsp;v)&nbsp;=&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">if</span>&nbsp;(<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">typeof</span>&nbsp;v&nbsp;===&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">‘string’</span>&nbsp;&amp;&amp;&nbsp;v.indexOf&nbsp;&amp;&amp;&nbsp;v.indexOf(FUNC_PREFIX)&nbsp;&gt;&nbsp;<span class="hljs-number" style="color: #986801; line-height: 26px;">-1</span>)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">//&nbsp;eval&nbsp;可能在eslint中报错，需要加入下行注释</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">//&nbsp;eslint-disable-next-line</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;<span class="hljs-built_in" style="color: #c18401; line-height: 26px;">eval</span>(<span class="hljs-string" style="color: #50a14f; line-height: 26px;"><code>(function(){&amp;nbsp;return&amp;nbsp;&lt;span class=&quot;hljs-subst&quot; style=&quot;color: #e45649; line-height: 26px;&quot;&gt;${v.replace(FUNC_PREFIX,&amp;nbsp;&lt;span class=&quot;hljs-string&quot; style=&quot;color: #50a14f; line-height: 26px;&quot;&gt;&#39;&#39;&lt;/span&gt;)}&lt;/span&gt;})()</code></span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #a626a4; line-height: 26px;">return</span>&nbsp;v;<br>&nbsp;&nbsp;});<br>}<br></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">这样就可以解决上面函数丢失的问题，但是当你保存的函数中有外部变量的引用时，这个方法还是不行的</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="stringify3" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span>格式化</span><a href="#stringify3" class="headerlink" title="格式化"></a><span class="suffix" style="display: none;"></span></h3><br><ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; font-size: 15px; color: #595959; list-style-type: circle;"><br><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; font-size: 14px; font-weight: normal; color: #595959;">当我们需要对展示的JSON字符串进行美化的时候，就需要用到第三个参数</section></li></ul><br><pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fafafa; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #383a42; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; letter-spacing: 0px; padding-top: 15px; background: #fafafa; border-radius: 5px;"><span class="hljs-built_in" style="color: #c18401; line-height: 26px;">JSON</span>.stringify({<span class="hljs-attr" style="color: #986801; line-height: 26px;">a</span>:&nbsp;<span class="hljs-number" style="color: #986801; line-height: 26px;">123</span>,&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">b</span>:&nbsp;<span class="hljs-string" style="color: #50a14f; line-height: 26px;">“hello”</span>,&nbsp;<span class="hljs-attr" style="color: #986801; line-height: 26px;">c</span>:&nbsp;{}},&nbsp;<span class="hljs-literal" style="color: #0184bb; line-height: 26px;">null</span>,&nbsp;<span class="hljs-number" style="color: #986801; line-height: 26px;">2</span>)<br><span class="hljs-comment" style="color: #a0a1a7; font-style: italic; line-height: 26px;">/<em><br>“{<br>&nbsp;&nbsp;”a”:&nbsp;123,<br>&nbsp;&nbsp;”b”:&nbsp;”hello”,<br>&nbsp;&nbsp;”c”:&nbsp;{}<br>}”<br></em>/</span><br></code></pre><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;">使用格式化之后再parse也不需要进行额外的处理。</p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br><h3 data-tool="mdnice编辑器" id="stringify4" style="padding: 0px; color: black; font-size: 17px; font-weight: bold; text-align: center; position: relative; margin-top: 20px; margin-bottom: 20px;"><span class="prefix" style="display: none;"></span><span class="content" style="border-bottom: 2px solid RGBA(79, 177, 249, .65); color: #2b2b2b; padding-bottom: 2px;"><span style="width: 30px; height: 30px; display: block; background-image: url(https://files.mdnice.com/fullstack-2.png); background-position: center; background-size: 30px; margin: auto; opacity: 1; background-repeat: no-repeat; margin-bottom: -8px;"></span>参考链接</span><a href="#stringify4" class="headerlink" title="参考链接"></a><span class="suffix" style="display: none;"></span></h3><br><blockquote class="multiquote-1" data-tool="mdnice编辑器" style="display: block; font-size: 0.9em; overflow: auto; overflow-scrolling: touch; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; text-size-adjust: 100%; line-height: 1.55em; font-weight: 400; border-radius: 6px; color: #595959; font-style: normal; text-align: left; box-sizing: inherit; border-left: none; border: 1px solid RGBA(64, 184, 250, .4); background: RGBA(64, 184, 250, .1);"><span style="color: RGBA(64, 184, 250, .5); font-size: 34px; line-height: 1; font-weight: 700;">❝</span><br><p style="padding-top: 8px; padding-bottom: 8px; letter-spacing: 2px; font-size: 14px; word-spacing: 2px; margin: 0px; line-height: 26px; color: #595959;"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" style="text-decoration: none; word-wrap: break-word; color: #40B8FA; font-weight: normal; border-bottom: 1px solid #3BAAFA;" target="_blank" rel="noopener">JSON.stringify()</a></p><br><span style="float: right; color: RGBA(64, 184, 250, .5);">❞</span></blockquote><br></section>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#stringify1"><span class="toc-number">1.</span> <span class="toc-text">深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringify2"><span class="toc-number">2.</span> <span class="toc-text">指定转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringify3"><span class="toc-number">3.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringify4"><span class="toc-number">4.</span> <span class="toc-text">参考链接</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

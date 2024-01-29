@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>前端性能优化 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近查了很多关于这方面的资料，其中有自己知道的，也有自己不知道的。所有就做了一个小小的总结。总的来说前端性能的优化按照优化的对象分为页面级优化和代码级,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">前端性能优化</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">前端性能优化</h1>
+        <div class="stuff">
+            <span>三月 13, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端/">前端</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;最近查了很多关于这方面的资料，其中有自己知道的，也有自己不知道的。所有就做了一个小小的总结。总的来说前端性能的优化按照优化的对象分为页面级优化和代码级优化。</p>
+<h1 id="（一）页面级优化"><a href="#（一）页面级优化" class="headerlink" title="（一）页面级优化"></a>（一）页面级优化</h1><h2 id="1-将css放在head中（这个应该知道）"><a href="#1-将css放在head中（这个应该知道）" class="headerlink" title="1.将css放在head中（这个应该知道）"></a>1.将css放在head中（这个应该知道）</h2><p>如果将CSS放在其他地方比如body中，则浏览器有可能还未下载和解析到 CSS就已经开始渲染页面了，就会导致用户体验不好。</p>
+<h2 id="2-将外部js放在底部（这个应该知道）"><a href="#2-将外部js放在底部（这个应该知道）" class="headerlink" title="2.将外部js放在底部（这个应该知道）"></a>2.将外部js放在底部（这个应该知道）</h2><p>有些脚本中的操作需要等到页面加载完成之后才能执行，因此放在最下面保证代码的正常执行。脚本在加载时却会阻塞其他资源，例如在脚本加载完成之前，它后面的图片、样式以及其他脚本都处于阻塞状态，直到脚本加载完成后才会开始加载。如果将脚本放在比较靠前的位置，则会影响整个页面的加载速度从而影响用户体验。<br><a id="more"></a></p>
+<h2 id="3-减少http请求数（这个应该知道）"><a href="#3-减少http请求数（这个应该知道）" class="headerlink" title="3.减少http请求数（这个应该知道）"></a>3.减少http请求数（这个应该知道）</h2><p>但具体哪些操作呢？看到一篇文章写得比较完整，包括 从设计实现层面简化页面、合理设置 HTTP缓存(很少变化的资源)、资源合并与压缩(比如gulp来压缩)、 CSS Sprites、Inline Images(这个不是很理解,作者的说明是:使用 data: URL scheme的方式将图片嵌入到页面或CSS中，如果不考虑资源管理上的问题的话，不失为一个好办法。如果是嵌入页面的话换来的是增大了页面的体积，而且无法利用浏览器缓存。使用在 CSS中的图片则更为理想一些)、Lazy Load Images。</p>
+<h2 id="4-异步执行-inline脚本"><a href="#4-异步执行-inline脚本" class="headerlink" title="4.异步执行 inline脚本"></a>4.异步执行 inline脚本</h2><p>防止阻塞,由于浏览器在页面处理方面是单线程的，当inline脚本在页面渲染之前执行时，页面的渲染工作则会被推迟。简而言之，inline脚本在执行的时候，页面处于空白状态。鉴于以上两点原因，建议将执行时间较长的inline脚本异步执行，异步的方式有很多种，例如使用script元素的defer属性(存在兼容性问题和其他一些问题，例如不能使用document.write)、使用setTimeout，此外，在HTML5中引入了Web Workers的机制，恰恰可以解决此类问题。</p>
+<h2 id="5-Lazy-Load-Javascript"><a href="#5-Lazy-Load-Javascript" class="headerlink" title="5. Lazy Load Javascript"></a>5. Lazy Load Javascript</h2><p>按需加载,随着Javascript框架的流行，越来越多的站点也使用起了框架。不过，一个框架往往包括了很多的功能实现，这些功能并不是每一个页面都需要的，如果下载了不需要的脚本则算得上是一种资源浪费-既浪费了带宽又浪费了执行花费的时间。目前的做法大概有两种，一种是为那些流量特别大的页面专门定制一个专用的mini版框架，另一种则是LazyLoad。YUI则使用了第二种方式，在YUI的实现中，最初只加载核心模块，其他模块可以等到需要使用的时候才加载。</p>
+<h2 id="6-异步请求-Callback"><a href="#6-异步请求-Callback" class="headerlink" title="6.异步请求 Callback"></a>6.异步请求 Callback</h2><p>将一些行为样式提取出来，慢慢的加载信息的内容。作者举例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Callback函数*/</span>  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myCallback</span>(<span class="params">info</span>)</span>&#123;  </span><br><span class="line"><span class="comment">//do something here  </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">/*Html中*/</span></span><br><span class="line">&lt;script type=”text/javascript” src=”http:<span class="comment">//abc.com/cb”&gt;&lt;/script&gt; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*cb返回内容*/</span></span><br><span class="line">myCallback(‘Hello world!’);</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-减少不必要的-HTTP跳转"><a href="#7-减少不必要的-HTTP跳转" class="headerlink" title="7.减少不必要的 HTTP跳转"></a>7.减少不必要的 HTTP跳转</h2><p>避免重定向,对于以目录形式访问的HTTP链接，很多人都会忽略链接最后是否带’/‘，假如你的服务器对此是区别对待的话，那么你也需要注意，这其中很可能隐藏了 301跳转，增加了多余请求。具体参见下图，其中第一个链接是以无 ’/‘结尾的方式访问的，于是服务器有了一次跳转。</p>
+<h2 id="8-避免重复的资源请求"><a href="#8-避免重复的资源请求" class="headerlink" title="8.避免重复的资源请求"></a>8.避免重复的资源请求</h2><p>这种情况主要是由于疏忽或页面由多个模块拼接而成，然后每个模块中请求了同样的资源时，会导致资源的重复请求</p>
+<h1 id="（二）代码级优化"><a href="#（二）代码级优化" class="headerlink" title="（二）代码级优化"></a>（二）代码级优化</h1><h2 id="1-Dom操作"><a href="#1-Dom操作" class="headerlink" title="1.Dom操作"></a>1.Dom操作</h2><p>DOM操作应该是脚本中最耗性能的一类操作，例如增加、修改、删除 DOM元素或者对 DOM集合进行操作。其中有以下几点要注意</p>
+<h3 id="1-1-HTML-Collection"><a href="#1-1-HTML-Collection" class="headerlink" title="1.1 HTML Collection"></a>1.1 HTML Collection</h3><p>遍历 HTMLCollection的时候，尽量将它转为数组后再访问，以提高性能。即使不转换为数组，也请尽可能少的访问它，例如在遍历的时候可以将 length属性、成员保存到局部变量后再使用局部变量。</p>
+<h3 id="1-2-Reflow-amp-Repaint"><a href="#1-2-Reflow-amp-Repaint" class="headerlink" title="1.2 Reflow &amp; Repaint"></a>1.2 Reflow &amp; Repaint</h3><p>即重绘和回流 首先我们要知道哪些操作会引起这两个东西。repaint：如果只是改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性，将只会引起浏览器 repaint（重绘）。repaint 的速度明显快于 reflow。reflow:改变窗口大小、改变文字大小、内容的改变，如用户在输入框中敲字、激活伪类，如:hover、操作class属性、脚本操作DOM、计算offsetWidth和offsetHeight、设置style属性。如何减少呢？见下一篇blog</p>
+<h2 id="2-慎用-with"><a href="#2-慎用-with" class="headerlink" title="2.慎用 with"></a>2.慎用 with</h2><p>with相当于增加了作用域链长度，每次查找作用域链都是要消耗时间的，过长的作用域链会导致查找性能下降。</p>
+<h2 id="3-避免使用-eval和-Function"><a href="#3-避免使用-eval和-Function" class="headerlink" title="3.避免使用 eval和 Function"></a>3.避免使用 eval和 Function</h2><p>每次 eval 或 Function 构造函数作用于字符串表示的源代码时，脚本引擎都需要将源代码转换成可执行代码。这是很消耗资源的操作 —— 通常比简单的函数调用慢 100倍以上。</p>
+<h2 id="4-减少作用域链查找"><a href="#4-减少作用域链查找" class="headerlink" title="4.减少作用域链查找"></a>4.减少作用域链查找</h2><p>如果在循环中需要访问非本作用域下的变量时请在遍历之前用局部变量缓存该变量，并在遍历结束后再重写那个变量，这一点对全局变量尤其重要，因为全局变量处于作用域链的最顶端，访问时的查找次数是最多的。还可以减少闭包的使用。作者举例:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">低效率的写法：</span><br><span class="line"><span class="comment">// 全局变量 </span></span><br><span class="line"><span class="keyword">var</span> globalVar = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myCallback</span>(<span class="params">info</span>)</span>&#123; </span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">100000</span>; i--;)&#123; </span><br><span class="line"><span class="comment">//每次访问 globalVar 都需要查找到作用域链最顶端，本例中需要访问 100000 次 </span></span><br><span class="line">globalVar += i; </span><br><span class="line">&#125;</span><br><span class="line">&#125; </span><br><span class="line">更高效的写法：</span><br><span class="line"><span class="comment">// 全局变量 </span></span><br><span class="line"><span class="keyword">var</span> globalVar = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myCallback</span>(<span class="params">info</span>)</span>&#123; </span><br><span class="line"><span class="comment">//局部变量缓存全局变量 </span></span><br><span class="line"><span class="keyword">var</span> localVar = globalVar; </span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">100000</span>; i--;)&#123; </span><br><span class="line"><span class="comment">//访问局部变量是最快的 </span></span><br><span class="line">localVar += i; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-CSS选择符"><a href="#5-CSS选择符" class="headerlink" title="5.CSS选择符"></a>5.CSS选择符</h2><p>在大多数人的观念中，都觉得浏览器对CSS选择符的解析式从左往右进行的，例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#toc A &#123; color: #444; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样一个选择符，如果是从右往左解析则效率会很高，因为第一个ID选择基本上就把查找的范围限定了，但实际上浏览器对选择符的解析是从右往左进行的。如上面的选择符，浏览器必须遍历查找每一个A标签的祖先节点，效率并不像之前想象的那样高。根据浏览器的这一行为特点，在写选择符的时候需要注意很多事项。<br>转自<a href="https://www.cnblogs.com/subying/p/3661807.html" target="_blank" rel="noopener">关于浏览器css选择器性能优化</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">选择器效率高低排序</span><br><span class="line">1.id选择器（#myid）</span><br><span class="line">2.类选择器（.myclassname）</span><br><span class="line">3.标签选择器（div,h1,p）</span><br><span class="line">4.相邻选择器（h1+p）</span><br><span class="line">5.子选择器（ul &lt; li）</span><br><span class="line">6.后代选择器（li a）</span><br><span class="line">7.通配符选择器（*）</span><br><span class="line">8.属性选择器（a[rel=&quot;external&quot;]）</span><br><span class="line">9.伪类选择器（a:hover,li:nth-child）</span><br><span class="line"></span><br><span class="line">注意的几点</span><br><span class="line">1.id选择器肯定是最快，但是不要在ID选择器使用的同时再使用标签或类选择器了，这点上jquery也是一样的。</span><br><span class="line">不要出现这样的写法 &quot;div#content&quot; 或者 &quot;#content.text&quot;。David Hyatt的第一段话中有说到了，样式系统从最右边的选择符开始向左进行匹配规则。只要当前选择符的左边还有其他选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。，而​在html中ID是唯一的，如果真的是用了 &quot;div#content&quot;，浏览器通过ID定位到了具体的元素，然后发现左侧还是标签选择器，那么就会继续匹配，继续查找元素，这样无疑损耗了浏览器的性能，影响了渲染时间。</span><br><span class="line"></span><br><span class="line">2.​不要在类选择器时用标签选择器，这点跟jquery是刚好相反的。不要出现这样的写法 &quot;div.text&quot;，从css的效率来看，类选择器（class）是比标签选择器要好，这样的写法只会增加了查找的难度，如果真的是根据标签来区分样式的话，考虑写不同的class。</span><br><span class="line"></span><br><span class="line">3.​​如果明确dom结构，先使用子选择器，减少后代选择器使用，这点跟jquery的对比没有留意和实践，本人认为是相反的。如果你的写法是这样 &quot;div a&quot;，而实际上div 跟 a 是父子关系，如果合适更建议是这么用 &quot;div&gt;a&quot;，这样效率高一些，但是不是最好的方案，下面这一点的方案会更好一些。</span><br><span class="line"></span><br><span class="line">4. 使用类选择器替代后代选择器和子选择器，这点上跟jquery是不一样的。</span><br><span class="line">如果你的写法是这样 &quot;div a&quot; &quot;div&gt;a&quot;，虽然前面建议用子选择器替换后代选择器，但是这两个的方式还是效率低，David Hyatt的第3段话：后代选择器在CSS中是最昂贵的选择器。贵得要命——尤其是把它和标签或通配符放在一起！​ ​毫无疑问，我们要想其他的方式来替换这种书写方式，那么可以考虑这样的写法：div对应的为&quot;.div-text&quot; a对应的为&quot;.div-text-a&quot;，从命名上来关联两者，在查看的时候逻辑也会清晰很多。</span><br><span class="line">​</span><br><span class="line">5. ​尽量使用继承来避免写重复的样式，这点与jquery没有关系了。你可能会这样写 &quot;#text&#123;&#125; #text&gt;.span:&#123;font-size:24px;&#125; #text&gt;.a&#123;font-size:24px;&#125;&quot; ，那么可以这么写&quot;.text&#123;font-size:24px;&#125;&quot;，让下面的继承这个样式。</span><br><span class="line"></span><br><span class="line">　 这些我对css选择器的一些看法，上面没有说到的就是通配符选择器（*）和属性选择器，这个其实才是最消耗性能的，因为是针对所有的元素，即便是配合其他的选择器来用也很耗性能。实际上的ID选择器使用的机会不是很高，因为Html中的ID是唯一的，不会有很多的ID。那么从上面的分析，可以得到这么一个规则：尽量使用类选择器(class)​，避免使用通配符选择器（*）​和属性选择器，后代选择器和子选择器也尽量避免。</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-html"><a href="#6-html" class="headerlink" title="6.html"></a>6.html</h2><p>对Html本身进行优化</p>
+<h2 id="7-图片压缩"><a href="#7-图片压缩" class="headerlink" title="7.图片压缩"></a>7.图片压缩</h2>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#（一）页面级优化"><span class="toc-number">1.</span> <span class="toc-text">（一）页面级优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-将css放在head中（这个应该知道）"><span class="toc-number">1.1.</span> <span class="toc-text">1.将css放在head中（这个应该知道）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-将外部js放在底部（这个应该知道）"><span class="toc-number">1.2.</span> <span class="toc-text">2.将外部js放在底部（这个应该知道）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-减少http请求数（这个应该知道）"><span class="toc-number">1.3.</span> <span class="toc-text">3.减少http请求数（这个应该知道）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-异步执行-inline脚本"><span class="toc-number">1.4.</span> <span class="toc-text">4.异步执行 inline脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Lazy-Load-Javascript"><span class="toc-number">1.5.</span> <span class="toc-text">5. Lazy Load Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-异步请求-Callback"><span class="toc-number">1.6.</span> <span class="toc-text">6.异步请求 Callback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-减少不必要的-HTTP跳转"><span class="toc-number">1.7.</span> <span class="toc-text">7.减少不必要的 HTTP跳转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-避免重复的资源请求"><span class="toc-number">1.8.</span> <span class="toc-text">8.避免重复的资源请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#（二）代码级优化"><span class="toc-number">2.</span> <span class="toc-text">（二）代码级优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dom操作"><span class="toc-number">2.1.</span> <span class="toc-text">1.Dom操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-HTML-Collection"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.1 HTML Collection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Reflow-amp-Repaint"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.2 Reflow &amp; Repaint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-慎用-with"><span class="toc-number">2.2.</span> <span class="toc-text">2.慎用 with</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-避免使用-eval和-Function"><span class="toc-number">2.3.</span> <span class="toc-text">3.避免使用 eval和 Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-减少作用域链查找"><span class="toc-number">2.4.</span> <span class="toc-text">4.减少作用域链查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-CSS选择符"><span class="toc-number">2.5.</span> <span class="toc-text">5.CSS选择符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-html"><span class="toc-number">2.6.</span> <span class="toc-text">6.html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-图片压缩"><span class="toc-number">2.7.</span> <span class="toc-text">7.图片压缩</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

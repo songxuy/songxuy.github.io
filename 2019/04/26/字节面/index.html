@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>字节面 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;等了一段时间，终于等来了字节跳动的第二次面试。自己提前也稍微准备了一下，但是一到面试的时候太容易紧张了，而且问的问题还是挺细的，偏原理。自己稍不注意就,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">字节面</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">字节面</h1>
+        <div class="stuff">
+            <span>四月 26, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Javascript/">Javascript</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/面试/">面试</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;等了一段时间，终于等来了字节跳动的第二次面试。自己提前也稍微准备了一下，但是一到面试的时候太容易紧张了，而且问的问题还是挺细的，偏原理。自己稍不注意就答偏了。最终还是挂了，下来之后自己也查了一下面试中自己觉得答得有些问题的题，结果发现确实是自己的问题，回答的太差了，有些基本上完全错了。于是自己想说还是想总结一下吧，下面就是面试中遇到的一些问题：<br><a id="more"></a></p>
+<h2 id="1-vue2-和-3有哪些不同"><a href="#1-vue2-和-3有哪些不同" class="headerlink" title="1.vue2 和 3有哪些不同"></a>1.vue2 和 3有哪些不同</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;这个问题自己一开始就答错了，理解成了vue-cli3与2的不同。结果面试官直接回了一句这个已经发布了么。我心想不是已经可以用了么，感觉有点不妙。下来之后自己也查了一下，vue3.0的一些特点吧，首先上一张盗的图。<br><img src="/images/vue3.png" alt="My Pic"><br>对自己来说可能了解的就只有双向数据绑定的区别，2是使用的Object.defineProperty 3使用的Proxy 的 observer 实现。使用2中的方法会有一点局限性：<br>（1）对属性的添加、删除动作的监测<br>（2）对数组基于下标的修改、对于 .length 修改的监测<br>（3）对 Map、Set、WeakMap 和 WeakSet 的支持<br>使用3的话消除了以前存在的警告，使速度加倍，并节省了一半的内存开销。<br>然后自己又查了一下资料总结一些变化如下：<br>（1）3中代码进行了重构代码库现在改为了用 TypeScript 编写 ，还有一些包的拆分。<br>（2）重写虚拟 DOM (Virtual DOM Rewrite) 随着虚拟 DOM 重写，我们可以期待更多的 编译时（compile-time）提示来减少 运行时（runtime）开销。重写将包括更有效的代码来创建虚拟节点。<br>（3）优化插槽生成(Optimized Slots Generation)  2.0 组件的重新渲染就是组件粒度的，除非修改的数据是子组件的 props，才会触发子组件的重新渲染。使用 Vue 3 ，可以单独重新渲染父组件和子组件。</p>
+<h2 id="2-vuex的作用及使用场景"><a href="#2-vuex的作用及使用场景" class="headerlink" title="2.vuex的作用及使用场景"></a>2.vuex的作用及使用场景</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;这个问题首先是问的你知道的组件之间传递值的方法，然后后是为什么引入vuex而不使用一个顶层的全局对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;传值的话，我们都知道父到子使用props，子到父使用emit监听事件。还可以使用eventbus来进行组件之间的传值。还可以使用路由和slot来传值。然后后面这个问题就有点懵逼了，自己就答了，就是为了方便数据管理和组件间数据同步。还有就是vuex还封装了很多的方法方便我们来操作数据。<br>看到一篇不错的文章解析<a href="https://blog.csdn.net/muzidigbig/article/details/83784037" target="_blank" rel="noopener">为什么要使用vuex</a></p>
+<h2 id="3-原型链实现继承的缺点"><a href="#3-原型链实现继承的缺点" class="headerlink" title="3.原型链实现继承的缺点"></a>3.原型链实现继承的缺点</h2><p>当父类中含有复杂数据类型时，子类对该属性的修改也会影响到其他的子类的该属性。子类型的实例无法在不影响所有对象的情况下，给父类型的构造函数传递参数。</p>
+<h2 id="4-浏览器加载完整过程"><a href="#4-浏览器加载完整过程" class="headerlink" title="4.浏览器加载完整过程"></a>4.浏览器加载完整过程</h2><p>简单的总结起来有下面这几个过程<br>1、浏览器的地址栏输入URL并按下回车。<br>2、浏览器查找当前URL是否存在缓存，并比较缓存是否过期。<br>3、DNS解析URL对应的IP。<br>4、根据IP建立TCP连接（三次握手）。<br>5、HTTP发起请求。<br>6、服务器处理请求，浏览器接收HTTP响应。<br>7、渲染页面，构建DOM树，css树。<br>8、关闭TCP连接（四次挥手）。<br>细节方面可以参考这篇文章<a href="https://www.cnblogs.com/daijinxue/p/6640153.html" target="_blank" rel="noopener">从输入url到页面加载完成发生了什么？——前端角度</a></p>
+<h2 id="5-http2-与1的区别"><a href="#5-http2-与1的区别" class="headerlink" title="5.http2 与1的区别"></a>5.http2 与1的区别</h2><p>（1）HTTP/2采用二进制格式而非文本格式<br>（2）HTTP/2是完全多路复用的，而非有序并阻塞的——只需一个连接即可实现并行<br>（3）使用报头压缩，HTTP/2降低了开销<br>（4）HTTP/2让服务器可以将响应主动“推送”到客户端缓存中</p>
+<h2 id="6-http请求优化"><a href="#6-http请求优化" class="headerlink" title="6.http请求优化"></a>6.http请求优化</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;这里其实呢也是前端性能优化中的一个部分。我们自己也可以总结出很多条。首先我们都知道的是要减少http请求。那为什么这样就能优化呢？首先HTTP请求建立和释放需要时间，浏览器对同一个域名的并发数量有限制。解决方发简单的就是合并合并脚本和样式表、内联图片 &amp; base64、CSS Sprites技术，从http协议的角度具体可以参考Http2与Http1的区别。</p>
+<h2 id="7-JS继承为何要修正constructor"><a href="#7-JS继承为何要修正constructor" class="headerlink" title="7.JS继承为何要修正constructor"></a>7.JS继承为何要修正constructor</h2><p>这个问题自己以前确实没有注意过，被问到的时候只有说不知道了，查了一下这段代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.prototype.constructor = a</span><br></pre></td></tr></table></figure></p>
+<p>我的理解是如果没有这句话别的东西显示new 子类的话其constructor会指向父类<br>具体的理解可以参考这篇文章<a href="https://www.cnblogs.com/SheilaSun/p/4397918.html" target="_blank" rel="noopener">为什么要做A.prototype.constructor=A这样的修正？</a></p>
+<h2 id="8-为什么要使用virture-dom"><a href="#8-为什么要使用virture-dom" class="headerlink" title="8.为什么要使用virture dom"></a>8.为什么要使用virture dom</h2><p>首先我们都知道使用virture dom之后能提高页面的渲染效率，具体是怎么实现的呢？<br>我的理解是在原来的基础上增加了一层虚拟dom层，当页面发生改变时，会先将虚拟dom进行相应的改变然后再通过像diff算法这样的，找出两个dom的区别，再操作真正的dom，这样避免了真实dom的频繁操作。<br>具体细节可以参考这篇文章<a href="https://www.cnblogs.com/SheilaSun/p/4397918.html" target="_blank" rel="noopener">你不知道的virture dom</a></p>
+<h2 id="9-vue单页面应用与-普通的加载顺序是否有差别"><a href="#9-vue单页面应用与-普通的加载顺序是否有差别" class="headerlink" title="9.vue单页面应用与 普通的加载顺序是否有差别"></a>9.vue单页面应用与 普通的加载顺序是否有差别</h2><p>见这篇文章<a href="https://juejin.im/post/5a0ea4ec6fb9a0450407725c" target="_blank" rel="noopener">前端：你要懂的单页面应用和多页面应用</a></p>
+<h2 id="10-实现模板字符串功能"><a href="#10-实现模板字符串功能" class="headerlink" title="10.实现模板字符串功能"></a>10.实现模板字符串功能</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = &#123;</span><br><span class="line">    name:<span class="string">'xbd'</span>,</span><br><span class="line">    age:<span class="number">18</span>,</span><br><span class="line">    job:<span class="string">'CTO'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> templateStr = <span class="string">'i am &#123;&#123;name&#125;&#125;,age &#123;&#123;age&#125;&#125;,job &#123;&#123;job&#125;&#125; '</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">templateFunc</span>(<span class="params">str,data</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> computed = str.replace(<span class="regexp">/\&#123;\&#123;(\w+)\&#125;\&#125;/g</span>,<span class="function"><span class="keyword">function</span> (<span class="params">match,key</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(match)</span><br><span class="line">    <span class="keyword">return</span> data[key];</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> computed;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(templateFunc(templateStr,data));</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-vue2-和-3有哪些不同"><span class="toc-number">1.</span> <span class="toc-text">1.vue2 和 3有哪些不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-vuex的作用及使用场景"><span class="toc-number">2.</span> <span class="toc-text">2.vuex的作用及使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-原型链实现继承的缺点"><span class="toc-number">3.</span> <span class="toc-text">3.原型链实现继承的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-浏览器加载完整过程"><span class="toc-number">4.</span> <span class="toc-text">4.浏览器加载完整过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-http2-与1的区别"><span class="toc-number">5.</span> <span class="toc-text">5.http2 与1的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-http请求优化"><span class="toc-number">6.</span> <span class="toc-text">6.http请求优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-JS继承为何要修正constructor"><span class="toc-number">7.</span> <span class="toc-text">7.JS继承为何要修正constructor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-为什么要使用virture-dom"><span class="toc-number">8.</span> <span class="toc-text">8.为什么要使用virture dom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-vue单页面应用与-普通的加载顺序是否有差别"><span class="toc-number">9.</span> <span class="toc-text">9.vue单页面应用与 普通的加载顺序是否有差别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-实现模板字符串功能"><span class="toc-number">10.</span> <span class="toc-text">10.实现模板字符串功能</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

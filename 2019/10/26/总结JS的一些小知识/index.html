@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>总结JS的一些小知识 - 缘来</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;最近工作一直挺忙的，也没时间学一些东西，而且感觉自己也好久没复习了总结JS的知识了（上次面试之后）加上最近又看到了别人写的一篇blog，发现还是有一些自己没掌握和,"> 
+    <meta name="author" content="coolsong"> 
+    <link rel="alternative" href="atom.xml" title="缘来" type="application/atom+xml"> 
+    <link rel="icon" href="/img/x1.png"> 
+    
+    <link rel="stylesheet" href="/css/diaspora.css">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">缘来</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://songxuy.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">总结JS的一些小知识</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">总结JS的一些小知识</h1>
+        <div class="stuff">
+            <span>十月 26, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&nbsp;&nbsp;&nbsp;最近工作一直挺忙的，也没时间学一些东西，而且感觉自己也好久没复习了总结JS的知识了（上次面试之后）加上最近又看到了别人写的一篇blog，发现还是有一些自己没掌握和比较模糊的点，下面就简单总结一下：<br><a id="more"></a></p>
+<h3 id="1-NULL是对象么？"><a href="#1-NULL是对象么？" class="headerlink" title="1. NULL是对象么？"></a>1. NULL是对象么？</h3><blockquote>
+<p>看到这个问题的时候自己第一反应感觉不是，虽然typeof null == ‘object’ 但是要自己说出原因 还是说不太明白</p>
+</blockquote>
+<ul>
+<li>答案肯定也是null不是对象</li>
+</ul>
+<blockquote>
+<p>原因：typeof null 为object是 JS 中存在的一个悠久 Bug。<br>在 JS 的最初版本中使用的是 32 位系统，为了性能考虑使用低位存储变量的类型信息，000 开头代表是对象然而 null 表示为全零，所以将它错误的判断为 object 。</p>
+</blockquote>
+<h3 id="2-‘1’-toString-可以调用么"><a href="#2-‘1’-toString-可以调用么" class="headerlink" title="2. ‘1’.toString()可以调用么?"></a>2. ‘1’.toString()可以调用么?</h3><blockquote>
+<p>自已最开始是觉得不可以，所以马上试了试结果打脸了，是可以的，之前自己认为这个只能是非字符串类型才能调用（number、object）</p>
+</blockquote>
+<blockquote>
+<p>看了官方文档的说明：每个对象都有一个 toString() 方法，当该对象被表示为一个文本值时，或者一个对象以预期的字符串方式引用时自动调用。</p>
+</blockquote>
+<blockquote>
+<p>因此这里的’1’.toString()可以分为以下几步<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'1'</span>)</span><br><span class="line">str.toString()</span><br><span class="line">str = <span class="literal">null</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>*也很容易联想到1.toString()  这里是不能执行的 会报错</p>
+<blockquote>
+<p>因为在JS中,.点操作符意味着调用Object的属性或者这是一个浮点数。当.跟在一个数字后面就意味着这个数字是一个浮点数，在.后面JS等待着一个数字。<br>所以在调用.toString()之前，我们需要告诉JS这是就是我们要的数字。需要使用以下的写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>.toString() <span class="comment">//1.就是1.0就是1</span></span><br><span class="line"><span class="number">1.0</span>.toString() <span class="comment">//与上面同理</span></span><br><span class="line">(<span class="number">1</span>).toString() <span class="comment">//(1)是一个表达式代表这就是一个1</span></span><br><span class="line"><span class="number">1</span> .toString()</span><br><span class="line"><span class="number">1</span><span class="comment">//换行，奇葩写法，与上面一样</span></span><br><span class="line">toString()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="3-Object-is-和-区别"><a href="#3-Object-is-和-区别" class="headerlink" title="3. Object.is 和 === 区别"></a>3. Object.is 和 === 区别</h3><blockquote>
+<p>Object.is 自己用的比较少所以先去试了以下它的功能 它和全等类似都是需要值和类型都相等的时候才会为true<br>但是自己依稀记得===中会有一些特殊情况<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+<span class="number">0</span> === <span class="number">-0</span>  <span class="comment">//true</span></span><br><span class="line">+<span class="number">0</span> === <span class="number">0</span> <span class="comment">//true</span></span><br><span class="line"><span class="number">-0</span> === <span class="number">0</span> <span class="comment">//true</span></span><br><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>*Object.is修复了这些问题<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.is(+<span class="number">0</span>, <span class="number">-0</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Object</span>.is(+<span class="number">0</span>, <span class="number">0</span>)<span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="number">-0</span>, <span class="number">0</span>)<span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Object.is的实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x === y) &#123;</span><br><span class="line">        <span class="keyword">return</span> x !== <span class="number">0</span> || y !== <span class="number">0</span> || <span class="number">1</span>/x === <span class="number">1</span>/y</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> x !== x &amp;&amp; y !== y</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>1/x === 1/y 只有为 0 和 +0 才相等 -Infinity 不等于 Infinity   并且只有NaN不等于其本身</p>
+</blockquote>
+<h3 id="4-JS中实现继承"><a href="#4-JS中实现继承" class="headerlink" title="4. JS中实现继承"></a>4. JS中实现继承</h3><h4 id="1-利用call和apply"><a href="#1-利用call和apply" class="headerlink" title="1.利用call和apply"></a>1.利用call和apply</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent1</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">child1</span> (<span class="params">age</span>) </span>&#123;</span><br><span class="line">    parent1.call(<span class="keyword">this</span>, <span class="string">'小花'</span>)</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> child1(<span class="number">12</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/js1.png" alt="My Pic"><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent1</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">  parent1.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">child1</span> (<span class="params">age</span>) </span>&#123;</span><br><span class="line">    parent1.call(<span class="keyword">this</span>, <span class="string">'小花'</span>)</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> child1(<span class="number">12</span>))</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/js2.png" alt="My Pic"></p>
+<blockquote>
+<p>能看到成功的继承到了父元素的属性 但是原型上的方法却无法继承 所以就有了下面的一种方法</p>
+</blockquote>
+<h4 id="2-利用原型链"><a href="#2-利用原型链" class="headerlink" title="2. 利用原型链"></a>2. 利用原型链</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent2</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line">  parent2.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">child2</span> (<span class="params">age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  child2.prototype = <span class="keyword">new</span> parent2(<span class="string">'小花'</span>)</span><br><span class="line">  <span class="keyword">let</span> c2 = <span class="keyword">new</span> child2(<span class="number">12</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(c2);</span><br><span class="line">  c2.getName()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/js3.png" alt="My Pic"></p>
+<blockquote>
+<p>可以看到能够继承属性和方法 但是也存在一个问题 每次new的子类其实都是共用的一个父类的原型，导致一些引用类型发生变化之后，所有子类的都会发生变化<br><img src="/images/js4.png" alt="My Pic"></p>
+</blockquote>
+<h4 id="3-将前两种组合"><a href="#3-将前两种组合" class="headerlink" title="3.将前两种组合"></a>3.将前两种组合</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent3</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  parent3.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">child3</span> (<span class="params">age</span>) </span>&#123;</span><br><span class="line">    parent3.call(<span class="keyword">this</span>, <span class="string">'小花'</span>)</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  child3.prototype = <span class="keyword">new</span> parent3()</span><br><span class="line">  <span class="keyword">var</span> c3 = <span class="keyword">new</span> child3();</span><br><span class="line">  <span class="keyword">var</span> c33 = <span class="keyword">new</span> child3();</span><br><span class="line">  <span class="built_in">console</span>.log(c3)</span><br><span class="line">  <span class="built_in">console</span>.log(c33);</span><br><span class="line">  c3.arr.push(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(c3)</span><br><span class="line">  <span class="built_in">console</span>.log(c33);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/js5.png" alt="My Pic"></p>
+<blockquote>
+<p>由于属性都加再了子类上就不会出现上面的问题 基本上就实现了 但是还有可以优化的点（Parent3的构造函数会多执行了一次）</p>
+</blockquote>
+<h4 id="4-组合继承优化1-0"><a href="#4-组合继承优化1-0" class="headerlink" title="4. 组合继承优化1.0"></a>4. 组合继承优化1.0</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">child3.prototype = parent3.prototype</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只需将赋值改为这种形式 通过在构造函数中打印可以发现次数少了一次赋值时 但是这样赋值之后查看new出来的子类对象可以发现其constructor变为了parent，这肯定不对 于是还需要优化<br><img src="/images/js6.png" alt="My Pic"></p>
+</blockquote>
+<h4 id="5-组合继承优化2-0"><a href="#5-组合继承优化2-0" class="headerlink" title="5. 组合继承优化2.0"></a>5. 组合继承优化2.0</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">child3.prototype = <span class="built_in">Object</span>.create(parent3.prototype)</span><br><span class="line">child3.prototype.constructor = child3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里使用Object.create来创建了一个指向parent.prototype的对象，最重要的是将子类的构造函数指向了子类<br>这种方式也叫寄生组合继承<br><img src="/images/js7.png" alt="My Pic"></p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-NULL是对象么？"><span class="toc-number">1.</span> <span class="toc-text">1. NULL是对象么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-‘1’-toString-可以调用么"><span class="toc-number">2.</span> <span class="toc-text">2. ‘1’.toString()可以调用么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Object-is-和-区别"><span class="toc-number">3.</span> <span class="toc-text">3. Object.is 和 === 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-JS中实现继承"><span class="toc-number">4.</span> <span class="toc-text">4. JS中实现继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-利用call和apply"><span class="toc-number">4.1.</span> <span class="toc-text">1.利用call和apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-利用原型链"><span class="toc-number">4.2.</span> <span class="toc-text">2. 利用原型链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-将前两种组合"><span class="toc-number">4.3.</span> <span class="toc-text">3.将前两种组合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-组合继承优化1-0"><span class="toc-number">4.4.</span> <span class="toc-text">4. 组合继承优化1.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-组合继承优化2-0"><span class="toc-number">4.5.</span> <span class="toc-text">5. 组合继承优化2.0</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":145,"height":315,"vOffset":-60},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
